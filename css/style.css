@@ -10,13 +10,19 @@
 	padding-bottom:6px;
 }
 
+#afasticon{
+
+padding-left:30px;
+	
+}
 .mainfooter{
-	padding:1.5em;
+	padding:0.5em;
 	color:#aaa;
 }
 
 .footertext{
 	color:white;
+	line-height: 54px;
 }
 
 .navbar{
@@ -64,8 +70,24 @@
   background-color: white;
 }
 
-.navbar-toggle{
+.to-functions{
 	
-	 
+	min-height:400px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 400px;
+	font-family:Roboto;
+	font-weight: bold;
+	font-size:24px;
+	background: linear-gradient(to bottom, #6D9B28 , #8BC633);
+	color:#FFFFFF;
 	
-	}
+}
+
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active {
+  background: #8BC633;
+  border-width:thick;
+  
+}

@@ -14,17 +14,12 @@
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-left" id="icticon"><img src="../img/logo_ICT1.0.png" width="60" height="64" alt=""/></a>
+
+          <a class="col-md-3" id="icticon"><img src="../img/logo_ICT1.0.png" width="60" height="64" alt=""/></a>
         </div>
     
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        
           
           <ul class="nav navbar-nav navbar-right">
               
@@ -32,17 +27,49 @@
                        
             <li><a href="#" id="getout"><i class="fa fa-sign-out" aria-hidden="true"></i> SAIR </a></li>
           </ul>
-        </div><!-- /.navbar-collapse -->
+        
       </div><!-- /.container-fluid -->
     </nav>
     
     
-    <main class="container-fluid" id="loader"></main>
+    <main class="container-fluid" id="loader">
+    <br><br>
+    	<div class="row">
+          <div class="col-md-3 ">
+            <a href="#" class="thumbnail to-functions">
+              Inserir Ocorrência
+            </a>
+          </div>
+		  <div class="col-md-3 ">
+            <a href="#" class="thumbnail to-functions">
+              Gerenciar Docentes
+            </a>
+          </div>
+          <div class="col-md-3 ">
+            <a href="#" class="thumbnail to-functions">
+              Gerenciar Ocorrências
+            </a>
+          </div>
+          <div class="col-md-3 ">
+            <a href="#" class="thumbnail to-functions">
+              Gerar Relatórios
+            </a>
+          </div>
+        </div>
+        
+        
+          
+		
+    
+    </main>
    	
     
 	
     <footer class="mainfooter navbar-default navbar-fixed-bottom">
-    	<p class="text-center footertext"> Todos os direitos reservados. </p>
+    	<section>
+        	<a class="col-md-3" id="afasticon"><img src="../img/logo_AFAST1.5.png" width="60" height="64" alt=""/></a>
+        	<p class="text-right footertext col-md-9"> Todos os direitos reservados. </p>
+        </section>    
     </footer>
 	
 	<script src="js/jquery.js"></script>
