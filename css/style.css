@@ -1,0 +1,20 @@
+/* CSS Document */
+
+#loader{
+	margin-top:3.5em;
+	min-height:600px;
+}
+
+
+.mainfooter{
+	padding:1.5em;
+	color:#aaa;
+}
+
+.navbar-sistema{
+	background:#eee;	
+}
+
+.nav div a {
+	text-decoration: none !important; 
+}
