@@ -3,10 +3,10 @@
 <head>
 	
     <meta charset="utf-8">
-    <title>AFAST ICT</title>
+    <title>Sistema</title>
     
-    <link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -27,9 +27,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           
           <ul class="nav navbar-nav navbar-right">
-              
-            <li><a href="#" id="">HOME</a></li>
-                       
+            <li><a href="#" id="">HOME </a></li>
+            
             <li><a href="#" id="getout"><i class="fa fa-sign-out" aria-hidden="true"></i> SAIR </a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -37,7 +36,12 @@
     </nav>
     
     
-    <main class="container-fluid" id="loader"></main>
+    <main class="container-fluid" id="loader">
+    	
+       
+    
+    
+    </main>
    	
     
 	
