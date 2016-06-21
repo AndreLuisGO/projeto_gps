@@ -5,16 +5,67 @@
 	min-height:600px;
 }
 
+#icticon{
+	
+	padding-bottom:6px;
+}
 
 .mainfooter{
 	padding:1.5em;
 	color:#aaa;
 }
 
-.navbar-sistema{
-	background:#eee;	
+.footertext{
+	color:white;
+}
+
+.navbar{
+	min-height: 66px;
+}
+
+.navbar-default{
+	background:#0074ae;	
 }
 
 .nav div a {
 	text-decoration: none !important; 
 }
+
+.navbar-nav > li > a {
+ line-height: 40px;
+}
+
+.navbar-brand {
+ line-height: 40px;
+}
+
+.navbar .navbar-collapse { 
+  text-align: center; 
+}
+
+.navbar-default .navbar-nav > li > a{
+	
+	
+	color:white;
+	
+	
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
+	
+	background:#0093dd;
+	color:black;
+	
+	
+}/*Muda o Hover e Focus dos links no toggle da Navbar*/
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: white;
+}
+
+.navbar-toggle{
+	
+	 
+	
+	}
