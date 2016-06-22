@@ -92,3 +92,10 @@ a.thumbnail.active {
   border-width:thick;
   
 }
+
+.text-titulo {
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size:2vw;
+	color:0074ae;
+}
