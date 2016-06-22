@@ -13,7 +13,7 @@ define("DB_DATABASEI",""); // db name
 define("DB_HOSTI","localhost"); // host 
 define("DB_USERNAMEI","root"); // username
 define("DB_PASSWORDI",""); // password
-define("DB_DATABASEI","treinamento14.05.16"); // db name
+define("DB_DATABASEI","ictafast"); // db name
 
 class DB 
 {

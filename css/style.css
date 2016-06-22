@@ -2,7 +2,7 @@
 
 #loader{
 	margin-top:3.5em;
-	min-height:600px;
+	min-height:15vw;
 }
 
 #icticon{
@@ -72,15 +72,16 @@ padding-left:30px;
 
 .to-functions{
 	
-	min-height:400px;
+	min-height:300px;
 	text-align: center;
 	vertical-align: middle;
-	line-height: 400px;
+	line-height: 300px;
 	font-family:Roboto;
 	font-weight: bold;
-	font-size:24px;
+	font-size:2vw;
 	background: linear-gradient(to bottom, #6D9B28 , #8BC633);
 	color:#FFFFFF;
+	margin-top:10vw;
 	
 }
 

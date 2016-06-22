@@ -33,7 +33,7 @@
     
     
     <main class="container-fluid" id="loader">
-    <br><br>
+    
     	<div class="row">
           <div class="col-md-3 ">
             <a href="#" class="thumbnail to-functions">
