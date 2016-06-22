@@ -22,6 +22,8 @@
         
           
           <ul class="nav navbar-nav navbar-right">
+          
+          	<li><a href="#" class="navtext" id="">ADMINISTRADOR</a></li>
               
             <li><a href="#" class="navtext" id="">HOME</a></li>
                        

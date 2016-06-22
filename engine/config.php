@@ -3,11 +3,9 @@
 	date_default_timezone_set('America/Sao_Paulo');
 
 	require_once "bd/bd.php";
-	require_once "classes/aula.php";
-	require_once "classes/turma.php";
-	require_once "classes/treinamento.php";
-	require_once "classes/trainee.php";
-	require_once "classes/treinador.php";
+	require_once "classes/docente.php";
+	require_once "classes/ocorrencia.php";
+	require_once "classes/administrador.php";
 	
 	
 	function ExibeData($data){

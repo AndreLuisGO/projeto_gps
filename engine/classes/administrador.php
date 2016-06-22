@@ -1,22 +1,24 @@
 <?php
 	//Declaracao da classe
 	//Nome da classe devera ser o nome da tabela respectiva no banco de dados
-	class Ocorrencia{
+	class Administrador{
 		
 		//Variaveis da classe
 		//Nome das variaveis devem ser de acordo com as colunas da tabela respectiva no bd
-		private $id_ocorrencia;
-		private $tipo_ocorrencia;
-		private $codigo_ocorrencia;
+		private $id_administrador;
+		private $login_administrador;
+		private $senha_administrador;
+		private $nome_administrador;
 				
 
 		//setters
 		
 		//Funcao que seta uma instancia da classe
-		public function SetValues($id_ocorrencia,$tipo_ocorrencia,$codigo_ocorrencia){ 
-			$this->id_ocorrencia = $id_ocorrencia;
-			$this->tipo_ocorrencia = $tipo_ocorrencia;
-			$this->codigo_ocorrencia = $codigo_ocorrencia;
+		public function SetValues($id_administrador, $login_administrador, $senha_administrador, $nome_administrador){ 
+			$this->id_administrador = $id_administrador;
+			$this->login_administrador = $login_administrador;
+			$this->senha_administrador = $senha_administrador;
+			$this->nome_administrador = $nome_administrador;
 						
 		}
 		
@@ -27,17 +29,19 @@
 		public function Create(){
 			
 			$sql = "
-				INSERT INTO ocorrencia
+				INSERT INTO administrador
 						  (
-				 			id_ocorrencia,
-							tipo_ocorrencia,
-							codigo_ocorrencia
+				 			id_administrador,
+							login_administrador,
+							senha_administrador,
+							nome_administrador
 						  )  
 				VALUES 
 					(
-						'$this->id_ocorrencia',
-						'$this->tipo_ocorrencia',
-						'$this->codigo_ocorrencia'
+						'$this->id_administrador',
+						'$this->login_administrador',
+						'$this->senha_administrador',
+						'$this->nome_administrador'
 					);
 			";
 			
@@ -52,13 +56,14 @@
 		public function Read($id){
 			$sql = "
 				SELECT
-					t1.id_ocorrencia,
-					t1.tipo_ocorrencia,
-					t1.codigo_ocorrencia
+					t1.id_administrador,
+					t1.login_administrador,
+					t1.senha_administrador,
+					t1.nome_administrador
 				FROM
-					ocorrencia AS t1
+					administrador AS t1
 				WHERE
-					t1.codigo_ocorrencia = '$id'
+					t1.id_administrador = '$id'
 
 			";
 			
@@ -76,11 +81,12 @@
 		public function ReadAll(){
 			$sql = "
 				SELECT
-					t1.id_ocorrencia,
-					t1.tipo_ocorrencia,
-					t1.codigo_ocorrencia
+					t1.id_administrador,
+					t1.login_administrador,
+					t1.senha_administrador,
+					t1.nome_administrador
 				FROM
-					ocorrencia AS t1
+					administrador AS t1
 				
 
 			";
@@ -113,11 +119,12 @@
 		public function ReadAll_Paginacao($inicio, $registros){
 			$sql = "
 				SELECT
-					t1.id_ocorrencia,
-					t1.tipo_ocorrencia,
-					t1.codigo_ocorrencia
+					t1.id_administrador,
+					t1.login_administrador,
+					t1.senha_administrador,
+					t1.nome_administrador
 				FROM
-					ocorrencia AS t1
+					administrador AS t1
 					
 					
 				LIMIT $inicio, $registros;
@@ -135,12 +142,13 @@
 		//Funcao que atualiza uma instancia no BD
 		public function Update(){
 			$sql = "
-				UPDATE ocorrencia SET
+				UPDATE administrador SET
 				
-				  tipo_ocorrencia = '$this->tipo_ocorrencia', 
-				  codigo_ocorrencia = '$this->codigo_ocorrencia'
+				  login_administrador = '$this->login_administrador', 
+				  senha_administrador = '$this->senha_administrador', 
+				  nome_administrador = '$this->nome_administrador'
 				
-				WHERE id_ocorrencia = '$this->id_ocorrencia';
+				WHERE id_administrador = '$this->id_administrador';
 				
 			";
 		
@@ -155,8 +163,8 @@
 		//Funcao que deleta uma instancia no BD
 		public function Delete(){
 			$sql = "
-				DELETE FROM ocorrencia
-				WHERE id_ocorrencia = '$this->id_ocorrencia';
+				DELETE FROM administrador
+				WHERE id_administrador = '$this->id_administrador';
 			";
 			$DB = new DB();
 			
@@ -186,18 +194,20 @@
 		//constructor 
 		
 		function __construct(){ 
-			$this->id_ocorrencia;
-			$this->tipo_ocorrencia;
-			$this->codigo_ocorrencia;
+			$this->id_administrador;
+			$this->login_administrador;
+			$this->senha_administrador;
+			$this->nome_administrador;
 			
 			
 		}
 		
 		//destructor
 		function __destruct(){
-			$this->id_ocorrencia;
-			$this->tipo_ocorrencia;
-			$this->codigo_ocorrencia;
+			$this->id_administrador;
+			$this->login_administrador;
+			$this->senha_administrador;
+			$this->nome_administrador;
 			
 			
 		}

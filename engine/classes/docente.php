@@ -1,7 +1,7 @@
 <?php
 	//Declaracao da classe
 	//Nome da classe devera ser o nome da tabela respectiva no banco de dados
-	class NOME_DA_CLASSE{
+	class Docente{
 		
 		//Variaveis da classe
 		//Nome das variaveis devem ser de acordo com as colunas da tabela respectiva no bd
