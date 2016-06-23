@@ -1,4 +1,11 @@
-﻿<!doctype html>
+﻿<?php
+session_start();
+if (isset($_SESSION['login_administrador'])) {
+    header("location:/sistema.php");
+}
+?>
+
+<!doctype html>
 <html>
 <head>
 	
@@ -43,17 +50,21 @@
           </div>
           <div class="col-md-3 ">
               	<br><br><br><br>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon1">Usuário *</span>
-                    <input type="text" class="form-control" id="nome_treinador" placeholder="Nome" aria-describedby="basic-addon1">
-                </div>
-                <br><br>
-				<div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon1">Senha *</span>
-                    <input type="password" class="form-control" id="senha_treinador" placeholder="Senha" aria-describedby="basic-addon1">
-                </div>
-                <br><br>
-                <button type="submit" class="pull-right btn btn-lg btn-default">Entrar</button>             
+                <form class="form-signin" name="form1" method="post" action="checklogin.php">
+                    <h2 class="form-signin-heading text-titulo">Login:</h2>
+                    <input name="login_administrador" id="login_administrador" type="text" class="form-control" placeholder="login_administrador" autofocus>
+                    <br>
+                    <input name="senha_administrador" id="senha_administrador" type="senha_administrador" class="form-control" placeholder="senha_administrador">
+                    <!-- The checkbox remember me is not implemented yet...
+                    <label class="checkbox">
+                      <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                    -->
+                    <br>
+                    <button name="Submit" id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+            
+                    <div id="message"></div>
+              	</form>             
           </div> 
                 
         </div>
@@ -75,5 +86,8 @@
 	<script src="js/bootstrap.min.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/jquerymask.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script src="js/login.js"></script>
+
 </body>
 </html>
