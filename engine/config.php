@@ -6,6 +6,7 @@
 	require_once "classes/docente.php";
 	require_once "classes/ocorrencia.php";
 	require_once "classes/administrador.php";
+	require_once "classes/afastamento.php";
 	
 	
 	function ExibeData($data){

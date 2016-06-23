@@ -1,22 +1,26 @@
 <?php
 	//Declaracao da classe
 	//Nome da classe devera ser o nome da tabela respectiva no banco de dados
-	class NOME_DA_CLASSE{
+	class Afastamento{
 		
 		//Variaveis da classe
 		//Nome das variaveis devem ser de acordo com as colunas da tabela respectiva no bd
-		private $CAMPODATABELA1;
-		private $CAMPODATABELA2;
-		private $CAMPODATABELA3;
+		private $id_afastamento;
+		private $data_afastamento;
+		private $observ_afastamento;
+		private $id_ocorrencia;
+		private $id_docente;
 				
 
 		//setters
 		
 		//Funcao que seta uma instancia da classe
-		public function SetValues($CAMPODATABELA1, $CAMPODATABELA2, $CAMPODATABELA3){ 
-			$this->CAMPODATABELA1 = $CAMPODATABELA1;
-			$this->CAMPODATABELA2 = $CAMPODATABELA2;
-			$this->CAMPODATABELA3 = $CAMPODATABELA3;
+		public function SetValues($id_afastamento, $data_afastamento, $observ_afastamento, $id_ocorrencia, $id_docente){ 
+			$this->id_afastamento = $id_afastamento;
+			$this->data_afastamento = $data_afastamento;
+			$this->observ_afastamento = $observ_afastamento;
+			$this->id_ocorrencia = $id_ocorrencia;
+			$this->id_docente = $id_docente;
 						
 		}
 		
@@ -27,17 +31,21 @@
 		public function Create(){
 			
 			$sql = "
-				INSERT INTO NOME_DA_TABELA
+				INSERT INTO afastamento
 						  (
-				 			CAMPODATABELA1,
-							CAMPODATABELA2,
-							CAMPODATABELA3
+				 			id_afastamento,
+							data_afastamento,
+							observ_afastamento,
+							id_ocorrencia,
+							id_docente
 						  )  
 				VALUES 
 					(
-						'$this->CAMPODATABELA1',
-						'$this->CAMPODATABELA2',
-						'$this->CAMPODATABELA3'
+						'$this->id_afastamento',
+						'$this->data_afastamento',
+						'$this->observ_afastamento',
+						'$this->id_ocorrencia',
+						'$this->id_docente'
 					);
 			";
 			
@@ -52,13 +60,15 @@
 		public function Read($id){
 			$sql = "
 				SELECT
-					 t1.CAMPODATABELA1,					 
-					 t1.CAMPODATABELA2,
-					 t1.CAMPODATABELA3
+					t1.id_afastamento,
+					t1.data_afastamento,
+					t1.observ_afastamento,
+					t1.id_ocorrencia,
+					t1.id_docente
 				FROM
-					NOME_DA_TABELA AS t1
+					afastamento AS t1
 				WHERE
-					t1.CAMPODATABELA1 = '$id'
+					t1.id_afastamento = '$id'
 
 			";
 			
@@ -76,11 +86,13 @@
 		public function ReadAll(){
 			$sql = "
 				SELECT
-					 t1.CAMPODATABELA1,
-					 t1.CAMPODATABELA2,
-					 t1.CAMPODATABELA3
+					t1.id_afastamento,
+					t1.data_afastamento,
+					t1.observ_afastamento,
+					t1.id_ocorrencia,
+					t1.id_docente
 				FROM
-					NOME_DA_TABELA AS t1
+					afastamento AS t1
 				
 
 			";
@@ -113,11 +125,13 @@
 		public function ReadAll_Paginacao($inicio, $registros){
 			$sql = "
 				SELECT
-					 t1.CAMPODATABELA1,
-					 t1.CAMPODATABELA2,
-					 t1.CAMPODATABELA3
+					tt1.id_afastamento,
+					t1.data_afastamento,
+					t1.observ_afastamento,
+					t1.id_ocorrencia,
+					t1.id_docente
 				FROM
-					NOME_DA_TABELA AS t1
+					afastamento AS t1
 					
 					
 				LIMIT $inicio, $registros;
@@ -135,12 +149,14 @@
 		//Funcao que atualiza uma instancia no BD
 		public function Update(){
 			$sql = "
-				UPDATE NOME_DA_TABELA SET
+				UPDATE afastamento SET
 				
-				  CAMPODATABELA2 = '$this->CAMPODATABELA2',
-				  CAMPODATABELA3 = '$this->CAMPODATABELA3'
+				  data_afastamento = '$this->data_afastamento',
+				  observ_afastamento = '$this->observ_afastamento',
+				  id_ocorrencia = '$this->id_ocorrencia',
+				  id_docente = '$this->id_docente'
 				
-				WHERE CAMPODATABELA1 = '$this->CAMPODATABELA1';
+				WHERE id_afastamento = '$this->id_afastamento';
 				
 			";
 		
@@ -155,8 +171,8 @@
 		//Funcao que deleta uma instancia no BD
 		public function Delete(){
 			$sql = "
-				DELETE FROM NOME_DA_TABELA
-				WHERE CAMPODATABELA1 = '$this->CAMPODATABELA1';
+				DELETE FROM afastamento
+				WHERE id_afastamento = '$this->id_afastamento';
 			";
 			$DB = new DB();
 			
@@ -186,18 +202,22 @@
 		//constructor 
 		
 		function __construct(){ 
-			$this->CAMPODATABELA1;
-			$this->CAMPODATABELA2;
-			$this->CAMPODATABELA3;
+			$this->id_afastamento;
+			$this->data_afastamento;
+			$this->observ_afastamento;
+			$this->id_ocorrencia;
+			$this->id_docente;
 			
 			
 		}
 		
 		//destructor
 		function __destruct(){
-			$this->CAMPODATABELA1;
-			$this->CAMPODATABELA2;
-			$this->CAMPODATABELA3;
+			$this->id_afastamento;
+			$this->data_afastamento;
+			$this->observ_afastamento;
+			$this->id_ocorrencia;
+			$this->id_docente;
 			
 			
 		}
