@@ -1,16 +1,9 @@
-﻿<?php
-session_start();
-if (isset($_SESSION['login_administrador'])) {
-    header("location:/sistema.php");
-}
-?>
-
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 	
     <meta charset="utf-8">
-    <title>Login - AFAST ICT</title>
+    <title>AFAST ICT :: Login</title>
     
     <link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -28,15 +21,6 @@ if (isset($_SESSION['login_administrador'])) {
         <!-- Collect the nav links, forms, and other content for toggling -->
         
           
-          <ul class="nav navbar-nav navbar-right">
-          
-  
-              
-            <li><a href="#" class="navtext" id="">HOME</a></li>
-                       
-            <li><a href="#" id="getout"><i class="fa fa-sign-out" aria-hidden="true"></i> SAIR </a></li>
-          </ul>
-        
       </div><!-- /.container-fluid -->
     </nav>
     
@@ -49,22 +33,17 @@ if (isset($_SESSION['login_administrador'])) {
             <img src="img/logo_AFAST1.5.png" alt="Logo AFAST" class="img-responsive img-rounded">
           </div>
           <div class="col-md-3 ">
-              	<br><br><br><br>
-                <form class="form-signin" name="form1" method="post" action="checklogin.php">
-                    <h2 class="form-signin-heading text-titulo">Login:</h2>
-                    <input name="login_administrador" id="login_administrador" type="text" class="form-control" placeholder="login_administrador" autofocus>
-                    <br>
-                    <input name="senha_administrador" id="senha_administrador" type="senha_administrador" class="form-control" placeholder="senha_administrador">
-                    <!-- The checkbox remember me is not implemented yet...
-                    <label class="checkbox">
-                      <input type="checkbox" value="remember-me"> Remember me
-                    </label>
-                    -->
-                    <br>
-                    <button name="Submit" id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-            
-                    <div id="message"></div>
-              	</form>             
+              	<br><br>
+					<h1 class="text-center">Login</h1>
+                    <div class="input-group center-block">
+                    <input type="text" id="email_login" class="form-control" placeholder="Usuário" autofocus>
+                    </div>
+                    <br><br><br>
+                    <div class="input-group center-block">
+                    <input type="password" id="senha_login" class="form-control" placeholder="Senha">
+                    </div>
+                    <br><br><br><br>
+                    <button  id="Logar" class="btn btn-lg btn-primary btn-block">Entrar</button>             
           </div> 
                 
         </div>
@@ -78,7 +57,7 @@ if (isset($_SESSION['login_administrador'])) {
     <footer class="mainfooter navbar-default navbar-fixed-bottom">
     	<section>
         	<!--<a class="col-md-3" id="afasticon"><img src="img/logo_AFAST1.5.png" width="60" height="64" alt=""/></a>-->
-        	<p class="text-right footertext col-md-12"> Todos os direitos reservados. </p>
+        	<p class="text-center footertext col-md-12"> Todos os direitos reservados. </p>
         </section>    
     </footer>
 	

@@ -182,6 +182,27 @@
 		
 		*/
 		
+		public function ReadByEmail($email){
+			$sql = "
+				SELECT t1.id_administrador,					 
+					 t1.login_administrador,
+					 t1.senha_administrador,					 
+					 t1.nome_administrador
+				FROM
+					administrador AS t1
+				WHERE
+					t1.login_administrador = '$email'
+
+			";
+			
+			
+			$DB = new DB();
+			$DB->open();
+			$Data = $DB->fetchData($sql);
+			
+			$DB->close();
+			return $Data[0]; 
+		}
 		
 		/*
 			--------------------------------------------------

@@ -1,36 +1,43 @@
-$(document).ready(function () {
-    "use strict";
-    $("#submit").click(function () {
+// JavaScript Document
 
-        var login_administrador = $("#login_administrador").val(), senha_administrador = $("#senha_administrador").val();
 
-        if ((login_administrador === "") || (senha_administrador === "")) {
-            $("#message").html("<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>Please enter a login_administrador and a senha_administrador</div>");
-        } else {
-            $.ajax({
-                type: "POST",
-                url: "checklogin.php",
-                data: "login_administrador=" + login_administrador + "&senha_administrador=" + senha_administrador,
-                dataType: 'JSON',
-                success: function (html) {
-                    //console.log(html.response + ' ' + html.login_administrador);
-                    if (html.response === 'true') {
-                        //location.assign("../index.php");
-                       location.reload();
-                        return html.login_administrador;
-                    } else {
-                        $("#message").html(html.response);
-                    }
-                },
-                error: function (textStatus, errorThrown) {
-                    console.log(textStatus);
-                    console.log(errorThrown);
-                },
-                beforeSend: function () {
-                    $("#message").html("<p class='text-center'><img src='images/ajax-loader.gif'></p>");
-                }
-            });
-        }
-        return false;
+$(document).ready(function(e) {
+    $('#Logar').click(function(e) {
+        var email = $('#email_login').val();
+		var senha = $('#senha_login').val();
+		
+		if(email === "" || senha === ""){
+			return alert('Todos os campos são obrigatórios!');
+		}
+		else{
+			$.ajax({
+			   url: 'engine/controllers/login.php',
+			   data: {
+					
+					email : email,
+					senha: senha
+			   },
+			   error: function() {
+					alert('Erro na conexão com o servidor. Tente novamente em alguns segundos.');
+			   },
+			   success: function(data) {
+					console.log(data);
+					if(data === 'true'){
+						document.location.href = 'viewers/sistema.php';
+					}
+					else if(data === 'no_user_found'){
+						alert('Nenhum usuario encontrado com este email.');
+					}
+					
+					else{
+						alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	
+					}
+			   },
+			   
+			   type: 'POST'
+			});		
+		}
     });
+	
+	
 });

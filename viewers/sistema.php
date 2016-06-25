@@ -1,4 +1,14 @@
-﻿<!doctype html>
+﻿<?php session_start(); 
+	//var_dump($_SESSION);
+	if(empty($_SESSION)){
+		?>
+        	<script>
+				document.location.href = '..';
+			</script>
+        <?php	
+	}
+?>
+<!doctype html>
 <html>
 <head>
 	
@@ -70,9 +80,10 @@
         </section>    
     </footer>
 	
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-    <script src="js/menu.js"></script>
-    <script src="js/jquerymask.min.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/jquerymask.min.js"></script>
+    <script src="../js/login.js"></script>
 </body>
 </html>
