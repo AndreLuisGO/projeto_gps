@@ -1,5 +1,3 @@
-
-
 <script>
 	$(document).ready(function(e) {
 		$('#Atualizar').click(function(e) {
@@ -43,50 +41,29 @@
 </ol>
 
 <h1> 
-	Lista de Treinadores Cadastrados 
+	Gerenciar Docentes Cadastrados
 </h1>
-
-<br>
-
-<section class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default" id="Atualizar"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Atualizar</button>
-  <button type="button" class="btn btn-success" id="Adicionar"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Dados</button>
-</section>
-
-
 
 <br><br>
 
 <?php
-	$Item = new Treinador();
+	$Item = new Curso();
 	$Item = $Item->ReadAll();
 	
-	//var_dump($_SERVER);
 	
 	if(empty($Item)){
 		
-		?>
-        	<h4 class="well"> Nenhum dado encontrado. </h4>
-        <?php
+?>
+        	<h4 class="well text-center"> Nenhum dado encontrado. </h4>
+<?php
 		
 		
 	}
 	else{
-		?>
+?>
         
-        	<table class="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Telefone Fixo</th>
-                    <th>Celular</th>
-                    <th>Editar</th>
-                    <th>Excluir</th>
-                  </tr>
-                </thead>
+			<h4 class="well text-center"> Escolha o curso </h4>
              
-                <tbody>
                 	<?php
 						
 						foreach($Item as $itemRow){
@@ -95,18 +72,13 @@
 							
 							
 					?>
-                            <tr class="">
-                                <td><?php echo $itemRow['nome_treinador']; ?></td>
-                                <td><?php echo $itemRow['email_treinador']; ?></td>
-                                <td><?php echo $itemRow['telefonefixo_treinador']; ?></td>
-                                <td><?php echo $itemRow['celular_treinador']; ?></td>
-                                <td class="text-center EditarItem" id="<?php echo $itemRow['id_treinador']; ?>">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </td>
-                                <td class="text-center ExcluirItem" id="<?php echo $itemRow['id_treinador']; ?>">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </td>
-                            </tr>
+   						<section class="col-md-3"></section>
+                        <button type="button" class="btn btn-default col-md-6"> 
+							<?php echo $itemRow['nome_curso']; ?>
+                        </button>
+                        <section class="col-md-3"></section>
+                        <br>
+                        <br>		 
                     <?php
 						}
 					?>
