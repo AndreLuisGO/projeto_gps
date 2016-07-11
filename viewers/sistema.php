@@ -35,7 +35,7 @@
           
           	<li><a href="#" class="navtext" id="">ADMINISTRADOR</a></li>
               
-            <li><a href="#" class="navtext" id="">HOME</a></li>
+            <li><a href="#" class="navtext afast_sistema" id="">HOME</a></li>
                        
             <li><a href="#" id="getout"><i class="fa fa-sign-out" aria-hidden="true"></i> SAIR </a></li>
           </ul>
@@ -53,7 +53,7 @@
             </a>
           </div>
 		  <div class="col-md-3 ">
-            <a href="#" class="thumbnail to-functions">
+            <a href="#" id="gerenciar_docentes" class="thumbnail to-functions">
               Gerenciar Docentes
             </a>
           </div>

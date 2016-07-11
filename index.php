@@ -63,7 +63,6 @@
 	
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-    <script src="js/menu.js"></script>
     <script src="js/jquerymask.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script src="js/login.js"></script>
