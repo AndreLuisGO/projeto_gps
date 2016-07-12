@@ -39,5 +39,12 @@ $(document).ready(function(e) {
 		}
     });
 	
+	$('#senha_login').keypress(function (e) {
+ 		var key = e.which;
+ 		if(key == 13){
+    		$('#Logar').click();
+    		return false;  
+  		}
+	});  
 	
 });
