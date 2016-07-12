@@ -12,10 +12,10 @@
 			$('#loader').load('viewers/cadastro/docentes.adicionar.php');
 		});
 		
-		$('.afast_sistema').click(function(e) {
+		$('#bread_home').click(function(e) {
 			e.preventDefault();
-			//alert("teste2");
-			$('#loader').load('sistema.php');
+			//alert("breadhome");
+			$('#afast_sistema').click();
     	});
 		
 		$('.EditarItem').click(function(e) {
@@ -35,7 +35,7 @@
 
 <br>
 <ol class="breadcrumb">
-  <li><a href="#" class="afast_sistema" >Home</a></li>
+  <li><a href="#" id="bread_home" >Home</a></li>
   <li><a href="#">Gerenciar Docentes</a></li>
   <li class="active">Lista de Dados</li>
 </ol>
@@ -73,8 +73,9 @@
 							
 					?>
    						<section class="col-md-3"></section>
-                        <button type="button" class="btn btn-default col-md-6"> 
-							<?php echo $itemRow['nome_curso']; ?>
+                        <button type="button" class="btn btn-default col-md-6"
+                        	id=<?php echo $itemRow['id_curso']; ?>> 
+								<?php echo $itemRow['nome_curso']; ?>
                         </button>
                         <section class="col-md-3"></section>
                         <br>

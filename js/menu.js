@@ -1,14 +1,24 @@
 $(document).ready(function(e) {
 	
+	if ($('#loader').is(':empty')){
+		$('#loader').load('../viewers/gerenciamento/sistema.buttons.php');
+	}
+	
 	$('#gerenciar_docentes').click(function(e) {
 		e.preventDefault();
 		$('#loader').load('../viewers/cadastro/docentes.lista.php');
     });
 	
-	$('.afast_sistema').click(function(e) {
+	$('#gerenciar_admin').click(function(e) {
 		e.preventDefault();
-    	//alert("teste");
-		$('#loader').load('sistema.php');
+		//alert("admin");
+		$('#loader').load('../viewers/gerenciamento/administrador.lista.php');
+    });	
+	
+	$('#afast_sistema').click(function(e) {
+		e.preventDefault();
+    	//alert("home");
+		$('#loader').load('../viewers/gerenciamento/sistema.buttons.php');
     });
 	
 	

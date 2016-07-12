@@ -8,6 +8,7 @@
         <?php	
 	}
 ?>
+
 <!doctype html>
 <html>
 <head>
@@ -33,9 +34,9 @@
           
           <ul class="nav navbar-nav navbar-right">
           
-          	<li><a href="#" class="navtext" id="">ADMINISTRADOR</a></li>
+          	<li><a href="#" id="gerenciar_admin">ADMINISTRADOR</a></li>
               
-            <li><a href="#" class="navtext afast_sistema" id="">HOME</a></li>
+            <li><a href="#" id="afast_sistema">HOME</a></li>
                        
             <li><a href="#" id="getout"><i class="fa fa-sign-out" aria-hidden="true"></i> SAIR </a></li>
           </ul>
@@ -43,34 +44,9 @@
       </div><!-- /.container-fluid -->
     </nav>
     
-    
-    <main class="container-fluid" id="loader">
-    
-    	<div class="row">
-          <div class="col-md-3 ">
-            <a href="#" class="thumbnail to-functions">
-              Inserir Ocorrência
-            </a>
-          </div>
-		  <div class="col-md-3 ">
-            <a href="#" id="gerenciar_docentes" class="thumbnail to-functions">
-              Gerenciar Docentes
-            </a>
-          </div>
-          <div class="col-md-3 ">
-            <a href="#" class="thumbnail to-functions">
-              Gerenciar Ocorrências
-            </a>
-          </div>
-          <div class="col-md-3 ">
-            <a href="#" class="thumbnail to-functions">
-              Gerar Relatórios
-            </a>
-          </div>
-        </div>
-         
-    </main>
-   	
+    <!-- Paginas carregadas aqui -->
+    <main class="container-fluid" id="loader"></main>
+   	<!-- Paginas carregadas aqui -->
     
 	
     <footer class="mainfooter navbar-default navbar-fixed-bottom">
