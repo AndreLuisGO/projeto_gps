@@ -1,29 +1,16 @@
 <script>
 	$(document).ready(function(e) {
-		$('#Atualizar').click(function(e) {
-			e.preventDefault();
-			//loader
-			$('#loader').load('viewers/cadastro/docentes.lista.php');
-		});
-		
-		$('#Adicionar').click(function(e) {
-			e.preventDefault();
-			//loader
-			$('#loader').load('viewers/cadastro/docentes.adicionar.php');
-		});
-		
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
 			//alert("breadhome");
 			$('#afast_sistema').click();
     	});
 		
-		$('.EditarItem').click(function(e) {
+		$('.CarregaDocentesCurso').click(function(e) {
 			e.preventDefault();
-			//loader
 			var id= $(this).attr('id');
 			//alert(id);
-			$('#loader').load('viewers/cadastro/docentes.editar.php',{ id: id});
+			$('#loader').load('cadastro/docentes.lista.curso.php',{ id: id});
 		});
 	});
 </script>
@@ -73,21 +60,20 @@
 							
 					?>
    						<section class="col-md-3"></section>
-                        <button type="button" class="btn btn-default col-md-6"
-                        	id=<?php echo $itemRow['id_curso']; ?>> 
+                        <button 
+                        	type="button" 
+                            	class="btn btn-default col-md-6 CarregaDocentesCurso"
+                        			id=<?php echo $itemRow['id_curso']; ?>
+                        > 
 								<?php echo $itemRow['nome_curso']; ?>
                         </button>
                         <section class="col-md-3"></section>
                         <br>
                         <br>		 
                     <?php
-						}
-					?>
-                </tbody>
-            </table>
-        
-        <?php
-	}
+												}        
+
+			}
 ?>
 
 

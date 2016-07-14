@@ -97,5 +97,19 @@ a.thumbnail.active {
 	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: bold;
 	font-size:2vw;
-	color:0074ae;
+	color:#0074ae;
+}
+
+.EditarItem:hover{
+	background-color: #8BC633;
+	transition:0.5s;
+	cursor:pointer;
+	
+}
+
+.DesativarItem:hover{
+	background-color: #FFAB49;
+	transition:0.5s;
+	cursor:pointer;
+	
 }
