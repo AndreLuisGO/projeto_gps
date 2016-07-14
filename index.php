@@ -26,7 +26,7 @@
     
     
     <main class="container-fluid" id="loader">
-    	 <br><br><br><br>
+    	 <br><br>
     	<div class="row">
           <div class="col-md-3 "></div>
 		  <div class="col-md-3 ">
@@ -52,7 +52,7 @@
 		<p class="text-center text-titulo col-md-12">Sistema de Gerenciamento de Frequência de Docentes</p>
     </main>
    	
-      
+    <br><br><br><br>  
 	
     <footer class="mainfooter navbar-default navbar-fixed-bottom">
     	<section>
