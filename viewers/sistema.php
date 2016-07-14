@@ -18,6 +18,7 @@
     
     <link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap-datepicker3.css">
 </head>
 
 <body>
@@ -56,10 +57,13 @@
         </section>    
     </footer>
 	
-	<script src="../js/jquery.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-    <script src="../js/menu.js"></script>
-    <script src="../js/jquerymask.min.js"></script>
-    <script src="../js/login.js"></script>
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../js/npm.js"></script>
+    <script type="text/javascript" src="../js/jquerymask.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="../locales/bootstrap-datepicker.pt-BR.min.js"></script>
+    <script type="text/javascript" src="../js/menu.js"></script>
+    <script type="text/javascript" src="../js/login.js"></script>
 </body>
 </html>

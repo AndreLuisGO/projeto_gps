@@ -1,5 +1,19 @@
 <script>
 	$(document).ready(function(e) {
+		
+		$('#datepicker').datepicker({
+			format: "yyyy-mm-dd",
+			todayBtn: "linked",
+			language: "pt-BR"
+		});
+		$('#datepicker').on("changeDate", function() {
+    		$('#datafinal').val(
+        		$('#datepicker').datepicker('getFormattedDate')
+    		);
+			var data= $('#datafinal').attr('value');
+			$('#loader').load('cadastro/docentes.lista.data.php',{ data: data});
+		});
+		
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
 			//alert("breadhome");
@@ -12,6 +26,12 @@
 			//alert(id);
 			$('#loader').load('cadastro/docentes.lista.curso.php',{ id: id});
 		});
+		
+		$('#CarregaTodosDocentes').click(function(e) {
+			e.preventDefault();
+			$('#loader').load('cadastro/docentes.lista.todos.php');
+		});
+		
 	});
 </script>
 
@@ -31,56 +51,88 @@
 	Gerenciar Docentes Cadastrados
 </h1>
 
-<br><br>
 
-<?php
-	$Item = new Curso();
-	$Item = $Item->ReadAll();
+<section>
 	
-	
-	if(empty($Item)){
-		
-?>
-        	<h4 class="well text-center"> Nenhum dado encontrado. </h4>
-<?php
-		
-		
-	}
-	else{
-?>
-        
-			<h4 class="well text-center"> Escolha o curso </h4>
-             
-                	<?php
-						
-						foreach($Item as $itemRow){
-							//var_dump($itemRow);
-							
-							
-							
-					?>
-   						<section class="col-md-3"></section>
-                        <button 
-                        	type="button" 
-                            	class="btn btn-default col-md-6 CarregaDocentesCurso"
-                        			id=<?php echo $itemRow['id_curso']; ?>
-                        > 
-								<?php echo $itemRow['nome_curso']; ?>
-                        </button>
-                        <section class="col-md-3"></section>
-                        <br>
-                        <br>		 
-                    <?php
-												}        
+    <section class="col-md-4">
+        <button class="btn btn-primary col-md-12" id="CarregaTodosDocentes" type="button">
+              Todos         
+        </button>
+	</section>
 
-			}
-?>
-
-
-
-
-
-
+    <section class="col-md-4">
+          <button class="btn btn-primary col-md-12" 
+                  type="button" 
+                  data-toggle="collapse" 
+                  data-target="#Cursos" 
+                  aria-expanded="false" 
+                  aria-controls="Cursos">
+                  
+                        <span class="glyphicon glyphicon-filter"></span>
+                        Ativos por Curso
+          </button>
+          <br>
+          <section class="collapse" id="Cursos">
+          
+          <?php
+              $Item = new Curso();
+              $Item = $Item->ReadAll();
+              
+              
+              if(empty($Item)){
+                  
+          ?>
+                      <h4 class="well text-center"> Nenhum dado encontrado. </h4>
+          <?php
+                  
+                  
+              }
+              else{
+    
+                                  foreach($Item as $itemRow){
+                                      //var_dump($itemRow);
+                              ?>
+                                  <button 
+                                      type="button" 
+                                      class="btn btn-default col-md-12 CarregaDocentesCurso"
+                                      id=<?php echo $itemRow['id_curso']; ?>> 
+                                          <?php echo $itemRow['nome_curso']; ?>
+                                  </button>	 
+                              <?php
+                                                          }        
+          
+                      }
+          ?>
+          </section>
+    </section>
+    
+    <section class="col-md-4">
+          <button class="btn btn-primary col-md-12" 
+                  type="button" 
+                  data-toggle="collapse" 
+                  data-target="#Data" 
+                  aria-expanded="false" 
+                  aria-controls="Data">
+                  
+                        <span class="glyphicon glyphicon-filter"></span>
+                        Ativos em uma Data
+          </button>
+          
+          <br>
+          
+          <section class="collapse datepicker-center" id="Data">
+          		<?php $Data = getdate(); 
+					$Dia = $Data['mday'];
+					$Mes = $Data['mon'];
+					$Ano = $Data['year'];
+					$Dataform = $Ano . '-' . $Mes . '-' . $Dia;
+				?>
+				<div id="datepicker" data-date= <?php echo $Dataform; ?>></div>
+				<input type="hidden" id="datafinal">
+          </section>
+          
+    </section>
+</section>
 
 
 

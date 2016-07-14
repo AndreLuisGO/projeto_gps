@@ -234,6 +234,52 @@
 			return $realData; 
 		}
 		
+		//Funcao que retorna um vetor com todas as instancias da classe no BD ativas em uma data
+		public function ReadAllOnDate($data){
+			$sql = "
+					SELECT
+						t1.id_docente,
+						t1.nome_docente,
+						t1.siape_docente,
+						t1.email_docente,
+						t1.efetivo_docente,
+						t2.dt_inicio_exercicio,
+						t2.dt_fim_exercicio,
+						t2.id_exercicio
+					FROM
+						docente AS t1,
+						exercicio AS t2
+					WHERE
+						t2.dt_inicio_exercicio <= '$data'
+					AND
+						(t2.dt_fim_exercicio >= '$data' OR t2.dt_fim_exercicio IS NULL)
+					AND
+						t1.id_docente = t2.id_docente
+				
+
+			";
+			
+			
+			$DB = new DB();
+			$DB->open();
+			$Data = $DB->fetchData($sql);
+			$realData;
+			if($Data ==NULL){
+				$realData = $Data;
+			}
+			else{
+				
+				foreach($Data as $itemData){
+					if(is_bool($itemData)) continue;
+					else{
+						$realData[] = $itemData;	
+					}
+				}
+			}
+			$DB->close();
+			return $realData; 
+		}
+		
 		
 		/*
 			--------------------------------------------------

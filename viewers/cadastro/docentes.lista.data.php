@@ -24,8 +24,6 @@
 
 <?php
 	require_once "../../engine/config.php";
-	$Curso = new Curso();
-	$Curso = $Curso->Read($_POST['id']);
 ?>	
 
 <br>
@@ -33,11 +31,11 @@
   <li><a href="#" id="bread_home" >Home</a></li>
   <li><a href="#">Gerenciar Docentes</a></li>
   <li><a href="#">Lista de Dados</a></li>
-  <li class="active"> <?php echo $Curso['nome_curso']; ?> </li>
+  <li class="active"> Docentes Ativos no Periodo </li>
 </ol>
 
 <h1> 
-	Docentes lotados em <?php echo $Curso['nome_curso']; ?>
+	Docentes Ativos no Periodo
 </h1>
 
 <br><br>
@@ -57,7 +55,7 @@
 <section id="load-filtros">
 	<?php	
         $Item = new Docente();
-        $Item = $Item->ReadAllCurso($Curso['id_curso']);
+        $Item = $Item->ReadAllOnDate($_POST['data']);
         //var_dump($Item);
         
         if(empty($Item)){
@@ -88,8 +86,6 @@
                             
                             foreach($Item as $itemRow){
                             //var_dump($itemRow);
-                                
-                            if(is_null($itemRow['dt_fim_exercicio'])){
                         ?>
                                 <tr class="">
                                     <td><?php echo $itemRow['nome_docente']; ?></td>
@@ -123,8 +119,7 @@
                                              </span>
                                     </td>
                                 </tr>
-                        <?php
-                                                                        }													
+                        <?php												
                                                         }
                         ?>
                     </tbody>
