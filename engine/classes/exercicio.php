@@ -1,21 +1,21 @@
 <?php
 	//Declaracao da classe
 	//Nome da classe devera ser o nome da tabela respectiva no banco de dados
-	class Exercicio{
+	class Exercicio {
 		
 		//Variaveis da classe
 		//Nome das variaveis devem ser de acordo com as colunas da tabela respectiva no bd
-			private $id_exercicio;
-			private $id_docente;
-			private $id_curso;
-			private $dt_inicio_exercicio;
-			private $dt_fim_exercicio;
+		private $id_exercicio;
+		private $id_docente;
+		private $id_curso;
+		private $dt_inicio_exercicio;
+		private $dt_fim_exercicio;
 				
 
 		//setters
 		
 		//Funcao que seta uma instancia da classe
-		public function SetValues($id_exercicio, $id_docente, $id_curso, $dt_inicio_exercicio, $dt_fim_exercicio){ 
+		public function SetValues($id_exercicio, $id_docente, $id_curso, $dt_inicio_exercicio, $dt_fim_exercicio) { 
 			$this->id_exercicio = $id_exercicio;
 			$this->id_docente = $id_docente;
 			$this->id_curso = $id_curso;
@@ -28,24 +28,24 @@
 		//Methods
 		
 		//Funcao que salva a instancia no BD
-		public function Create(){
+		public function Create() {
 			
 			$sql = "
-				INSERT INTO exercicio
+				INSERT INTO exercicio 
 						  (
-							id_exercicio,
-							id_docente,
-							id_curso,
-							dt_inicio_exercicio,
-							dt_fim_exercicio
+				 			id_exercicio,
+				 			id_docente,
+				 			id_curso,
+				 			dt_inicio_exercicio,
+				 			dt_fim_exercicio
 						  )  
 				VALUES 
 					(
-							'$this->id_exercicio',
-							'$this->id_docente',
-							'$this->id_curso',
-							'$this->dt_inicio_exercicio',
-							'$this->dt_fim_exercicio'
+				 			'$this->id_exercicio',
+				 			'$this->id_docente',
+				 			'$this->id_curso',
+				 			'$this->dt_inicio_exercicio',
+				 			'$this->dt_fim_exercicio'
 					);
 			";
 			
@@ -57,18 +57,18 @@
 		}
 		
 		//Funcao que retorna uma Instancia especifica da classe no bd
-		public function Read($id){
+		public function Read($id) {
 			$sql = "
 				SELECT
-							t1.id_exercicio,
-							t1.id_docente,
-							t1.id_curso,
-							t1.dt_inicio_exercicio,
-							t1.dt_fim_exercicio
+					 t1.id_exercicio,
+					 t1.id_docente,
+					 t1.id_curso,
+					 t1.dt_inicio_exercicio,
+					 t1.dt_fim_exercicio
 				FROM
-							exercicio AS t1
+					exercicio AS t1
 				WHERE
-							t1.id_exercicio = '$id'
+					t1.id_exercicio  = '$id'
 
 			";
 			
@@ -83,16 +83,16 @@
 		
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD
-		public function ReadAll(){
+		public function ReadAll() {
 			$sql = "
 				SELECT
-							t1.id_exercicio,
-							t1.id_docente,
-							t1.id_curso,
-							t1.dt_inicio_exercicio,
-							t1.dt_fim_exercicio
+					 t1.id_exercicio,
+					 t1.id_docente,
+					 t1.id_curso,
+					 t1.dt_inicio_exercicio,
+					 t1.dt_fim_exercicio
 				FROM
-							exercicio AS t1
+					exercicio AS t1
 				
 
 			";
@@ -122,16 +122,16 @@
 		
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD com paginacao
-		public function ReadAll_Paginacao($inicio, $registros){
+		public function ReadAll_Paginacao($inicio, $registros) {
 			$sql = "
 				SELECT
-							t1.id_exercicio,
-							t1.id_docente,
-							t1.id_curso,
-							t1.dt_inicio_exercicio,
-							t1.dt_fim_exercicio
+					 t1.id_exercicio,
+					 t1.id_docente,
+					 t1.id_curso,
+					 t1.dt_inicio_exercicio,
+					 t1.dt_fim_exercicio
 				FROM
-							exercicio AS t1
+					exercicio AS t1
 					
 					
 				LIMIT $inicio, $registros;
@@ -147,14 +147,14 @@
 		}
 		
 		//Funcao que atualiza uma instancia no BD
-		public function Update(){
+		public function Update() {
 			$sql = "
 				UPDATE exercicio SET
 				
-							id_docente = '$this->id_docente',
-							id_curso = '$this->id_curso',
-							dt_inicio_exercicio = '$this->dt_inicio_exercicio',
-							dt_fim_exercicio = '$this->dt_fim_exercicio'
+				  id_docente = '$this->id_docente',
+				  id_curso = '$this->id_curso',
+				  dt_inicio_exercicio = '$this->dt_inicio_exercicio',
+				  dt_fim_exercicio = '$this->dt_fim_exercicio'
 				
 				WHERE id_exercicio = '$this->id_exercicio';
 				
@@ -169,7 +169,7 @@
 		}
 		
 		//Funcao que deleta uma instancia no BD
-		public function Delete(){
+		public function Delete() {
 			$sql = "
 				DELETE FROM exercicio
 				WHERE id_exercicio = '$this->id_exercicio';
@@ -190,6 +190,7 @@
 		
 		*/
 		
+		
 		/*
 			--------------------------------------------------
 			Viewer SPecific methods -- end 
@@ -200,7 +201,7 @@
 		
 		//constructor 
 		
-		function __construct(){ 
+		function __construct() { 
 			$this->id_exercicio;
 			$this->id_docente;
 			$this->id_curso;
@@ -211,7 +212,7 @@
 		}
 		
 		//destructor
-		function __destruct(){
+		function __destruct() {
 			$this->id_exercicio;
 			$this->id_docente;
 			$this->id_curso;

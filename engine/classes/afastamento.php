@@ -1,12 +1,13 @@
 <?php
 	//Declaracao da classe
 	//Nome da classe devera ser o nome da tabela respectiva no banco de dados
-	class Afastamento{
+	class Afastamento {
 		
 		//Variaveis da classe
 		//Nome das variaveis devem ser de acordo com as colunas da tabela respectiva no bd
 		private $id_afastamento;
-		private $data_afastamento;
+		private $dt_inicio_afastamento;
+		private $dt_fim_afastamento;
 		private $observ_afastamento;
 		private $id_ocorrencia;
 		private $id_docente;
@@ -15,9 +16,10 @@
 		//setters
 		
 		//Funcao que seta uma instancia da classe
-		public function SetValues($id_afastamento, $data_afastamento, $observ_afastamento, $id_ocorrencia, $id_docente){ 
+		public function SetValues($id_afastamento, $dt_inicio_afastamento, $dt_fim_afastamento, $observ_afastamento, $id_ocorrencia, $id_docente) { 
 			$this->id_afastamento = $id_afastamento;
-			$this->data_afastamento = $data_afastamento;
+			$this->dt_inicio_afastamento = $dt_inicio_afastamento;
+			$this->dt_fim_afastamento = $dt_fim_afastamento;
 			$this->observ_afastamento = $observ_afastamento;
 			$this->id_ocorrencia = $id_ocorrencia;
 			$this->id_docente = $id_docente;
@@ -28,24 +30,26 @@
 		//Methods
 		
 		//Funcao que salva a instancia no BD
-		public function Create(){
+		public function Create() {
 			
 			$sql = "
-				INSERT INTO afastamento
+				INSERT INTO afastamento 
 						  (
 				 			id_afastamento,
-							data_afastamento,
-							observ_afastamento,
-							id_ocorrencia,
-							id_docente
+				 			dt_inicio_afastamento,
+				 			dt_fim_afastamento,
+				 			observ_afastamento,
+				 			id_ocorrencia,
+				 			id_docente
 						  )  
 				VALUES 
 					(
-						'$this->id_afastamento',
-						'$this->data_afastamento',
-						'$this->observ_afastamento',
-						'$this->id_ocorrencia',
-						'$this->id_docente'
+				 			'$this->id_afastamento',
+				 			'$this->dt_inicio_afastamento',
+				 			'$this->dt_fim_afastamento',
+				 			'$this->observ_afastamento',
+				 			'$this->id_ocorrencia',
+				 			'$this->id_docente'
 					);
 			";
 			
@@ -57,18 +61,19 @@
 		}
 		
 		//Funcao que retorna uma Instancia especifica da classe no bd
-		public function Read($id){
+		public function Read($id) {
 			$sql = "
 				SELECT
-					t1.id_afastamento,
-					t1.data_afastamento,
-					t1.observ_afastamento,
-					t1.id_ocorrencia,
-					t1.id_docente
+					 t1.id_afastamento,
+					 t1.dt_inicio_afastamento,
+					 t1.dt_fim_afastamento,
+					 t1.observ_afastamento,
+					 t1.id_ocorrencia,
+					 t1.id_docente
 				FROM
 					afastamento AS t1
 				WHERE
-					t1.id_afastamento = '$id'
+					t1.id_afastamento  = '$id'
 
 			";
 			
@@ -83,14 +88,15 @@
 		
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD
-		public function ReadAll(){
+		public function ReadAll() {
 			$sql = "
 				SELECT
-					t1.id_afastamento,
-					t1.data_afastamento,
-					t1.observ_afastamento,
-					t1.id_ocorrencia,
-					t1.id_docente
+					 t1.id_afastamento,
+					 t1.dt_inicio_afastamento,
+					 t1.dt_fim_afastamento,
+					 t1.observ_afastamento,
+					 t1.id_ocorrencia,
+					 t1.id_docente
 				FROM
 					afastamento AS t1
 				
@@ -122,14 +128,15 @@
 		
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD com paginacao
-		public function ReadAll_Paginacao($inicio, $registros){
+		public function ReadAll_Paginacao($inicio, $registros) {
 			$sql = "
 				SELECT
-					tt1.id_afastamento,
-					t1.data_afastamento,
-					t1.observ_afastamento,
-					t1.id_ocorrencia,
-					t1.id_docente
+					 t1.id_afastamento,
+					 t1.dt_inicio_afastamento,
+					 t1.dt_fim_afastamento,
+					 t1.observ_afastamento,
+					 t1.id_ocorrencia,
+					 t1.id_docente
 				FROM
 					afastamento AS t1
 					
@@ -147,11 +154,12 @@
 		}
 		
 		//Funcao que atualiza uma instancia no BD
-		public function Update(){
+		public function Update() {
 			$sql = "
 				UPDATE afastamento SET
 				
-				  data_afastamento = '$this->data_afastamento',
+				  dt_inicio_afastamento = '$this->dt_inicio_afastamento',
+				  dt_fim_afastamento = '$this->dt_fim_afastamento',
 				  observ_afastamento = '$this->observ_afastamento',
 				  id_ocorrencia = '$this->id_ocorrencia',
 				  id_docente = '$this->id_docente'
@@ -169,7 +177,7 @@
 		}
 		
 		//Funcao que deleta uma instancia no BD
-		public function Delete(){
+		public function Delete() {
 			$sql = "
 				DELETE FROM afastamento
 				WHERE id_afastamento = '$this->id_afastamento';
@@ -201,9 +209,10 @@
 		
 		//constructor 
 		
-		function __construct(){ 
+		function __construct() { 
 			$this->id_afastamento;
-			$this->data_afastamento;
+			$this->dt_inicio_afastamento;
+			$this->dt_fim_afastamento;
 			$this->observ_afastamento;
 			$this->id_ocorrencia;
 			$this->id_docente;
@@ -212,9 +221,10 @@
 		}
 		
 		//destructor
-		function __destruct(){
+		function __destruct() {
 			$this->id_afastamento;
-			$this->data_afastamento;
+			$this->dt_inicio_afastamento;
+			$this->dt_fim_afastamento;
 			$this->observ_afastamento;
 			$this->id_ocorrencia;
 			$this->id_docente;

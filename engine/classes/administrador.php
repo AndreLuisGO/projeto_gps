@@ -1,7 +1,7 @@
 <?php
 	//Declaracao da classe
 	//Nome da classe devera ser o nome da tabela respectiva no banco de dados
-	class Administrador{
+	class Administrador {
 		
 		//Variaveis da classe
 		//Nome das variaveis devem ser de acordo com as colunas da tabela respectiva no bd
@@ -14,7 +14,7 @@
 		//setters
 		
 		//Funcao que seta uma instancia da classe
-		public function SetValues($id_administrador, $login_administrador, $senha_administrador, $nome_administrador){ 
+		public function SetValues($id_administrador, $login_administrador, $senha_administrador, $nome_administrador) { 
 			$this->id_administrador = $id_administrador;
 			$this->login_administrador = $login_administrador;
 			$this->senha_administrador = $senha_administrador;
@@ -26,22 +26,22 @@
 		//Methods
 		
 		//Funcao que salva a instancia no BD
-		public function Create(){
+		public function Create() {
 			
 			$sql = "
-				INSERT INTO administrador
+				INSERT INTO administrador 
 						  (
 				 			id_administrador,
-							login_administrador,
-							senha_administrador,
-							nome_administrador
+				 			login_administrador,
+				 			senha_administrador,
+				 			nome_administrador
 						  )  
 				VALUES 
 					(
-						'$this->id_administrador',
-						'$this->login_administrador',
-						'$this->senha_administrador',
-						'$this->nome_administrador'
+				 			'$this->id_administrador',
+				 			'$this->login_administrador',
+				 			'$this->senha_administrador',
+				 			'$this->nome_administrador'
 					);
 			";
 			
@@ -53,17 +53,17 @@
 		}
 		
 		//Funcao que retorna uma Instancia especifica da classe no bd
-		public function Read($id){
+		public function Read($id) {
 			$sql = "
 				SELECT
-					t1.id_administrador,
-					t1.login_administrador,
-					t1.senha_administrador,
-					t1.nome_administrador
+					 t1.id_administrador,
+					 t1.login_administrador,
+					 t1.senha_administrador,
+					 t1.nome_administrador
 				FROM
 					administrador AS t1
 				WHERE
-					t1.id_administrador = '$id'
+					t1.id_administrador  = '$id'
 
 			";
 			
@@ -78,13 +78,13 @@
 		
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD
-		public function ReadAll(){
+		public function ReadAll() {
 			$sql = "
 				SELECT
-					t1.id_administrador,
-					t1.login_administrador,
-					t1.senha_administrador,
-					t1.nome_administrador
+					 t1.id_administrador,
+					 t1.login_administrador,
+					 t1.senha_administrador,
+					 t1.nome_administrador
 				FROM
 					administrador AS t1
 				
@@ -116,13 +116,13 @@
 		
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD com paginacao
-		public function ReadAll_Paginacao($inicio, $registros){
+		public function ReadAll_Paginacao($inicio, $registros) {
 			$sql = "
 				SELECT
-					t1.id_administrador,
-					t1.login_administrador,
-					t1.senha_administrador,
-					t1.nome_administrador
+					 t1.id_administrador,
+					 t1.login_administrador,
+					 t1.senha_administrador,
+					 t1.nome_administrador
 				FROM
 					administrador AS t1
 					
@@ -140,12 +140,12 @@
 		}
 		
 		//Funcao que atualiza uma instancia no BD
-		public function Update(){
+		public function Update() {
 			$sql = "
 				UPDATE administrador SET
 				
-				  login_administrador = '$this->login_administrador', 
-				  senha_administrador = '$this->senha_administrador', 
+				  login_administrador = '$this->login_administrador',
+				  senha_administrador = '$this->senha_administrador',
 				  nome_administrador = '$this->nome_administrador'
 				
 				WHERE id_administrador = '$this->id_administrador';
@@ -161,7 +161,7 @@
 		}
 		
 		//Funcao que deleta uma instancia no BD
-		public function Delete(){
+		public function Delete() {
 			$sql = "
 				DELETE FROM administrador
 				WHERE id_administrador = '$this->id_administrador';
@@ -214,7 +214,7 @@
 		
 		//constructor 
 		
-		function __construct(){ 
+		function __construct() { 
 			$this->id_administrador;
 			$this->login_administrador;
 			$this->senha_administrador;
@@ -224,7 +224,7 @@
 		}
 		
 		//destructor
-		function __destruct(){
+		function __destruct() {
 			$this->id_administrador;
 			$this->login_administrador;
 			$this->senha_administrador;

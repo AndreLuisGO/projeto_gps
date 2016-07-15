@@ -1,21 +1,21 @@
 <?php
 	//Declaracao da classe
 	//Nome da classe devera ser o nome da tabela respectiva no banco de dados
-	class Docente{
+	class Docente {
 		
 		//Variaveis da classe
 		//Nome das variaveis devem ser de acordo com as colunas da tabela respectiva no bd
-			private $id_docente;
-			private $nome_docente;
-			private $siape_docente;
-			private $email_docente;
-			private $efetivo_docente;
+		private $id_docente;
+		private $nome_docente;
+		private $siape_docente;
+		private $email_docente;
+		private $efetivo_docente;
 				
 
 		//setters
 		
 		//Funcao que seta uma instancia da classe
-		public function SetValues($id_docente, $nome_docente, $siape_docente, $email_docente, $efetivo_docente){ 
+		public function SetValues($id_docente, $nome_docente, $siape_docente, $email_docente, $efetivo_docente) { 
 			$this->id_docente = $id_docente;
 			$this->nome_docente = $nome_docente;
 			$this->siape_docente = $siape_docente;
@@ -28,24 +28,24 @@
 		//Methods
 		
 		//Funcao que salva a instancia no BD
-		public function Create(){
+		public function Create() {
 			
 			$sql = "
-				INSERT INTO docente
+				INSERT INTO docente 
 						  (
 				 			id_docente,
-							nome_docente,
-							siape_docente,
-							email_docente,
-							efetivo_docente
+				 			nome_docente,
+				 			siape_docente,
+				 			email_docente,
+				 			efetivo_docente
 						  )  
 				VALUES 
 					(
-							'$this->id_docente',
-							'$this->nome_docente',
-							'$this->siape_docente',
-							'$this->email_docente',
-							'$this->efetivo_docente'
+				 			'$this->id_docente',
+				 			'$this->nome_docente',
+				 			'$this->siape_docente',
+				 			'$this->email_docente',
+				 			'$this->efetivo_docente'
 					);
 			";
 			
@@ -57,18 +57,18 @@
 		}
 		
 		//Funcao que retorna uma Instancia especifica da classe no bd
-		public function Read($id){
+		public function Read($id) {
 			$sql = "
 				SELECT
-					t1.id_docente,
-					t1.nome_docente,
-					t1.siape_docente,
-					t1.email_docente,
-					t1.efetivo_docente
+					 t1.id_docente,
+					 t1.nome_docente,
+					 t1.siape_docente,
+					 t1.email_docente,
+					 t1.efetivo_docente
 				FROM
 					docente AS t1
 				WHERE
-					t1.id_docente = '$id'
+					t1.id_docente  = '$id'
 
 			";
 			
@@ -83,14 +83,14 @@
 		
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD
-		public function ReadAll(){
+		public function ReadAll() {
 			$sql = "
 				SELECT
-					t1.id_docente,
-					t1.nome_docente,
-					t1.siape_docente,
-					t1.email_docente,
-					t1.efetivo_docente
+					 t1.id_docente,
+					 t1.nome_docente,
+					 t1.siape_docente,
+					 t1.email_docente,
+					 t1.efetivo_docente
 				FROM
 					docente AS t1
 				
@@ -122,14 +122,14 @@
 		
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD com paginacao
-		public function ReadAll_Paginacao($inicio, $registros){
+		public function ReadAll_Paginacao($inicio, $registros) {
 			$sql = "
 				SELECT
-					t1.id_docente,
-					t1.nome_docente,
-					t1.siape_docente,
-					t1.email_docente,
-					t1.efetivo_docente
+					 t1.id_docente,
+					 t1.nome_docente,
+					 t1.siape_docente,
+					 t1.email_docente,
+					 t1.efetivo_docente
 				FROM
 					docente AS t1
 					
@@ -147,14 +147,14 @@
 		}
 		
 		//Funcao que atualiza uma instancia no BD
-		public function Update(){
+		public function Update() {
 			$sql = "
 				UPDATE docente SET
 				
-					nome_docente = '$this->nome_docente',
-					siape_docente = '$this->siape_docente',
-					email_docente = '$this->email_docente',
-					efetivo_docente = '$this->efetivo_docente'
+				  nome_docente = '$this->nome_docente',
+				  siape_docente = '$this->siape_docente',
+				  email_docente = '$this->email_docente',
+				  efetivo_docente = '$this->efetivo_docente'
 				
 				WHERE id_docente = '$this->id_docente';
 				
@@ -169,7 +169,7 @@
 		}
 		
 		//Funcao que deleta uma instancia no BD
-		public function Delete(){
+		public function Delete() {
 			$sql = "
 				DELETE FROM docente
 				WHERE id_docente = '$this->id_docente';
@@ -291,7 +291,7 @@
 		
 		//constructor 
 		
-		function __construct(){ 
+		function __construct() { 
 			$this->id_docente;
 			$this->nome_docente;
 			$this->siape_docente;
@@ -302,7 +302,7 @@
 		}
 		
 		//destructor
-		function __destruct(){
+		function __destruct() {
 			$this->id_docente;
 			$this->nome_docente;
 			$this->siape_docente;

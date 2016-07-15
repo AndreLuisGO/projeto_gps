@@ -1,7 +1,7 @@
 <?php
 	//Declaracao da classe
 	//Nome da classe devera ser o nome da tabela respectiva no banco de dados
-	class Ocorrencia{
+	class Ocorrencia {
 		
 		//Variaveis da classe
 		//Nome das variaveis devem ser de acordo com as colunas da tabela respectiva no bd
@@ -13,7 +13,7 @@
 		//setters
 		
 		//Funcao que seta uma instancia da classe
-		public function SetValues($id_ocorrencia,$tipo_ocorrencia,$codigo_ocorrencia){ 
+		public function SetValues($id_ocorrencia, $tipo_ocorrencia, $codigo_ocorrencia) { 
 			$this->id_ocorrencia = $id_ocorrencia;
 			$this->tipo_ocorrencia = $tipo_ocorrencia;
 			$this->codigo_ocorrencia = $codigo_ocorrencia;
@@ -24,20 +24,20 @@
 		//Methods
 		
 		//Funcao que salva a instancia no BD
-		public function Create(){
+		public function Create() {
 			
 			$sql = "
-				INSERT INTO ocorrencia
+				INSERT INTO ocorrencia 
 						  (
 				 			id_ocorrencia,
-							tipo_ocorrencia,
-							codigo_ocorrencia
+				 			tipo_ocorrencia,
+				 			codigo_ocorrencia
 						  )  
 				VALUES 
 					(
-						'$this->id_ocorrencia',
-						'$this->tipo_ocorrencia',
-						'$this->codigo_ocorrencia'
+				 			'$this->id_ocorrencia',
+				 			'$this->tipo_ocorrencia',
+				 			'$this->codigo_ocorrencia'
 					);
 			";
 			
@@ -49,16 +49,16 @@
 		}
 		
 		//Funcao que retorna uma Instancia especifica da classe no bd
-		public function Read($id){
+		public function Read($id) {
 			$sql = "
 				SELECT
-					t1.id_ocorrencia,
-					t1.tipo_ocorrencia,
-					t1.codigo_ocorrencia
+					 t1.id_ocorrencia,
+					 t1.tipo_ocorrencia,
+					 t1.codigo_ocorrencia
 				FROM
 					ocorrencia AS t1
 				WHERE
-					t1.codigo_ocorrencia = '$id'
+					t1.id_ocorrencia  = '$id'
 
 			";
 			
@@ -73,12 +73,12 @@
 		
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD
-		public function ReadAll(){
+		public function ReadAll() {
 			$sql = "
 				SELECT
-					t1.id_ocorrencia,
-					t1.tipo_ocorrencia,
-					t1.codigo_ocorrencia
+					 t1.id_ocorrencia,
+					 t1.tipo_ocorrencia,
+					 t1.codigo_ocorrencia
 				FROM
 					ocorrencia AS t1
 				
@@ -110,12 +110,12 @@
 		
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD com paginacao
-		public function ReadAll_Paginacao($inicio, $registros){
+		public function ReadAll_Paginacao($inicio, $registros) {
 			$sql = "
 				SELECT
-					t1.id_ocorrencia,
-					t1.tipo_ocorrencia,
-					t1.codigo_ocorrencia
+					 t1.id_ocorrencia,
+					 t1.tipo_ocorrencia,
+					 t1.codigo_ocorrencia
 				FROM
 					ocorrencia AS t1
 					
@@ -133,11 +133,11 @@
 		}
 		
 		//Funcao que atualiza uma instancia no BD
-		public function Update(){
+		public function Update() {
 			$sql = "
 				UPDATE ocorrencia SET
 				
-				  tipo_ocorrencia = '$this->tipo_ocorrencia', 
+				  tipo_ocorrencia = '$this->tipo_ocorrencia',
 				  codigo_ocorrencia = '$this->codigo_ocorrencia'
 				
 				WHERE id_ocorrencia = '$this->id_ocorrencia';
@@ -153,7 +153,7 @@
 		}
 		
 		//Funcao que deleta uma instancia no BD
-		public function Delete(){
+		public function Delete() {
 			$sql = "
 				DELETE FROM ocorrencia
 				WHERE id_ocorrencia = '$this->id_ocorrencia';
@@ -185,7 +185,7 @@
 		
 		//constructor 
 		
-		function __construct(){ 
+		function __construct() { 
 			$this->id_ocorrencia;
 			$this->tipo_ocorrencia;
 			$this->codigo_ocorrencia;
@@ -194,7 +194,7 @@
 		}
 		
 		//destructor
-		function __destruct(){
+		function __destruct() {
 			$this->id_ocorrencia;
 			$this->tipo_ocorrencia;
 			$this->codigo_ocorrencia;

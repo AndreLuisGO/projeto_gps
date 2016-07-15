@@ -1,7 +1,7 @@
 <?php
 	//Declaracao da classe
 	//Nome da classe devera ser o nome da tabela respectiva no banco de dados
-	class Curso{
+	class Curso {
 		
 		//Variaveis da classe
 		//Nome das variaveis devem ser de acordo com as colunas da tabela respectiva no bd
@@ -12,7 +12,7 @@
 		//setters
 		
 		//Funcao que seta uma instancia da classe
-		public function SetValues($id_curso, $nome_curso){ 
+		public function SetValues($id_curso, $nome_curso) { 
 			$this->id_curso = $id_curso;
 			$this->nome_curso = $nome_curso;
 						
@@ -22,18 +22,18 @@
 		//Methods
 		
 		//Funcao que salva a instancia no BD
-		public function Create(){
+		public function Create() {
 			
 			$sql = "
-				INSERT INTO curso
+				INSERT INTO curso 
 						  (
 				 			id_curso,
-							nome_curso
+				 			nome_curso
 						  )  
 				VALUES 
 					(
-							'$this->id_curso',
-							'$this->nome_curso'
+				 			'$this->id_curso',
+				 			'$this->nome_curso'
 					);
 			";
 			
@@ -45,15 +45,15 @@
 		}
 		
 		//Funcao que retorna uma Instancia especifica da classe no bd
-		public function Read($id){
+		public function Read($id) {
 			$sql = "
 				SELECT
-					t1.id_curso,
-					t1.nome_curso
+					 t1.id_curso,
+					 t1.nome_curso
 				FROM
 					curso AS t1
 				WHERE
-					t1.id_curso = '$id'
+					t1.id_curso  = '$id'
 
 			";
 			
@@ -68,11 +68,11 @@
 		
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD
-		public function ReadAll(){
+		public function ReadAll() {
 			$sql = "
 				SELECT
-					t1.id_curso,
-					t1.nome_curso
+					 t1.id_curso,
+					 t1.nome_curso
 				FROM
 					curso AS t1
 				
@@ -104,11 +104,11 @@
 		
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD com paginacao
-		public function ReadAll_Paginacao($inicio, $registros){
+		public function ReadAll_Paginacao($inicio, $registros) {
 			$sql = "
 				SELECT
-					t1.id_curso,
-					t1.nome_curso
+					 t1.id_curso,
+					 t1.nome_curso
 				FROM
 					curso AS t1
 					
@@ -126,11 +126,11 @@
 		}
 		
 		//Funcao que atualiza uma instancia no BD
-		public function Update(){
+		public function Update() {
 			$sql = "
 				UPDATE curso SET
 				
-					nome_curso = '$this->nome_curso'
+				  nome_curso = '$this->nome_curso'
 				
 				WHERE id_curso = '$this->id_curso';
 				
@@ -145,7 +145,7 @@
 		}
 		
 		//Funcao que deleta uma instancia no BD
-		public function Delete(){
+		public function Delete() {
 			$sql = "
 				DELETE FROM curso
 				WHERE id_curso = '$this->id_curso';
@@ -177,7 +177,7 @@
 		
 		//constructor 
 		
-		function __construct(){ 
+		function __construct() { 
 			$this->id_curso;
 			$this->nome_curso;
 			
@@ -185,7 +185,7 @@
 		}
 		
 		//destructor
-		function __destruct(){
+		function __destruct() {
 			$this->id_curso;
 			$this->nome_curso;
 			
