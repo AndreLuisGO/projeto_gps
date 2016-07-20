@@ -9,7 +9,7 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#loader').load('cadastro/docentes.lista.php');
+			$('#loader').load('cadastro/docentes/docentes.lista.php');
     	});
 		
 		$('.EditarItem').click(function(e) {
@@ -17,13 +17,13 @@
 			//loader
 			var id= $(this).attr('id');
 			//alert(id);
-			$('#loader').load('viewers/cadastro/docentes.editar.php',{ id: id});
+			$('#loader').load('viewers/cadastro/docentes/docentes.editar.php',{ id: id});
 		});
 	});
 </script>
 
 <?php
-	require_once "../../engine/config.php";
+	require_once "../../../engine/config.php";
 ?>	
 
 <br>

@@ -1,7 +1,7 @@
 ﻿
 <script>
 	$(document).ready(function(e) {
-        
+     
     });
 </script>
 
@@ -31,4 +31,4 @@
           </div>
         </div>
         
-<script src="../js/sistema.js"></script>
+<script src="../js/gerenciamento/sistema.js"></script>

@@ -11,7 +11,7 @@
         		$('#datepicker').datepicker('getFormattedDate')
     		);
 			var data= $('#datafinal').attr('value');
-			$('#loader').load('cadastro/docentes.lista.data.php',{ data: data});
+			$('#loader').load('cadastro/docentes/docentes.lista.data.php',{ data: data});
 		});
 		
 		$('#bread_home').click(function(e) {
@@ -24,19 +24,19 @@
 			e.preventDefault();
 			var id= $(this).attr('id');
 			//alert(id);
-			$('#loader').load('cadastro/docentes.lista.curso.php',{ id: id});
+			$('#loader').load('cadastro/docentes/docentes.lista.curso.php',{ id: id});
 		});
 		
 		$('#CarregaTodosDocentes').click(function(e) {
 			e.preventDefault();
-			$('#loader').load('cadastro/docentes.lista.todos.php');
+			$('#loader').load('cadastro/docentes/docentes.lista.todos.php');
 		});
 		
 	});
 </script>
 
 <?php
-	require_once "../../engine/config.php";
+	require_once "../../../engine/config.php";
 ?>
 
 
