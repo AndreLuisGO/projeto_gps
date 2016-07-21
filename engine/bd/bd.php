@@ -52,11 +52,29 @@ class DB
 			//connect as appropriate as above
 			$this->dbi->query($sql); 
 		} catch(PDOException $ex) {
-			echo "An Error occured!"; //user friendly message
 			//var_dump($ex);
 		}
     }
 	
+	function trquery($sql1, $sql2)
+    {
+		$this->dbi->beginTransaction();
+		try {
+			$this->dbi->query($sql1);
+
+			$lastid = $this->dbi->lastInsertId();
+			//var_dump($lastid);
+			//var_dump($sql2);
+			$sql2 = str_replace('LASTID', $lastid, $sql2);
+			//var_dump($sql2);
+			
+            $this->dbi->query($sql2);
+			$this->dbi->commit();
+						
+		} catch(PDOException $ex) {
+			//var_dump($ex);
+		}
+    }
 	
 	
 	function fetchData($sql)
