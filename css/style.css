@@ -121,3 +121,26 @@ a.thumbnail.active {
 .datepicker-center{
 	padding-left:8vw;
 	}
+	
+/* Filter Table Style*/
+
+.row{
+	margin-top:40px;
+	padding:10px;
+	padding-bottom:6vw;
+	
+}
+.clickable{
+	cursor: pointer;   
+}
+
+.panel-heading div {
+	margin-top: -18px;
+	font-size: 15px;
+}
+.panel-heading div span{
+	margin-left:5px;
+}
+.panel-body{
+	display: none;
+}
