@@ -1,5 +1,9 @@
 /* CSS Document */
 
+main{
+	min-height: 100%;
+	}
+
 #loader{
 	margin-top:3.5em;
 	min-height:15vw;
@@ -18,6 +22,7 @@ padding-left:30px;
 .mainfooter{
 	padding:0.5em;
 	color:#aaa;
+
 }
 
 .footertext{
@@ -108,6 +113,13 @@ a.thumbnail.active {
 }
 
 .DesativarItem:hover{
+	background-color: #FFAB49;
+	transition:0.5s;
+	cursor:pointer;
+	
+}
+
+.EditarExercicios:hover{
 	background-color: #FFAB49;
 	transition:0.5s;
 	cursor:pointer;

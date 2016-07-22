@@ -190,6 +190,47 @@
 		
 		*/
 		
+		public function ReadbyDocente($id) {
+			$sql = "
+				SELECT
+					 t1.id_exercicio,
+					 t1.id_docente,
+					 t1.id_curso,
+					 t1.dt_inicio_exercicio,
+					 t1.dt_fim_exercicio
+				FROM
+					exercicio AS t1
+				WHERE
+					t1.id_docente  = '$id'
+
+			";
+			
+			
+			$DB = new DB();
+			$DB->open();
+			$Data = $DB->fetchData($sql);
+			
+			$DB->close();
+			return $Data[0]; 
+		}
+		
+		public function End() {
+			$sql = "
+				UPDATE exercicio SET
+				
+				  dt_fim_exercicio = '$this->dt_fim_exercicio'
+				
+				WHERE id_exercicio = '$this->id_exercicio';
+				
+			";
+		
+			
+			$DB = new DB();
+			$DB->open();
+			$result =$DB->query($sql);
+			$DB->close();
+			return $result;
+		}
 		
 		/*
 			--------------------------------------------------

@@ -1,5 +1,11 @@
 <script>
 	$(document).ready(function(e) {
+		$('#bread_home').click(function(e) {
+			e.preventDefault();
+			//alert("breadhome");
+			$('#afast_sistema').click();
+    	});
+		
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");

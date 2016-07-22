@@ -1,5 +1,11 @@
 <script>
 	$(document).ready(function(e) {
+		$('#bread_home').click(function(e) {
+			e.preventDefault();
+			//alert("breadhome");
+			$('#afast_sistema').click();
+    	});
+		
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
@@ -127,7 +133,7 @@
 
 <br>
 
-  <section>
+  <section class="col-md-12">
   
     <button type="button" 
             class="btn btn-info" 
@@ -175,7 +181,7 @@
 
 	<section class="col-md-4">
 		<div class="input-group">
-          <div class="input-group-btn">
+          <div class="input-group-btn dropup">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Efetivo  <span class="caret"></span></button>
             <ul class="dropdown-menu">
               <li><a href="#" id="efetivo_sim">Sim</a></li>
@@ -189,31 +195,34 @@
     
 	<section class="col-md-4">
 		<div class="input-group">
-          <div class="input-group-btn">
+          <div class="input-group-btn dropup">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Curso  <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-            	
-				<?php
+            <ul class="dropdown-menu">           	
+<?php
 				  $Item = new Curso();
 				  $Item = $Item->ReadAll();
 				  if(empty($Item)){   
-				?>
+?>
 				  	<li><a href="#">Nenhum curso encontrado</a></li>
-				<?php
+<?php
       							  }
 				  else{
 				      foreach($Item as $itemRow){
 				          //var_dump($itemRow);
-				?>
-				    <li><a href="#" id=<?php echo $itemRow['id_curso']; ?> class="curso_select"
-                    	><?php echo $itemRow['nome_curso']; ?></a>
+?>
+				    <li>
+                    	<a 
+                          href="#" 
+                          id=<?php echo $itemRow['id_curso']; ?> 
+                          class="curso_select">
+						  <?php echo $itemRow['nome_curso']; ?>
+                        </a>
                     </li>     
 				              
-				<?php
-				                              }        
-
+<?php
+				                                 }        
 				       }
-				?>
+?>
                 
             </ul>
           </div><!-- /btn-group -->
@@ -224,7 +233,7 @@
     
     <section class="col-md-4">
     	<div class="input-group">
-        	<div class="input-group-btn">
+        	<div class="input-group-btn dropup">
               <input type="hidden" id="dt_inicio_exercicio">
               <button type="button" class="btn btn-default" aria-haspopup="true" id="datepicker" aria-expanded="false">Data de Entrada  <span class="caret"></button>
           	</div>
@@ -237,5 +246,4 @@
           <input type="text" disabled class="form-control" id="date_display" placeholder=<?php echo $Dataform;?> aria-describedby="basic-addon1">
         </div>
     </section>
-    
 </section>

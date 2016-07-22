@@ -20,7 +20,15 @@
 			$('#loader').load('cadastro/docentes/docentes.editar.php',{ id: id});
 		});
 		
-		//Stuff below this line is new
+		$('.EditarExercicios').click(function(e) {
+			e.preventDefault();
+			//loader
+			var id= $(this).attr('id');
+			//alert(id);
+			$('#loader').load('cadastro/docentes/docentes.exercicios.php',{ id: id});
+		});
+		
+		//Table filters below
 			
 		(function(){
 			'use strict';
@@ -139,8 +147,8 @@
                   <th class="text-center">Siape</th>
                   <th class="text-center">E-Mail</th>
                   <th class="text-center">Efetivo</th>
-                  <th class="text-center">Editar</th>
-                  <th class="text-center">Desativar</th>
+                  <th class="text-center">Editar Dados</th>
+                  <th class="text-center">Gerenciar Exerícios</th>
                 </tr>
               </thead>
               <tbody>
@@ -168,10 +176,10 @@
                       </span>
                     </td>
                     <td 
-                      class="text-center DesativarItem" 
+                      class="text-center EditarExercicios" 
                       id="<?php echo $itemRow['id_docente']; ?>">
                       <span 
-                        class="glyphicon glyphicon-remove-circle" 
+                        class="glyphicon glyphicon-list-alt" 
                         aria-hidden="true">
                       </span>
                     </td>

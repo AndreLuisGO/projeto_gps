@@ -70,6 +70,22 @@
 			echo $res;
 			
 		
+		break;
+		
+		case 'end':
+		
+			
+			
+			$res = $Item->End();
+			if ($res === NULL) {
+				$res= 'true';	
+			}
+			else {
+				$res = 'false';	
+			}
+			echo $res;
+			
+		
 		break;	
 		
 		
