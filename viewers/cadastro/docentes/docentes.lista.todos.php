@@ -17,7 +17,7 @@
 			//loader
 			var id= $(this).attr('id');
 			//alert(id);
-			$('#loader').load('viewers/cadastro/docentes/docentes.editar.php',{ id: id});
+			$('#loader').load('cadastro/docentes/docentes.editar.php',{ id: id});
 		});
 	});
 </script>
@@ -40,17 +40,25 @@
 
 <br><br>
   <section>
-  
+    
       <button 	type="button" 
-                class="btn btn-info" 
+                class="btn btn-info col-md-1" 
                 id="Voltar">
                 
                     <span class="glyphicon glyphicon-menu-left"></span>
                     Voltar
       </button>
-  
+      
+     <section class="col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Digite sua busca" aria-describedby="basic-addon2">
+        <span class="input-group-addon" id="filter-table"><a class="glyphicon glyphicon-filter"></a></span>
+      </div>
+     </section>
   </section>
+
 <br>
+
 <?php	
 	$Item = new Docente();
 	$Item = $Item->ReadAll();
@@ -59,14 +67,15 @@
 	if(empty($Item)){
 		
 ?>
-			<h4 class="well text-center"> Nenhum dado encontrado. </h4>
+			<br><br>
+            <h4 class="well text-center"> Nenhum dado encontrado. </h4>
 <?php
 		
 		
 					}
 	else{
 		?>
-		
+
 			<table class="table table-striped table-hover">
 				<thead>
 				  <tr>
@@ -87,11 +96,11 @@
 						  
 					?>
 							<tr class="">
-								<td><?php echo $itemRow['nome_docente']; ?></td>
-								<td><?php echo $itemRow['siape_docente']; ?></td>
-								<td><?php echo $itemRow['email_docente']; ?></td>
+								<td class=""><?php echo $itemRow['nome_docente']; ?></td>
+								<td class=""><?php echo $itemRow['siape_docente']; ?></td>
+								<td class=""><?php echo $itemRow['email_docente']; ?></td>
 								<td class="text-center"><?php 
-										if($itemRow['efetivo_docente'] === '1'){
+										if($itemRow['efetivo_docente'] === 1){
 											echo "Sim";
 																				} 
 										else{

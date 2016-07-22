@@ -12,7 +12,7 @@
 
 <br>
 <ol class="breadcrumb">
-	<li><a href="../sistema.php">Home</a></li>
+	<li><a href="../viewers/sistema.php">Home</a></li>
 	<li><a href="#">Administradores</a></li>
 	<li class="active">Lista de Dados</li>
  </ol>	

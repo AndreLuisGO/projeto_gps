@@ -179,6 +179,7 @@
 			$DB->open();
 			$result =$DB->query($sql);
 			$DB->close();
+			//var_dump($result);
 			return $result;
 		}
 		

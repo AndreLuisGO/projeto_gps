@@ -1,5 +1,3 @@
-
-
 <script>
 	$(document).ready(function(e) {
 		$('#Voltar').click(function(e) {

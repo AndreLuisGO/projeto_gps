@@ -57,5 +57,6 @@
 	<script type="text/javascript" src="../locales/bootstrap-datepicker.pt-BR.min.js"></script>
     <script type="text/javascript" src="../js/menu.js"></script>
     <script type="text/javascript" src="../js/login.js"></script>
+    <script type="text/javascript" src="../js/list.js"></script>
 </body>
 </html>

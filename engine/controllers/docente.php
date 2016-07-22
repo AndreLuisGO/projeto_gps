@@ -19,7 +19,7 @@
 	$Item = new Docente();
 	$Item->SetValues($id_docente, $nome_docente, $siape_docente, $email_docente, $efetivo_docente); 
 	
-	
+	//var_dump($Item);
 		
 	//parte4
 	switch($action) {
