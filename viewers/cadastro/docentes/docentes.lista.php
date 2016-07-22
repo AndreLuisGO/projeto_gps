@@ -60,7 +60,7 @@
     <section class="col-md-12">
         
         <section class="col-md-4">
-            <button class="btn btn-primary col-md-12" id="CarregaTodosDocentes" type="button">
+            <button class="btn btn-primary col-md-12" id="CarregaTodosDocentes" type="button" title="Exibe todos os docentes ativos e inativos já cadastrados no sistema.">
                   Todos         
             </button>
         </section>
