@@ -12,19 +12,30 @@
 			$('#loader').load('cadastro/docentes/docentes.lista.php');
     	});
 		
-		$('#Terminar').click(function(e) {
-			e.preventDefault();
-			//alert('terminar');
+		$('#datepicker').datepicker({
+			format: "yyyy-mm-dd",
+			todayBtn: "linked",
+			language: "pt-BR",
+			orientation: "auto",
+			autoclose: true
+		});
+		
+		$('#datepicker').on("changeDate", function() {
+    		$('#dt_fim_exercicio').val(
+        		$('#datepicker').datepicker('getFormattedDate')
+    		);
+			
+			if(confirm("Essa ação vai terminar o exercício desse docente na data selecionada, deseja prosseguir?")){
 			//1 instansciar e recuperar valores dos inputs
+			var id_exercicio = $('#id_exercicio').val();
 			var id_docente = $('#id_docente').val();
-			var nome_docente = $('#nome_docente').val();
-			var siape_docente = $('#siape_docente').val();
-			var email_docente = $('#email_docente').val();
-			var efetivo_docente = $('#efetivo_docente').val();
+			var id_curso = $('#id_curso').val();
+			var dt_inicio_exercicio = $('#dt_inicio_exercicio').val();
+			var dt_fim_exercicio = $('#dt_fim_exercicio').val();
 			
 			
 			//2 validar os inputs
-			if(id_docente === "" || nome_docente === "" || siape_docente === "" || email_docente === "" || efetivo_docente === ""){
+			if(id_exercicio === "" || id_docente === "" || id_curso === "" || dt_inicio_exercicio === "" || dt_fim_exercicio === ""){
 				return alert('Todos os campos devem ser preenchidos.');
 			}
 			else{
@@ -54,6 +65,16 @@
 				   
 				   type: 'POST'
 				});		
+			}
+																								}
+		});
+		
+		$('.EditarItem').click(function(e) {
+			e.preventDefault();
+			if(confirm("Alterações em um exercício modificam todo o histórico relacionado a ele.\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
+			{
+			var id= $(this).attr('id');
+			$('#loader').load('cadastro/docentes/docentes.exercicios.editar.php',{ id: id});
 			}
 		});
 		
@@ -222,7 +243,7 @@
 ?>
                     </td>
                     <td 
-                      class="text-center EditarItem" 
+                      class="text-center EditarItem"
                       id="<?php echo $itemRow['id_exercicio']; ?>">
                       <span 
                         class="glyphicon glyphicon-edit" 
@@ -230,13 +251,19 @@
                       </span>
                     </td>
                     <td 
-                      class="text-center DesativarItem" 
-                      id="<?php echo $itemRow['id_exercicio']; ?>">
+                      class="text-center DesativarItem"
+                      id="datepicker"
+                      title="Clique para escolher a data de término">
                       <span 
                         class="glyphicon glyphicon-remove-circle" 
                         aria-hidden="true">
                       </span>
                     </td>
+                    <input type="hidden" value="<?php echo $itemRow['id_exercicio']; ?>" id="id_exercicio">
+                    <input type="hidden" value="<?php echo $itemRow['id_docente']; ?>" id="id_docente">
+                    <input type="hidden" value="<?php echo $itemRow['id_curso']; ?>" id="id_curso">
+                    <input type="hidden" value="<?php echo $itemRow['dt_inicio_exercicio']; ?>" id="dt_inicio_exercicio">
+                    <input type="hidden" id="dt_fim_exercicio">
                   </tr>
 <?php												
                                           }

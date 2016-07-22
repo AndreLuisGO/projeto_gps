@@ -214,9 +214,7 @@
                     	<a 
                           href="#" 
                           id=<?php echo $itemRow['id_curso']; ?> 
-                          class="curso_select">
-						  <?php echo $itemRow['nome_curso']; ?>
-                        </a>
+                          class="curso_select"><?php echo $itemRow['nome_curso']; ?></a>
                     </li>     
 				              
 <?php
