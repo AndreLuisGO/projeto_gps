@@ -143,7 +143,11 @@ a.thumbnail.active {
 	
 }
 .clickable{
-	cursor: pointer;   
+	cursor: pointer;
+}
+
+.clickable:hover{
+	background-color:#478ECB;
 }
 
 .panel-heading div {

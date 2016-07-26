@@ -37,6 +37,11 @@
 			$('#loader').load('cadastro/docentes/docentes.cadastrar.php');
 		});
 		
+		$('#GerenciarCursos').click(function(e) {
+			e.preventDefault();
+			$('#loader').load('cadastro/docentes/docentes.curso.lista.php');
+		});
+		
 	});
 </script>
 
@@ -141,17 +146,17 @@
     
     <br><br>
     
-    <section class="col-md-12">
-        
+    <section class="col-md-12"> 
+        <section class="col-md-4">
+        	<button class="btn btn-success col-md-12" id="GerenciarCursos" type="button">
+                  Gerenciar Cursos         
+            </button>
+        </section>
         <section class="col-md-4"></section>
-        
         <section class="col-md-4">
             <button class="btn btn-success col-md-12" id="CadastrarDocente" type="button">
                   Cadastrar Novo Docente         
             </button>
         </section>
-        
-        <section class="col-md-4"></section>
-        
     </section>
 
