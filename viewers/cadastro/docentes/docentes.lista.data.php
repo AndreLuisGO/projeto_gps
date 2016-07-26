@@ -108,7 +108,7 @@
                       }
       else{
 ?>
-  <div class="row">
+  <div class="filterrow">
       <div class="panel panel-primary">
           <div class="panel-heading">
               <h3 class="panel-title">Docentes</h3>

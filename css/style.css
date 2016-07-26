@@ -136,7 +136,7 @@ a.thumbnail.active {
 	
 /* Filter Table Style*/
 
-.row{
+.filterrow{
 	margin-top:40px;
 	padding:10px;
 	padding-bottom:6vw;
@@ -156,3 +156,9 @@ a.thumbnail.active {
 .panel-body{
 	display: none;
 }
+
+.bottom-pad{
+	
+	padding-bottom:30vw;
+	
+	}

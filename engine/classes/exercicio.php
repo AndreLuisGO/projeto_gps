@@ -232,6 +232,27 @@
 			return $result;
 		}
 		
+		public function Activate_Update() {
+			$sql = "
+				UPDATE exercicio SET
+				
+				  id_docente = '$this->id_docente',
+				  id_curso = '$this->id_curso',
+				  dt_inicio_exercicio = '$this->dt_inicio_exercicio',
+				  dt_fim_exercicio = NULL
+				
+				WHERE id_exercicio = '$this->id_exercicio';
+				
+			";
+		
+			
+			$DB = new DB();
+			$DB->open();
+			$result =$DB->query($sql);
+			$DB->close();
+			return $result;
+		}
+		
 		/*
 			--------------------------------------------------
 			Viewer SPecific methods -- end 

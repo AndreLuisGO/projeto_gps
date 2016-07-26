@@ -25,7 +25,7 @@
         		$('#datepicker').datepicker('getFormattedDate')
     		);
 			
-			if(confirm("Essa ação vai terminar o exercício desse docente na data selecionada, deseja prosseguir?")){
+			if(confirm("Essa ação vai terminar ou modificar a data de término do exercício desse docente para a data selecionada, deseja prosseguir?")){
 			//1 instansciar e recuperar valores dos inputs
 			var id_exercicio = $('#id_exercicio').val();
 			var id_docente = $('#id_docente').val();
@@ -165,7 +165,7 @@
                      }
       else{
 ?>
-  <div class="row">
+  <div class="filterrow">
       <div class="panel panel-primary">
           <div class="panel-heading">
               <h3 class="panel-title">Exercicios do(a) docente <?php echo $Docente['nome_docente']?></h3>

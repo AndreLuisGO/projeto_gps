@@ -24,7 +24,8 @@
 			
 			
 			//2 validar os inputs
-			if(id_exercicio === "" || id_docente === "" || id_curso === "" || dt_inicio_exercicio === "" || dt_fim_exercicio === ""){
+			//alert(dt_fim_exercicio);
+			if(id_exercicio === "" || id_docente === "" || id_curso === "" || dt_inicio_exercicio === ""){
 				return alert('Todos os campos devem ser preenchidos.');
 			}
 			else{
@@ -62,6 +63,14 @@
 			//alert("curso_select");
 			$('#id_curso').val($(this).attr('id'));
 			$('#curso_placeholder').val($(this).text());
+			
+    	});
+		
+		$('#efetivar').click(function(e) {
+			e.preventDefault();
+			//alert("curso_select");
+			$('#dt_fim_exercicio').val("0000-00-00");
+			$('#date_display2').val("Exercício Ativo");
 			
     	});
 		
@@ -145,14 +154,9 @@
 	$Item = new Exercicio();
 	$Item = $Item->Read($_POST['id']);
 	//var_dump($Item);
-	$Data = getdate(); 
-	$Dia = $Data['mday'];
-	$Mes = $Data['mon'];
-	$Ano = $Data['year'];
-	$Dataform = $Dia . '/' . $Mes . '/' . $Ano;
 ?>
 
-<section class="row">
+<section class="row bottom-pad">
 
 	<section class="col-md-4">
 		<div class="input-group">
@@ -192,8 +196,8 @@
     
     <section class="col-md-4">
     	<div class="input-group">
-        	<div class="input-group-btn dropup">
-              <input type="hidden" id="dt_inicio_exercicio">
+        	<div class="input-group-btn">
+              <input type="hidden" id="dt_inicio_exercicio" value=<?php echo $Item['dt_inicio_exercicio'];?>>
               <button type="button" class="btn btn-default" aria-haspopup="true" id="datepicker1" aria-expanded="false">Data de Entrada  <span class="caret"></button>
           	</div>
           <input type="text" disabled class="form-control" id="date_display1" placeholder=<?php echo $Item['dt_inicio_exercicio'];?> aria-describedby="basic-addon1">
@@ -202,12 +206,16 @@
     
     <section class="col-md-4">
     	<div class="input-group">
-        	<div class="input-group-btn dropup">
-              <input type="hidden" id="dt_fim_exercicio">
-              <button type="button" class="btn btn-default" aria-haspopup="true" id="datepicker2" aria-expanded="false">Data de Entrada  <span class="caret"></button>
+        	<div class="input-group-btn">
+              <input type="hidden" id="dt_fim_exercicio" value=<?php if($Item['dt_fim_exercicio'] == ""){ echo "0000-00-00";} else{ echo $Item['dt_fim_exercicio'];}?>>
+              <button type="button" class="btn btn-default" aria-haspopup="true" id="datepicker2" aria-expanded="false">Data de Término  <span class="caret"></button>
           	</div>
-          <input type="text" disabled class="form-control" id="date_display2" placeholder=<?php echo $Item['dt_fim_exercicio'];?> aria-describedby="basic-addon1">
+          <input type="text" disabled class="form-control" id="date_display2" placeholder="<?php echo $Item['dt_fim_exercicio'];?>" aria-describedby="basic-addon1">
+          <div class="input-group-btn">
+              <button type="button" class="btn btn-default" aria-haspopup="true" id="efetivar" aria-expanded="false">Efetivar</button>
+          </div>
         </div>
     </section>
-    
+    <input type="hidden" id="id_docente" value=<?php echo $Item['id_docente'];?>>
+    <input type="hidden" id="id_exercicio" value=<?php echo $Item['id_exercicio'];?>>
 </section>
