@@ -4,11 +4,6 @@ $(document).ready(function(e) {
 		$('#loader').load('../viewers/gerenciamento/sistema.buttons.php');
 	}
 	
-	$('#gerenciar_docentes').click(function(e) {
-		e.preventDefault();
-		$('#loader').load('../viewers/cadastro/docentes/docentes.lista.php');
-    });
-	
 	$('#gerenciar_admin').click(function(e) {
 		e.preventDefault();
 		//alert("admin");

@@ -15,7 +15,9 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
 
-          <a class="col-md-3" id="icticon"><img src="img/logo_ICT1.0.png" width="60" height="64" alt="Logo ICT"/></a>
+          <a class="col-md-3" id="icticon" href="http://www.ict.ufvjm.edu.br/">
+          	<img src="img/logo_ICT1.0.png" width="60" height="64" alt="Logo ICT"/>
+          </a>
         </div>
     
         <!-- Collect the nav links, forms, and other content for toggling -->

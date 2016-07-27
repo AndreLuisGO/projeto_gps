@@ -66,7 +66,6 @@
 			$DB = new DB();
 			$DB->open();
 			$Data = $DB->fetchData($sql);
-			
 			$DB->close();
 			return $Data[0]; 
 		}

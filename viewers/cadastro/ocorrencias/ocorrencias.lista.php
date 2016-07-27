@@ -9,15 +9,22 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#loader').load('cadastro/docentes/docentes.lista.php');
+			$('#afast_sistema').click();
+    	});
+		
+		$('#Cadastrar').click(function(e) {
+			e.preventDefault();
+			//alert("Voltar");
+			$('#loader').load('cadastro/ocorrencias/ocorrencias.cadastrar.php');
     	});
 		
 		$('.EditarItem').click(function(e) {
 			e.preventDefault();
-			//loader
+			if(confirm("Alterações em uma ocorrência modificam todo o histórico relacionado a ela.\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
+			{
 			var id= $(this).attr('id');
-			//alert(id);
-			$('#loader').load('cadastro/docentes/docentes.editar.php',{ id: id});
+			$('#loader').load('cadastro/ocorrencias/ocorrencias.editar.php',{ id: id});
+			}
 		});
 		
 		//Table filters below
@@ -70,29 +77,26 @@
 				}
 			});
 			$('[data-toggle="tooltip"]').tooltip();
-		})
+		})			
 	});
 </script>
 
 <?php
 	require_once "../../../engine/config.php";
-	$Curso = new Curso();
-	$Curso = $Curso->Read($_POST['id']);
 ?>	
 
 <br>
 <ol class="breadcrumb">
   <li><a href="#" id="bread_home" >Home</a></li>
-  <li><a href="#">Gerenciar Docentes</a></li>
-  <li><a href="#">Lista de Dados</a></li>
-  <li class="active"> <?php echo $Curso['nome_curso']; ?> </li>
+  <li><a href="#">Gerenciar Ocorrências</a></li>
+  <li class="active"> Lista de Dados</li>
 </ol>
 
 <div class="container col-md-12">
-  <h1>Docentes lotados em <?php echo $Curso['nome_curso']; ?></h1>
+  <h1>Lista de Ocorrências</h1>
 <?php	
-      $Item = new Docente();
-      $Item = $Item->ReadAllCurso($Curso['id_curso']);
+      $Item = new Ocorrencia();
+      $Item = $Item->ReadAll();
       //var_dump($Item);
       if(empty($Item)){    
 ?>  
@@ -105,13 +109,19 @@
   <div class="filterrow">
       <div class="panel panel-primary">
           <div class="panel-heading">
-              <h3 class="panel-title">Docentes</h3>
+              <h3 class="panel-title">Ocorrencias</h3>
               <div class="pull-right">
                   <span
                     class="clickable filter" 
                     id="Voltar">                
                     <i class="glyphicon glyphicon-menu-left"></i>
                     Voltar
+                  </span>
+                  <span
+                    class="clickable filter" 
+                    id="Cadastrar">                
+                    <i class="glyphicon glyphicon-plus"></i>
+                    Cadastrar Nova Ocorrência
                   </span>
                   <span 
                     class="clickable filter" 
@@ -135,48 +145,28 @@
           <table class="table table-hover" id="dev-table">
               <thead>
                 <tr>
-                  <th class="text-left">Nome</th>
-                  <th class="text-center">Siape</th>
-                  <th class="text-center">E-Mail</th>
-                  <th class="text-center">Efetivo</th>
-                  <th class="text-center">Editar Dados</th>
-                  <th class="text-center">Gerenciar Exerícios</th>
+                  <th class="text-left">Tipo</th>
+                  <th class="text-center">Código</th>
+                  <th class="text-center">Editar</th>
                 </tr>
               </thead>
               <tbody>
 <?php   
 				foreach($Item as $itemRow){
 				//var_dump($itemRow);
-                if(is_null($itemRow['dt_fim_exercicio'])){           
+                            
 ?>
                   <tr class="">
-                    <td class="text-left"><?php echo $itemRow['nome_docente']; ?></td>
-                    <td class="text-center"><?php echo $itemRow['siape_docente']; ?></td>
-                    <td class="text-center"><?php echo $itemRow['email_docente']; ?></td>
-                    <td class="text-center">
-<?php 
-                            if($itemRow['efetivo_docente'] === 1){echo "Sim";} 
-                            else{echo "Não";} 
-?>
-                    </td>
-                    <td 
-                      class="text-center EditarItem" 
-                      id="<?php echo $itemRow['id_docente']; ?>">
+                    <td class="text-left"><?php echo $itemRow['tipo_ocorrencia']; ?></td>
+                    <td class="text-center"><?php echo $itemRow['codigo_ocorrencia']; ?></td>
+                    <td class="text-center EditarItem" id="<?php echo $itemRow['id_ocorrencia']; ?>">
                       <span 
                         class="glyphicon glyphicon-edit" 
                         aria-hidden="true">
                       </span>
                     </td>
-                    <td 
-                      class="text-center EditarExercicios" 
-                      id="<?php echo $itemRow['id_docente']; ?>">
-                      <span 
-                        class="glyphicon glyphicon-list-alt" 
-                        aria-hidden="true">
-                      </span>
-                    </td>
                   </tr>
-<?php												}
+<?php												
                                           }
 ?>
               </tbody>

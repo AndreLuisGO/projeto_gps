@@ -6,4 +6,10 @@ $(document).ready(function(e) {
 		//alert("sistema.js/docentes");
     });
 	
+	$('#gerenciar_ocorrencias').click(function(e) {
+		e.preventDefault();
+		$('#loader').load('../viewers/cadastro/ocorrencias/ocorrencias.lista.php');
+		//alert("sistema.js/ocorrencias");
+    });
+	
 });

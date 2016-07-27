@@ -23,7 +23,7 @@
 	<nav class="navbar navbar-default navbar-fixed-top ">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="col-md-3" id="icticon">
+          <a class="col-md-3" id="icticon" href="http://www.ict.ufvjm.edu.br/">
           	<img src="../img/logo_ICT1.0.png" width="60" height="64" alt=""/>
           </a>
         </div>
@@ -51,12 +51,10 @@
 	
 	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
-    <script type="text/javascript" src="../js/npm.js"></script>
     <script type="text/javascript" src="../js/jquerymask.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
 	<script type="text/javascript" src="../locales/bootstrap-datepicker.pt-BR.min.js"></script>
     <script type="text/javascript" src="../js/menu.js"></script>
     <script type="text/javascript" src="../js/login.js"></script>
-    <script type="text/javascript" src="../js/list.js"></script>
 </body>
 </html>
