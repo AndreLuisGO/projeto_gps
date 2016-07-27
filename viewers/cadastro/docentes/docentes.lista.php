@@ -11,7 +11,7 @@
         		$('#datepicker').datepicker('getFormattedDate')
     		);
 			var data= $('#datafinal').attr('value');
-			$('#loader').load('cadastro/docentes/docentes.lista.data.php',{ data: data});
+			$('#docenteloader').load('cadastro/docentes/docentes.lista.data.php',{ data: data});
 		});
 		
 		$('#bread_home').click(function(e) {
@@ -24,24 +24,43 @@
 			e.preventDefault();
 			var id= $(this).attr('id');
 			//alert(id);
-			$('#loader').load('cadastro/docentes/docentes.lista.curso.php',{ id: id});
+			$('#docenteloader').load('cadastro/docentes/docentes.lista.curso.php',{ id: id});
 		});
 		
 		$('#CarregaTodosDocentes').click(function(e) {
 			e.preventDefault();
-			$('#loader').load('cadastro/docentes/docentes.lista.todos.php');
+			$('#docenteloader').load('cadastro/docentes/docentes.lista.todos.php');
+			
+			
 		});
 		
 		$('#CadastrarDocente').click(function(e) {
 			e.preventDefault();
-			$('#loader').load('cadastro/docentes/docentes.cadastrar.php');
+			$('#docenteloader').load('cadastro/docentes/docentes.cadastrar.php');
 		});
 		
 		$('#GerenciarCursos').click(function(e) {
 			e.preventDefault();
-			$('#loader').load('cadastro/docentes/docentes.curso.lista.php');
+			$('#docenteloader').load('cadastro/docentes/docentes.curso.lista.php');
 		});
 		
+		//Collapse Control
+
+		  $('#Data-bar').on('show.bs.collapse', function (e) {
+			  if ($(this).is(e.target)) 
+			  {
+				$('.sidebar-content').css({'width':'66%', 'margin-left':'18vw'});
+				$('.sidebar-btn').css({'margin-left':'24vw'}); 
+			  }   
+		  });
+		  
+		  $('#Data-bar').on('hidden.bs.collapse', function (e) {
+			  if ($(this).is(e.target)) 
+			  {
+				$('.sidebar-content').css({'width':'99%', 'margin-left':'-8vw'});
+				$('.sidebar-btn').css({'margin-left':'-3vw'}); 
+			  } 
+		  });
 	});
 </script>
 
@@ -49,114 +68,127 @@
 	require_once "../../../engine/config.php";
 ?>
 
-
-<br>
-<ol class="breadcrumb">
-  <li><a href="#" id="bread_home" >Home</a></li>
-  <li><a href="#">Gerenciar Docentes</a></li>
-  <li class="active">Menu</li>
-</ol>
-
-<h1> 
-	Gerenciar Docentes Cadastrados
-</h1>
-
-
-    <section class="col-md-12">
-        
-        <section class="col-md-4">
-            <button class="btn btn-primary col-md-12" id="CarregaTodosDocentes" type="button" title="Exibe todos os docentes ativos e inativos já cadastrados no sistema.">
-                  Todos         
+<section>
+  <section class="col-md-3 sidebar-pad collapse in" id="Data-bar">
+      <section class="col-md-12">
+          <button class="btn btn-primary col-md-12" id="CarregaTodosDocentes" type="button" title="Exibe todos os docentes ativos e inativos já cadastrados no sistema.">
+                Todos         
+          </button>
+      </section>
+  
+      <section class="col-md-12">
+            <button class="btn btn-primary col-md-12" 
+                    type="button" 
+                    data-toggle="collapse" 
+                    data-target="#Cursos" 
+                    aria-expanded="false" 
+                    aria-controls="Cursos"
+                    id="Cursopadding">
+                    
+                          <span class="glyphicon glyphicon-filter"></span>
+                          Ativos por Curso
             </button>
-        </section>
-    
-        <section class="col-md-4">
-              <button class="btn btn-primary col-md-12" 
-                      type="button" 
-                      data-toggle="collapse" 
-                      data-target="#Cursos" 
-                      aria-expanded="false" 
-                      aria-controls="Cursos">
-                      
-                            <span class="glyphicon glyphicon-filter"></span>
-                            Ativos por Curso
-              </button>
-              <br>
-              <section class="collapse" id="Cursos">
-              
-              <?php
-                  $Item = new Curso();
-                  $Item = $Item->ReadAll();
-                  
-                  
-                  if(empty($Item)){
-                      
-              ?>
-                          <h4 class="well text-center"> Nenhum dado encontrado. </h4>
-              <?php
-                      
-                      
-                  }
-                  else{
-        
-                                      foreach($Item as $itemRow){
-                                          //var_dump($itemRow);
-                                  ?>
-                                      <button 
-                                          type="button" 
-                                          class="btn btn-default col-md-12 CarregaDocentesCurso"
-                                          id=<?php echo $itemRow['id_curso']; ?>> 
-                                              <?php echo $itemRow['nome_curso']; ?>
-                                      </button>	 
-                                  <?php
-                                                              }        
-              
-                          }
-              ?>
-              </section>
-        </section>
-        
-        <section class="col-md-4">
-              <button class="btn btn-primary col-md-12" 
-                      type="button" 
-                      data-toggle="collapse" 
-                      data-target="#Data" 
-                      aria-expanded="false" 
-                      aria-controls="Data">
-                      
-                            <span class="glyphicon glyphicon-filter"></span>
-                            Ativos em uma Data
-              </button>
-              
-              <br>
-              
-              <section class="collapse datepicker-center" id="Data">
-                    <?php $Data = getdate(); 
-                        $Dia = $Data['mday'];
-                        $Mes = $Data['mon'];
-                        $Ano = $Data['year'];
-                        $Dataform = $Ano . '-' . $Mes . '-' . $Dia;
-                    ?>
-                    <div id="datepicker" data-date= <?php echo $Dataform; ?>></div>
-                    <input type="hidden" id="datafinal">
-              </section>
-              
-        </section>
-    </section>
-    
-    <br><br>
-    
-    <section class="col-md-12"> 
-        <section class="col-md-4">
-        	<button class="btn btn-success col-md-12" id="GerenciarCursos" type="button">
-                  Gerenciar Cursos         
+            <br>
+            <section class="collapse" id="Cursos">
+            
+            <?php
+                $Item = new Curso();
+                $Item = $Item->ReadAll();
+                
+                
+                if(empty($Item)){
+                    
+            ?>
+                        <h4 class="well text-center"> Nenhum dado encontrado. </h4>
+            <?php
+                    
+                    
+                }
+                else{
+      
+                                    foreach($Item as $itemRow){
+                                        //var_dump($itemRow);
+                                ?>
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-default col-md-12 CarregaDocentesCurso"
+                                        id=<?php echo $itemRow['id_curso']; ?>> 
+                                            <?php echo $itemRow['nome_curso']; ?>
+                                    </button>	 
+                                <?php
+                                                            }        
+            
+                        }
+            ?>
+            </section>
+      </section>
+      
+      <section class="col-md-12">
+            <button class="btn btn-primary col-md-12" 
+                    type="button" 
+                    data-toggle="collapse" 
+                    data-target="#Data" 
+                    aria-expanded="false" 
+                    aria-controls="Data"
+                    id="Datapadding">
+                    
+                          <span class="glyphicon glyphicon-filter"></span>
+                          Ativos em uma Data
             </button>
-        </section>
-        <section class="col-md-4"></section>
-        <section class="col-md-4">
-            <button class="btn btn-success col-md-12" id="CadastrarDocente" type="button">
-                  Cadastrar Novo Docente         
-            </button>
-        </section>
-    </section>
+            
+            <br>
+            
+            <section class="collapse datepicker-center" id="Data">
+                  <?php $Data = getdate(); 
+                      $Dia = $Data['mday'];
+                      $Mes = $Data['mon'];
+                      $Ano = $Data['year'];
+                      $Dataform = $Ano . '-' . $Mes . '-' . $Dia;
+                  ?>
+                  <div id="datepicker" data-date= <?php echo $Dataform; ?>></div>
+                  <input type="hidden" id="datafinal">
+            </section>
+            
+      </section>
+  
+      <section class="col-md-12">
+          <button class="btn btn-success col-md-12" id="GerenciarCursos" type="button">
+                Gerenciar Cursos         
+          </button>
+      </section>
+      
+      <section class="col-md-12">
+          <button class="btn btn-success col-md-12" id="CadastrarDocente" type="button">
+                Cadastrar Novo Docente         
+          </button>
+      </section>
+      <div id="sidebar-pad-scroll"></div>
+  </section>
+  <section class="col-md-1">
+    <button 
+    class="btn btn-default sidebar-btn" 
+    type="button" 
+    data-toggle="collapse" 
+    data-target="#Data-bar" 
+    aria-expanded="false" 
+    aria-controls="Data-bar"
+    id="Sidebarpadding"
+    title="Clique para recolher ou expandir esta guia">             
+       <span class="glyphicon glyphicon-menu-right"></span>
+    </button>
+  </section> 
+  <!-- Paginas carregadas aqui -->
+  <section class="col-md-8 sidebar-content" id="docenteloader">
+    <br>
+    <ol class="breadcrumb">
+      <li><a href="#" id="bread_home" >Home</a></li>
+      <li><a href="#">Gerenciar Docentes</a></li>
+      <li class="active">Menu</li>
+    </ol>
+    <div class="col-md-12">
+      <h1>Gerenciar Docentes Cadastrados</h1>
+    </div>
+  </section>
+  <!-- Paginas carregadas aqui -->
+</section>
 

@@ -12,10 +12,10 @@
 			$('#loader').load('cadastro/docentes/docentes.lista.php');
     	});
 		
-		$('#Cadastrar').click(function(e) {
+		$('#CadastrarCurso').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#loader').load('cadastro/docentes/docentes.curso.cadastrar.php');
+			$('#docenteloader').load('cadastro/docentes/docentes.curso.cadastrar.php');
     	});
 		
 		$('.EditarItem').click(function(e) {
@@ -23,7 +23,7 @@
 			if(confirm("Alterações em um curso modificam todo o histórico relacionado a ele.\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
 			{
 			var id= $(this).attr('id');
-			$('#loader').load('cadastro/docentes/docentes.curso.editar.php',{ id: id});
+			$('#docenteloader').load('cadastro/docentes/docentes.curso.editar.php',{ id: id});
 			}
 		});
 				
@@ -120,7 +120,7 @@
                   </span>
                   <span
                     class="clickable filter" 
-                    id="Cadastrar">                
+                    id="CadastrarCurso">                
                     <i class="glyphicon glyphicon-plus"></i>
                     Cadastrar Novo Curso
                   </span>

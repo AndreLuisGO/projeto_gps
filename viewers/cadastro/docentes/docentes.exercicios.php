@@ -12,17 +12,23 @@
 			$('#loader').load('cadastro/docentes/docentes.lista.php');
     	});
 		
-		$('#datepicker').datepicker({
+		$('#CadastrarExercicio').click(function(e) {
+			e.preventDefault();
+			var id= $(this).attr('id');
+			$('#loader').load('cadastro/docentes/docentes.exercicio.cadastrar.php', { id: id});
+    	});
+		
+		$('#exercdatepicker').datepicker({
 			format: "yyyy-mm-dd",
 			todayBtn: "linked",
 			language: "pt-BR",
-			orientation: "auto",
+			orientation: "bottom",
 			autoclose: true
 		});
 		
-		$('#datepicker').on("changeDate", function() {
+		$('#exercdatepicker').on("changeDate", function() {
     		$('#dt_fim_exercicio').val(
-        		$('#datepicker').datepicker('getFormattedDate')
+        		$('#exercdatepicker').datepicker('getFormattedDate')
     		);
 			
 			if(confirm("Essa ação vai terminar ou modificar a data de término do exercício desse docente para a data selecionada, deseja prosseguir?")){
@@ -74,7 +80,7 @@
 			if(confirm("Alterações em um exercício modificam todo o histórico relacionado a ele.\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
 			{
 			var id= $(this).attr('id');
-			$('#loader').load('cadastro/docentes/docentes.exercicios.editar.php',{ id: id});
+			$('#docenteloader').load('cadastro/docentes/docentes.exercicios.editar.php',{ id: id});
 			}
 		});
 		
@@ -176,6 +182,12 @@
                     <i class="glyphicon glyphicon-menu-left"></i>
                     Voltar
                   </span>
+                  <span
+                    class="clickable filter" 
+                    id="CadastrarExercicio">                
+                    <i class="glyphicon glyphicon-plus"></i>
+                    Cadastrar Novo Exercício
+                  </span>
                   <span 
                     class="clickable filter" 
                     data-toggle="tooltip" 
@@ -252,7 +264,7 @@
                     </td>
                     <td 
                       class="text-center DesativarItem"
-                      id="datepicker"
+                      id="exercdatepicker"
                       title="Clique para escolher a data de término">
                       <span 
                         class="glyphicon glyphicon-remove-circle" 
@@ -272,6 +284,7 @@
           </table>
       </div>
    </div>
+   <div class="bottom-pad"></div>
 </div>
 <?php
           }

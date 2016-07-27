@@ -9,7 +9,7 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#loader').load('cadastro/docentes/docentes.curso.lista.php');
+			$('#docenteloader').load('cadastro/docentes/docentes.curso.lista.php');
     	});
 		
 		$('#Salvar').click(function(e) {
@@ -37,7 +37,7 @@
 							console.log(data);
 							if(data === 'true'){
 								alert('Curso modificado com sucesso.');
-								$('#loader').load('cadastro/docentes/docentes.curso.lista.php');
+								$('#docenteloader').load('cadastro/docentes/docentes.curso.lista.php');
 							}
 							else{
 								alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	

@@ -93,20 +93,20 @@
 			
     	});
 		
-		$('#datepicker').datepicker({
+		$('#docente_cadastro_datepicker').datepicker({
 			format: "yyyy-mm-dd",
 			todayBtn: "linked",
 			language: "pt-BR",
-			orientation: "auto",
+			orientation: "bottom",
 			autoclose: true
 		});
 		
-		$('#datepicker').on("changeDate", function() {
+		$('#docente_cadastro_datepicker').on("changeDate", function() {
     		$('#dt_inicio_exercicio').val(
-        		$('#datepicker').datepicker('getFormattedDate')
+        		$('#docente_cadastro_datepicker').datepicker('getFormattedDate')
     		);
 			
-			var invertdata = $('#datepicker').datepicker('getFormattedDate').split('-').reverse().join('/');
+			var invertdata = $('#docente_cadastro_datepicker').datepicker('getFormattedDate').split('-').reverse().join('/');
 			//alert(invertdata);
 			$('#date_display').val(invertdata);
 		});
@@ -231,9 +231,9 @@
     
     <section class="col-md-4">
     	<div class="input-group">
-        	<div class="input-group-btn dropup">
+        	<div class="input-group-btn">
               <input type="hidden" id="dt_inicio_exercicio">
-              <button type="button" class="btn btn-default" aria-haspopup="true" id="datepicker" aria-expanded="false">Data de Entrada  <span class="caret"></button>
+              <button type="button" class="btn btn-default" aria-haspopup="true" id="docente_cadastro_datepicker" aria-expanded="false">Data de Entrada  <span class="caret"></button>
           	</div>
           <?php $Data = getdate(); 
                         $Dia = $Data['mday'];
@@ -245,3 +245,4 @@
         </div>
     </section>
 </section>
+<div class="bottom-pad"></div>

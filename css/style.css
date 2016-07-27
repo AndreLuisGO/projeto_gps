@@ -1,13 +1,26 @@
 /* CSS Document */
 
+html, body {
+  height: 100%;
+}
+
 main{
 	min-height: 100%;
 	}
 
-#loader{
-	margin-top:3.5em;
-	min-height:15vw;
-}
+#mainlogin{
+	padding-top:20vh;
+	}
+
+#email_login{
+	margin-top:2vh;
+	margin-bottom:2vh;
+	}
+	
+#senha_login{
+	margin-top:2vh;
+	margin-bottom:7.5vh;
+	}
 
 #icticon{
 	
@@ -19,6 +32,7 @@ main{
 padding-left:30px;
 	
 }
+
 .mainfooter{
 	padding:0.5em;
 	color:#aaa;
@@ -105,6 +119,10 @@ a.thumbnail.active {
 	color:#0074ae;
 }
 
+.breadcrumb{
+	padding-top:4.4vw;
+	}
+
 .EditarItem:hover{
 	background-color: #8BC633;
 	transition:0.5s;
@@ -122,8 +140,7 @@ a.thumbnail.active {
 .EditarExercicios:hover{
 	background-color: #FFAB49;
 	transition:0.5s;
-	cursor:pointer;
-	
+	cursor:pointer;	
 }
 
 .CarregaDocentesCurso{
@@ -131,10 +148,10 @@ a.thumbnail.active {
 	}
 	
 .datepicker-center{
-	padding-left:8vw;
+	padding-left:4vw;
 	}
 	
-/* Filter Table Style*/
+/* Filter Table Style Begin*/
 
 .filterrow{
 	margin-top:40px;
@@ -161,8 +178,70 @@ a.thumbnail.active {
 	display: none;
 }
 
-.bottom-pad{
-	
-	padding-bottom:30vw;
-	
+.bottom-pad{	
+	padding-bottom:30vw;	
 	}
+	
+/* Filter Table Style End*/
+
+/* Sidebar Style Begin */
+
+.sidebar-pad{	
+	padding-top:13vh;
+	padding-bottom:13vh;
+	margin-left:-3vw;
+	width:30%;
+	height:100%;
+	overflow-y:scroll;
+	z-index:9;
+	position:fixed;
+	}
+
+.sidebar-btn{
+	padding-bottom:20vw;
+	padding-top:20vw;
+	margin-left:24vw;
+	width:20px;
+	max-width:20px;
+	height:100%;
+	position:fixed;
+	z-index:10;
+	}
+
+.sidebar-content{
+	margin-left:18vw;
+	width:66.6666666667%;
+	z-index:8;
+	}
+	
+#sidebar-pad-scroll{
+	padding:20px;
+	padding-bottom:120vh;
+	}
+/* Sidebar Style End */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

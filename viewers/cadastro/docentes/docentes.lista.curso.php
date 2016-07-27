@@ -17,7 +17,15 @@
 			//loader
 			var id= $(this).attr('id');
 			//alert(id);
-			$('#loader').load('cadastro/docentes/docentes.editar.php',{ id: id});
+			$('#docenteloader').load('cadastro/docentes/docentes.editar.php',{ id: id});
+		});
+		
+		$('.EditarExercicios').click(function(e) {
+			e.preventDefault();
+			//loader
+			var id= $(this).attr('id');
+			//alert(id);
+			$('#docenteloader').load('cadastro/docentes/docentes.exercicios.php',{ id: id});
 		});
 		
 		//Table filters below

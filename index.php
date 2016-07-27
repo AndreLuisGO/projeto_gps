@@ -27,34 +27,29 @@
     </nav>
     
     
-    <main class="container-fluid" id="loader">
-    	 <br><br>
+    <main class="container-fluid" id="mainlogin">
     	<div class="row">
           <div class="col-md-3 "></div>
 		  <div class="col-md-3 ">
             <img src="img/logo_AFAST1.5.png" alt="Logo AFAST" class="img-responsive img-rounded">
           </div>
           <div class="col-md-3 ">
-              	<br><br>
-					<h1 class="text-center">Login</h1>
-                    <div class="input-group center-block">
-                    <input type="text" id="email_login" class="form-control" placeholder="Usuário" autofocus>
-                    </div>
-                    <br><br><br>
-                    <div class="input-group center-block">
-                    <input type="password" id="senha_login" class="form-control" placeholder="Senha">
-                    </div>
-                    <br><br><br><br>
-                    <button  id="Logar" class="btn btn-lg btn-primary btn-block">Entrar</button>             
-          </div> 
-                
+        	<br>
+            <h1 class="text-center">Login</h1>
+            <div class="input-group center-block">
+            	<input type="text" id="email_login" class="form-control" placeholder="Usuário" autofocus>
+            </div>
+            <br>
+            <div class="input-group center-block">
+            	<input type="password" id="senha_login" class="form-control" placeholder="Senha">
+            </div>
+            <br>
+            <button  id="Logar" class="btn btn-lg btn-primary btn-block">Entrar</button>             
+          </div>     
         </div>
-        <div class="col-md-3 "></div>
-        <br><br><br><br><br>
+        <br>
 		<p class="text-center text-titulo col-md-12">Sistema de Gerenciamento de Frequência de Docentes</p>
-    </main>
-   	
-    <br><br><br><br>  
+    </main> 
 	
     <footer class="mainfooter navbar-default navbar-fixed-bottom">
     	<section>
