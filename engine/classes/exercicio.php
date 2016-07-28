@@ -45,7 +45,7 @@
 				 			'$this->id_docente',
 				 			'$this->id_curso',
 				 			'$this->dt_inicio_exercicio',
-				 			'$this->dt_fim_exercicio'
+				 			NULL
 					);
 			";
 			
@@ -209,9 +209,21 @@
 			$DB = new DB();
 			$DB->open();
 			$Data = $DB->fetchData($sql);
-			
+			$realData;
+			if($Data ==NULL){
+				$realData = $Data;
+			}
+			else{
+				
+				foreach($Data as $itemData){
+					if(is_bool($itemData)) continue;
+					else{
+						$realData[] = $itemData;	
+					}
+				}
+			}
 			$DB->close();
-			return $Data[0]; 
+			return $realData; 
 		}
 		
 		public function End() {

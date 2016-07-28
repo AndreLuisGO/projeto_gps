@@ -12,13 +12,33 @@
 			$('#loader').load('cadastro/docentes/docentes.lista.php');
     	});
 		
+
 		$('#CadastrarExercicio').click(function(e) {
 			e.preventDefault();
-			var id= $(this).attr('id');
-			$('#loader').load('cadastro/docentes/docentes.exercicio.cadastrar.php', { id: id});
+			
+			var DatasFim = document.getElementsByClassName("dt_fim_exercicio");
+			var Test = true;
+			for(i = 0; i < DatasFim.length; i++)
+			{
+				if($(DatasFim[i]).val() === "")
+				{
+					Test = false;
+					break;
+				}
+			}
+			if (!Test)
+			{
+				alert("Já existe um exercício ativo.");
+			}
+			else
+			{
+			var id= $('#Docente_Exercicio_id').val();
+			alert(id);
+			$('#docenteloader').load('cadastro/docentes/docentes.exercicio.cadastrar.php', { id: id});
+			}
     	});
 		
-		$('#exercdatepicker').datepicker({
+		$('.exercdatepicker').datepicker({
 			format: "yyyy-mm-dd",
 			todayBtn: "linked",
 			language: "pt-BR",
@@ -26,18 +46,19 @@
 			autoclose: true
 		});
 		
-		$('#exercdatepicker').on("changeDate", function() {
-    		$('#dt_fim_exercicio').val(
-        		$('#exercdatepicker').datepicker('getFormattedDate')
-    		);
+		$('.exercdatepicker').on("changeDate", function() {
+    		var Element = $(this).parent();
+			Element.children(".dt_fim_exercicio").val(
+				Element.children(".exercdatepicker").datepicker('getFormattedDate')
+			);
 			
 			if(confirm("Essa ação vai terminar ou modificar a data de término do exercício desse docente para a data selecionada, deseja prosseguir?")){
 			//1 instansciar e recuperar valores dos inputs
-			var id_exercicio = $('#id_exercicio').val();
-			var id_docente = $('#id_docente').val();
-			var id_curso = $('#id_curso').val();
-			var dt_inicio_exercicio = $('#dt_inicio_exercicio').val();
-			var dt_fim_exercicio = $('#dt_fim_exercicio').val();
+			var id_exercicio = Element.children('.id_exercicio').val();
+			var id_docente = Element.children('.id_docente').val();
+			var id_curso = Element.children('.id_curso').val();
+			var dt_inicio_exercicio = Element.children('.dt_inicio_exercicio').val();
+			var dt_fim_exercicio = Element.children('.dt_fim_exercicio').val();
 			
 			
 			//2 validar os inputs
@@ -79,7 +100,7 @@
 			e.preventDefault();
 			if(confirm("Alterações em um exercício modificam todo o histórico relacionado a ele.\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
 			{
-			var id= $(this).attr('id');
+			var id = $(this).attr('id');
 			$('#docenteloader').load('cadastro/docentes/docentes.exercicios.editar.php',{ id: id});
 			}
 		});
@@ -161,7 +182,7 @@
 	$Curso = new Curso();
 	$Curso = $Curso->ReadAll();
 	//var_dump($Docente);
-	//var_dump($Exercicio);
+	var_dump($Exercicio);
 	//var_dump($Curso);
     if(empty($Exercicio)){    
 ?>  
@@ -183,7 +204,7 @@
                     Voltar
                   </span>
                   <span
-                    class="clickable filter" 
+                    class="clickable" 
                     id="CadastrarExercicio">                
                     <i class="glyphicon glyphicon-plus"></i>
                     Cadastrar Novo Exercício
@@ -263,19 +284,18 @@
                       </span>
                     </td>
                     <td 
-                      class="text-center DesativarItem"
-                      id="exercdatepicker"
+                      class="text-center exercdatepicker DesativarItem"
                       title="Clique para escolher a data de término">
                       <span 
                         class="glyphicon glyphicon-remove-circle" 
                         aria-hidden="true">
                       </span>
                     </td>
-                    <input type="hidden" value="<?php echo $itemRow['id_exercicio']; ?>" id="id_exercicio">
-                    <input type="hidden" value="<?php echo $itemRow['id_docente']; ?>" id="id_docente">
-                    <input type="hidden" value="<?php echo $itemRow['id_curso']; ?>" id="id_curso">
-                    <input type="hidden" value="<?php echo $itemRow['dt_inicio_exercicio']; ?>" id="dt_inicio_exercicio">
-                    <input type="hidden" id="dt_fim_exercicio">
+                    <input type="hidden" value="<?php echo $itemRow['id_exercicio']; ?>" class="id_exercicio">
+                    <input type="hidden" value="<?php echo $itemRow['id_docente']; ?>" class="id_docente">
+                    <input type="hidden" value="<?php echo $itemRow['id_curso']; ?>" class="id_curso">
+                    <input type="hidden" value="<?php echo $itemRow['dt_inicio_exercicio']; ?>" class="dt_inicio_exercicio">
+                    <input type="hidden" value="<?php echo $itemRow['dt_fim_exercicio']; ?>" class="dt_fim_exercicio">
                   </tr>
 <?php												
                                           }
@@ -284,6 +304,7 @@
           </table>
       </div>
    </div>
+   <input type="hidden" value="<?php echo $Docente['id_docente']; ?>" id="Docente_Exercicio_id">
    <div class="bottom-pad"></div>
 </div>
 <?php
