@@ -12,4 +12,11 @@ $(document).ready(function(e) {
 		//alert("sistema.js/ocorrencias");
     });
 	
+	$('#inserir_afastamento').click(function(e) {
+		e.preventDefault();
+		$('#loader').load('../viewers/cadastro/afastamento/afastamento.lista.php');
+		//alert("sistema.js/ocorrencias");
+    });
+	
+	
 });
