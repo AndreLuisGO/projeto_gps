@@ -5,7 +5,7 @@
 
 	//parte1
 	
-	$id_id_afastamento = $_POST['id_id_afastamento'];
+	$id_afastamento = $_POST['id_afastamento'];
 	$dt_inicio_afastamento = $_POST['dt_inicio_afastamento'];
 	$dt_fim_afastamento = $_POST['dt_fim_afastamento'];
 	$observ_afastamento = $_POST['observ_afastamento'];
@@ -18,7 +18,7 @@
 	
 	//parte3
 	$Item = new Afastamento();
-	$Item->SetValues($id_id_afastamento, $dt_inicio_afastamento, $dt_fim_afastamento, $observ_afastamento, $id_ocorrencia, $id_docente); 
+	$Item->SetValues($id_afastamento, $dt_inicio_afastamento, $dt_fim_afastamento, $observ_afastamento, $id_ocorrencia, $id_docente); 
 	
 	
 		

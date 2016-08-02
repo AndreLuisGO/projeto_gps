@@ -233,7 +233,7 @@
     	<div class="input-group">
         	<div class="input-group-btn">
               <input type="hidden" id="dt_inicio_exercicio">
-              <button type="button" class="btn btn-default" aria-haspopup="true" id="docente_cadastro_datepicker" aria-expanded="false">Data de Entrada  <span class="caret"></button>
+              <button type="button" class="btn btn-default" aria-haspopup="true" id="docente_cadastro_datepicker" aria-expanded="false">Data de Entrada  <span class="caret"></span></button>
           	</div>
           <?php $Data = getdate(); 
                         $Dia = $Data['mday'];
