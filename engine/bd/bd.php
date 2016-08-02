@@ -52,7 +52,7 @@ class DB
 			//connect as appropriate as above
 			$this->dbi->query($sql); 
 		} catch(PDOException $ex) {
-			//var_dump($ex);
+			var_dump($ex);
 		}
     }
 	
