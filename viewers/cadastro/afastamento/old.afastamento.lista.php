@@ -9,23 +9,22 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#loader').load('cadastro/docentes/docentes.lista.php');
+			$('#afast_sistema').click();
+    	});
+		
+		$('#Inserir').click(function(e) {
+			e.preventDefault();
+			//alert("Voltar");
+			$('#loader').load('cadastro/afastamento/afastamento.cadastrar.php');
     	});
 		
 		$('.EditarItem').click(function(e) {
 			e.preventDefault();
-			//loader
+			if(confirm("Alterações em uma ocorrência modificam todo o histórico relacionado a ela.\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
+			{
 			var id= $(this).attr('id');
-			//alert(id);
-			$('#docenteloader').load('cadastro/docentes/docentes.editar.php',{ id: id});
-		});
-		
-		$('.EditarExercicios').click(function(e) {
-			e.preventDefault();
-			//loader
-			var id= $(this).attr('id');
-			//alert(id);
-			$('#docenteloader').load('cadastro/docentes/docentes.exercicios.php',{ id: id});
+			$('#loader').load('cadastro/afastamento/afastamento.editar.php',{ id: id});
+			}
 		});
 		
 		//Table filters below
@@ -89,15 +88,14 @@ require_once "../../../engine/config.php";
 <br>
 <ol class="breadcrumb">
 	<li><a href="#" id="bread_home">Home</a></li>
-	<li><a href="#">Gerenciar Docentes</a></li>
-	<li><a href="#">Lista de Dados</a></li>
-	<li class="active">Todos os Cursos</li>
+	<li><a href="#">Gerenciar Afastamento</a></li>
+	<li class="active">Lista de Afastamentos</li>
 </ol>
 
-<div class="container col-md-12">
-	<h1>Docentes lotados em Todos os Cursos</h1>
+<div class="Afastamentos col-md-12">
+	<h1>Lista de Ocorrências</h1>
 <?php
-$Item = new Docente ();
+$Item = new Afastamento ();
 $Item = $Item->ReadAll ();
 // var_dump($Item);
 if (empty ( $Item )) {
@@ -111,10 +109,12 @@ if (empty ( $Item )) {
   <div class="filterrow">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">Docentes</h3>
+				<h3 class="panel-title">Afastamentos</h3>
 				<div class="pull-right">
 					<span class="clickable filter" id="Voltar"> <i
 						class="glyphicon glyphicon-menu-left"></i> Voltar
+					</span> <span class="clickable filter" id="Inserir"> <i
+						class="glyphicon glyphicon-plus"></i> Inserir Novo Afastamento
 					</span> <span class="clickable filter" data-toggle="tooltip"
 						title="Ativar Filtro" data-container="body"> <i
 						class="glyphicon glyphicon-filter"></i> Filtrar
@@ -129,12 +129,12 @@ if (empty ( $Item )) {
 			<table class="table table-hover" id="dev-table">
 				<thead>
 					<tr>
-						<th class="text-left">Nome</th>
-						<th class="text-center">Siape</th>
-						<th class="text-center">E-Mail</th>
-						<th class="text-center">Efetivo</th>
-						<th class="text-center">Editar Dados</th>
-						<th class="text-center">Gerenciar Exerícios</th>
+						<th class="text-left">Servidor</th>
+						<th class="text-left">Tipo de Afastamento</th>
+						<th class="text-center">Data de Início</th>
+						<th class="text-center">Data Final</th>
+						<th class="text-left">Observação</th>
+						<th class="text-left">Editar</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -144,25 +144,14 @@ if (empty ( $Item )) {
 		
 		?>
                   <tr class="">
-						<td class="text-left"><?php echo $itemRow['nome_docente']; ?></td>
-						<td class="text-center"><?php echo $itemRow['siape_docente']; ?></td>
-						<td class="text-center"><?php echo $itemRow['email_docente']; ?></td>
-						<td class="text-center">
-<?php
-		if ($itemRow ['efetivo_docente'] === 1) {
-			echo "Sim";
-		} else {
-			echo "Não";
-		}
-		?>
-                    </td>
+						<td class="text-left"><?php echo $itemRow['id_docente']; ?></td>
+						<td class="text-center"><?php echo $itemRow['id_ocorrencia']; ?></td>
+						<td class="text-center"><?php echo $itemRow['dt_inicio_afastamento']; ?></td>
+						<td class="text-center"><?php echo $itemRow['dt_fim_afastamento']; ?></td>
+						<td class="text-center"><?php echo $itemRow['observ_afastamento']; ?></td>
 						<td class="text-center EditarItem"
-							id="<?php echo $itemRow['id_docente']; ?>"><span
+							id="<?php echo $itemRow['id_ocorrencia']; ?>"><span
 							class="glyphicon glyphicon-edit" aria-hidden="true"> </span></td>
-						<td class="text-center EditarExercicios"
-							id="<?php echo $itemRow['id_docente']; ?>"><span
-							class="glyphicon glyphicon-list-alt" aria-hidden="true"> </span>
-						</td>
 					</tr>
 <?php
 	}

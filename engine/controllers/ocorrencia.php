@@ -1,76 +1,57 @@
 <?php
+require_once "../config.php";
 
-	require_once "../config.php";
-	
+// parte1
 
-	//parte1
-	
-	$id_ocorrencia = $_POST['id_ocorrencia'];
-	$tipo_ocorrencia = $_POST['tipo_ocorrencia'];
-	$codigo_ocorrencia = $_POST['codigo_ocorrencia'];
-	
-	
-	//parte2
-	$action = $_POST['action'];
-	
-	//parte3
-	$Item = new Ocorrencia();
-	$Item->SetValues($id_ocorrencia, $tipo_ocorrencia, $codigo_ocorrencia); 
-	
-	
-		
-	//parte4
-	switch($action) {
-		case 'create':
-			
-			
-			$res = $Item->Create();
-			if ($res === NULL) {
-				$res = "true";
-			}
-			else {
-				$res = "false";	
-			}			
+$id_ocorrencia = $_POST ['id_ocorrencia'];
+$tipo_ocorrencia = $_POST ['tipo_ocorrencia'];
+$codigo_ocorrencia = $_POST ['codigo_ocorrencia'];
 
-			echo $res;
-			
+// parte2
+$action = $_POST ['action'];
+
+// parte3
+$Item = new Ocorrencia ();
+$Item->SetValues ( $id_ocorrencia, $tipo_ocorrencia, $codigo_ocorrencia );
+
+// parte4
+switch ($action) {
+	case 'create' :
 		
-		break;	
+		$res = $Item->Create ();
+		if ($res === NULL) {
+			$res = "true";
+		} else {
+			$res = "false";
+		}
 		
-		case 'update':
+		echo $res;
 		
-			
-			
-			$res = $Item->Update();
-			
-			if ($res === NULL) {
-				$res= 'true';	
-			}
-			else {
-				$res = 'false';	
-			}
-			echo $res;
-			
+		break;
+	
+	case 'update' :
 		
-		break;	
+		$res = $Item->Update ();
 		
-		case 'delete':
+		if ($res === NULL) {
+			$res = 'true';
+		} else {
+			$res = 'false';
+		}
+		echo $res;
 		
-			
-			
-			$res = $Item->Delete();
-			if ($res === NULL) {
-				$res= 'true';	
-			}
-			else {
-				$res = 'false';	
-			}
-			echo $res;
-			
+		break;
+	
+	case 'delete' :
 		
-		break;	
+		$res = $Item->Delete ();
+		if ($res === NULL) {
+			$res = 'true';
+		} else {
+			$res = 'false';
+		}
+		echo $res;
 		
-		
-		
-	}
+		break;
+}
 ?>

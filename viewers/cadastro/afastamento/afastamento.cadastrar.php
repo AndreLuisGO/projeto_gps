@@ -1,5 +1,20 @@
 <script>
 	$(document).ready(function(e) {
+
+		$("#sel_curso").change(function(){
+	        var selcurso = $(this).val();
+	        $.ajax({
+	            type: "POST",
+	            url: "cadastro/afastamento/call_docentes.php?selcurso="+selcurso,
+	            dataType: "text",
+	            success: function(res){
+	                $("#id_docente").empty();
+	                $("#id_docente").append(res);
+	            }
+	        });
+	    });
+
+
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
 			//alert("breadhome");
@@ -14,9 +29,8 @@
 		
 		$('#Salvar').click(function(e) {
 			e.preventDefault();
-			var dt_range = $("#escolhe_data").daterangepicker("getRange");
-			var	dt_inicio_afastamento = dt_range.start.toISOString().substr(0, 10);
-			var	dt_fim_afastamento = dt_range.end.toISOString().substr(0, 10);
+			var	dt_inicio_afastamento = $('#dt_inicio_afastamento').val();
+			var	dt_fim_afastamento = $('#dt_fim_afastamento').val();
 			var	observ_afastamento = $('#observ_afastamento').val();
 			var id_ocorrencia = $('#id_ocorrencia').val();
 			var	id_docente = $('#id_docente').val();
@@ -64,18 +78,6 @@
 		
 	});
 </script>
-<link href="../css/jquery-ui.min.css" rel="stylesheet">
-<link href="../css/jquery.comiseo.daterangepicker.css" rel="stylesheet">
-<script src="../js/jquery.min.js"></script>
-<script src="../js/jquery-ui.js"></script>
-<script src="../js/moment.js"></script>
-<script src="../js/jquery.comiseo.daterangepicker.js"></script>
-<script type="text/javascript">
-	 $("#escolhe_data").daterangepicker();
-	 $("#escolhe_data_get").click(function () {
-	     alert("Selected range is: " + JSON.stringify($("#escolhe_data").daterangepicker("getRange")));
-	 });
-	 $("#escolhe_data_gets").click(function () {
 
 
 		 });
@@ -94,26 +96,23 @@
 		$('#docente_placeholder').val($(this).text());
 		
 	});
-	
-	$('.ocorrencia_select').click(function(e) {
-		e.preventDefault();
-		$('#id_ocorrencia').val($(this).attr('id'));
-		$('#ocorrencia_placeholder').val($(this).text());
-		
+	$('#escolhe_data').on('apply.daterangepicker', function(ev, picker) {
+		$('#dt_inicio_afastamento').val(picker.startDate.format('YYYY-MM-DD'));
+		$('#dt_fim_afastamento').val(picker.endDate.format('YYYY-MM-DD'));
 	});
 
 </script>
 
 <?php
-	require_once "../../../engine/config.php";
+require_once "../../../engine/config.php";
 ?>
 
 <br>
 <ol class="breadcrumb">
-  <li><a href="#" id="bread_home" >Home</a></li>
-  <li><a href="#">Gerenciar Afastamentos</a></li>
-  <li><a href="#">Lista de Dados</a></li>
-  <li class="active"> Inserir Afastamentos</li>
+	<li><a href="#" id="bread_home">Home</a></li>
+	<li><a href="#">Gerenciar Afastamentos</a></li>
+	<li><a href="#">Lista de Dados</a></li>
+	<li class="active">Inserir Afastamentos</li>
 </ol>
 
 <br />

@@ -9,7 +9,7 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#loader').load('cadastro/docentes/docentes.lista.php');
+			$('#loader').load('cadastro/afastamento/afastamento.lista.php');
     	});
 		
 		$('.EditarItem').click(function(e) {
@@ -17,7 +17,7 @@
 			//loader
 			var id= $(this).attr('id');
 			//alert(id);
-			$('#docenteloader').load('cadastro/docentes/docentes.editar.php',{ id: id});
+			$('#docenteloader').load('cadastro/afastamento/afastamento.editar.php',{ id: id});
 		});
 		
 		$('.EditarExercicios').click(function(e) {
@@ -25,7 +25,7 @@
 			//loader
 			var id= $(this).attr('id');
 			//alert(id);
-			$('#docenteloader').load('cadastro/docentes/docentes.exercicios.php',{ id: id});
+			$('#docenteloader').load('cadastro/afastamento/afastamento.exercicios.php',{ id: id});
 		});
 		
 		//Table filters below
@@ -78,12 +78,14 @@
 				}
 			});
 			$('[data-toggle="tooltip"]').tooltip();
-		})			
+		})
 	});
 </script>
 
 <?php
 require_once "../../../engine/config.php";
+$Curso = new Curso ();
+$Curso = $Curso->Read ( $_POST ['id'] );
 ?>
 
 <br>
@@ -91,14 +93,14 @@ require_once "../../../engine/config.php";
 	<li><a href="#" id="bread_home">Home</a></li>
 	<li><a href="#">Gerenciar Docentes</a></li>
 	<li><a href="#">Lista de Dados</a></li>
-	<li class="active">Todos os Cursos</li>
+	<li class="active"> <?php echo $Curso['nome_curso']; ?> </li>
 </ol>
 
 <div class="container col-md-12">
-	<h1>Docentes lotados em Todos os Cursos</h1>
+	<h1>Docentes lotados em <?php echo $Curso['nome_curso']; ?></h1>
 <?php
 $Item = new Docente ();
-$Item = $Item->ReadAll ();
+$Item = $Item->ReadAllCurso ( $Curso ['id_curso'] );
 // var_dump($Item);
 if (empty ( $Item )) {
 	?>  
@@ -141,20 +143,20 @@ if (empty ( $Item )) {
 <?php
 	foreach ( $Item as $itemRow ) {
 		// var_dump($itemRow);
-		
-		?>
+		if (is_null ( $itemRow ['dt_fim_exercicio'] )) {
+			?>
                   <tr class="">
 						<td class="text-left"><?php echo $itemRow['nome_docente']; ?></td>
 						<td class="text-center"><?php echo $itemRow['siape_docente']; ?></td>
 						<td class="text-center"><?php echo $itemRow['email_docente']; ?></td>
 						<td class="text-center">
 <?php
-		if ($itemRow ['efetivo_docente'] === 1) {
-			echo "Sim";
-		} else {
-			echo "Não";
-		}
-		?>
+			if ($itemRow ['efetivo_docente'] === 1) {
+				echo "Sim";
+			} else {
+				echo "Não";
+			}
+			?>
                     </td>
 						<td class="text-center EditarItem"
 							id="<?php echo $itemRow['id_docente']; ?>"><span
@@ -165,6 +167,8 @@ if (empty ( $Item )) {
 						</td>
 					</tr>
 <?php
+		
+}
 	}
 	?>
               </tbody>

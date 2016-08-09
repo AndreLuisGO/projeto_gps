@@ -62,64 +62,64 @@
 </script>
 
 <?php
-	require_once "../../../engine/config.php";
+require_once "../../../engine/config.php";
 ?>
 
 
 <br>
 <ol class="breadcrumb">
-  <li><a href="#" id="bread_home" >Home</a></li>
-  <li><a href="#">Gerenciar Ocorrências</a></li>
-  <li><a href="#">Lista de Dados</a></li>
-  <li class="active">Editar Ocorrências</li>
+	<li><a href="#" id="bread_home">Home</a></li>
+	<li><a href="#">Gerenciar Ocorrências</a></li>
+	<li><a href="#">Lista de Dados</a></li>
+	<li class="active">Editar Ocorrências</li>
 </ol>
 
-<h1> 
-	Editar Ocorrência
-</h1>
+<h1>Editar Ocorrência</h1>
 
 <br>
 
-  <section>
-  
-    <button type="button" 
-            class="btn btn-info" 
-            id="Voltar">
-              
-      <span class="glyphicon glyphicon-menu-left"></span>Voltar
-    </button>
-    
-    <button type="button" 
-    		class="btn btn-success" 
-            id="Salvar">
-		 <span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
-    </button>
+<section>
 
-  </section>
+	<button type="button" class="btn btn-info" id="Voltar">
 
-<br><br>
+		<span class="glyphicon glyphicon-menu-left"></span>Voltar
+	</button>
+
+	<button type="button" class="btn btn-success" id="Salvar">
+		<span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
+	</button>
+
+</section>
+
+<br>
+<br>
 
 <?php
-	$Item = new Ocorrencia();
-	$Item = $Item->Read($_POST['id']);
-	//var_dump($Item);
+$Item = new Ocorrencia ();
+$Item = $Item->Read ( $_POST ['id'] );
+// var_dump($Item);
 ?>
 
 <section class="row">
 
 	<section class="col-md-3">
-    	<div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Tipo</span>
-          <input type="text" class="form-control" id="tipo_ocorrencia" placeholder="Nome" aria-describedby="basic-addon1" value="<?php echo $Item['tipo_ocorrencia']?>">
-        </div>
-    </section>
-    
-    <section class="col-md-3">
-    	<div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Código</span>
-          <input type="text" class="form-control" id="codigo_ocorrencia" placeholder="01-234" aria-describedby="basic-addon1" value="<?php echo $Item['codigo_ocorrencia']?>">
-        </div>
-    </section>
-    
-    	  <input id="id_ocorrencia" type="hidden" value="<?php echo $Item['id_ocorrencia']?>">
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">Tipo</span> <input
+				type="text" class="form-control" id="tipo_ocorrencia"
+				placeholder="Nome" aria-describedby="basic-addon1"
+				value="<?php echo $Item['tipo_ocorrencia']?>">
+		</div>
+	</section>
+
+	<section class="col-md-3">
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">Código</span> <input
+				type="text" class="form-control" id="codigo_ocorrencia"
+				placeholder="01-234" aria-describedby="basic-addon1"
+				value="<?php echo $Item['codigo_ocorrencia']?>">
+		</div>
+	</section>
+
+	<input id="id_ocorrencia" type="hidden"
+		value="<?php echo $Item['id_ocorrencia']?>">
 </section>

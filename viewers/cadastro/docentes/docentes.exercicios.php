@@ -160,154 +160,135 @@
 </script>
 
 <?php
-	require_once "../../../engine/config.php";	
+require_once "../../../engine/config.php";
 ?>
 
 
 <br>
 <ol class="breadcrumb">
-  <li><a href="#" id="bread_home" >Home</a></li>
-  <li><a href="#">Gerenciar Docentes</a></li>
-  <li><a href="#">Menu</a></li>
-  <li class="active">Terminar Exercicio</li>
+	<li><a href="#" id="bread_home">Home</a></li>
+	<li><a href="#">Gerenciar Docentes</a></li>
+	<li><a href="#">Menu</a></li>
+	<li class="active">Terminar Exercicio</li>
 </ol>
 
 <div class="container col-md-12">
-  <h1>Terminar ou Ativar Exercícios</h1>
+	<h1>Terminar ou Ativar Exercícios</h1>
 <?php
-	$Docente = new Docente();
-	$Docente = $Docente->Read($_POST['id']);
-	$Exercicio = new Exercicio();
-	$Exercicio = $Exercicio->ReadbyDocente($_POST['id']);
-	$Curso = new Curso();
-	$Curso = $Curso->ReadAll();
-	//var_dump($Docente);
-	var_dump($Exercicio);
-	//var_dump($Curso);
-    if(empty($Exercicio)){    
-?>  
-    	<br><br>
-        <h4 class="well text-center"> Nenhum dado encontrado. </h4>
+$Docente = new Docente ();
+$Docente = $Docente->Read ( $_POST ['id'] );
+$Exercicio = new Exercicio ();
+$Exercicio = $Exercicio->ReadbyDocente ( $_POST ['id'] );
+$Curso = new Curso ();
+$Curso = $Curso->ReadAll ();
+// var_dump($Docente);
+var_dump ( $Exercicio );
+// var_dump($Curso);
+if (empty ( $Exercicio )) {
+	?>  
+    	<br>
+	<br>
+	<h4 class="well text-center">Nenhum dado encontrado.</h4>
 <?php
-                     }
-      else{
-?>
+} else {
+	?>
   <div class="filterrow">
-      <div class="panel panel-primary">
-          <div class="panel-heading">
-              <h3 class="panel-title">Exercicios do(a) docente <?php echo $Docente['nome_docente']?></h3>
-              <div class="pull-right">
-                  <span
-                    class="clickable filter" 
-                    id="Voltar">                
-                    <i class="glyphicon glyphicon-menu-left"></i>
-                    Voltar
-                  </span>
-                  <span
-                    class="clickable" 
-                    id="CadastrarExercicio">                
-                    <i class="glyphicon glyphicon-plus"></i>
-                    Cadastrar Novo Exercício
-                  </span>
-                  <span 
-                    class="clickable filter" 
-                    data-toggle="tooltip" 
-                    title="Ativar Filtro" 
-                    data-container="body">
-                    <i class="glyphicon glyphicon-filter"></i>
-                    Filtrar
-                  </span>
-              </div>
-          </div>
-          <div class="panel-body">
-              <input 
-              	type="text" 
-                class="form-control" 
-                id="dev-table-filter" 
-                data-action="filter" 
-                data-filters="#dev-table" 
-                placeholder="Filtrar Exercicios"/>
-          </div>
-          <table class="table table-hover" id="dev-table">
-              <thead>
-                <tr>
-                  <th class="text-left">Curso</th>
-                  <th class="text-center">Data de Inicio</th>
-                  <th class="text-center">Data de Término</th>
-                  <th class="text-center">Editar</th>
-                  <th class="text-center">Desativar</th>
-                </tr>
-              </thead>
-              <tbody>
-<?php   
-				
-				
-				if (count($Exercicio) == count($Exercicio, COUNT_RECURSIVE)) 
-				{
-				  $Exercicio = array($Exercicio);
-				}
-				foreach($Exercicio as $itemRow){  
-				//var_dump($itemRow);                     
-?>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Exercicios do(a) docente <?php echo $Docente['nome_docente']?></h3>
+				<div class="pull-right">
+					<span class="clickable filter" id="Voltar"> <i
+						class="glyphicon glyphicon-menu-left"></i> Voltar
+					</span> <span class="clickable" id="CadastrarExercicio"> <i
+						class="glyphicon glyphicon-plus"></i> Cadastrar Novo Exercício
+					</span> <span class="clickable filter" data-toggle="tooltip"
+						title="Ativar Filtro" data-container="body"> <i
+						class="glyphicon glyphicon-filter"></i> Filtrar
+					</span>
+				</div>
+			</div>
+			<div class="panel-body">
+				<input type="text" class="form-control" id="dev-table-filter"
+					data-action="filter" data-filters="#dev-table"
+					placeholder="Filtrar Exercicios" />
+			</div>
+			<table class="table table-hover" id="dev-table">
+				<thead>
+					<tr>
+						<th class="text-left">Curso</th>
+						<th class="text-center">Data de Inicio</th>
+						<th class="text-center">Data de Término</th>
+						<th class="text-center">Editar</th>
+						<th class="text-center">Desativar</th>
+					</tr>
+				</thead>
+				<tbody>
+<?php
+	
+	if (count ( $Exercicio ) == count ( $Exercicio, COUNT_RECURSIVE )) {
+		$Exercicio = array (
+				$Exercicio 
+		);
+	}
+	foreach ( $Exercicio as $itemRow ) {
+		// var_dump($itemRow);
+		?>
                   <tr class="">
-                    <td class="text-left">
-<?php 
-					foreach($Curso as $LinhaCurso)
-					{
-						if($itemRow['id_curso'] === $LinhaCurso['id_curso'])
-						{
-							echo $LinhaCurso['nome_curso']; break;
-						}								
-					}
-?>                    
+						<td class="text-left">
+<?php
+		foreach ( $Curso as $LinhaCurso ) {
+			if ($itemRow ['id_curso'] === $LinhaCurso ['id_curso']) {
+				echo $LinhaCurso ['nome_curso'];
+				break;
+			}
+		}
+		?>                    
                     </td>
-                    <td class="text-center">
+						<td class="text-center">
 						<?php echo date("d-m-Y",strtotime($itemRow['dt_inicio_exercicio'])); ?>
                     </td>
-                    <td class="text-center">
-<?php 
-						if($itemRow['dt_fim_exercicio'] === NULL)
-						{
-							echo "Exercício Ativo";
-						}
-						else{
-							echo date("d-m-Y",strtotime($itemRow['dt_fim_exercicio'])); 
-							}
-?>
+						<td class="text-center">
+<?php
+		if ($itemRow ['dt_fim_exercicio'] === NULL) {
+			echo "Exercício Ativo";
+		} else {
+			echo date ( "d-m-Y", strtotime ( $itemRow ['dt_fim_exercicio'] ) );
+		}
+		?>
                     </td>
-                    <td 
-                      class="text-center EditarItem"
-                      id="<?php echo $itemRow['id_exercicio']; ?>">
-                      <span 
-                        class="glyphicon glyphicon-edit" 
-                        aria-hidden="true">
-                      </span>
-                    </td>
-                    <td 
-                      class="text-center exercdatepicker DesativarItem"
-                      title="Clique para escolher a data de término">
-                      <span 
-                        class="glyphicon glyphicon-remove-circle" 
-                        aria-hidden="true">
-                      </span>
-                    </td>
-                    <input type="hidden" value="<?php echo $itemRow['id_exercicio']; ?>" class="id_exercicio">
-                    <input type="hidden" value="<?php echo $itemRow['id_docente']; ?>" class="id_docente">
-                    <input type="hidden" value="<?php echo $itemRow['id_curso']; ?>" class="id_curso">
-                    <input type="hidden" value="<?php echo $itemRow['dt_inicio_exercicio']; ?>" class="dt_inicio_exercicio">
-                    <input type="hidden" value="<?php echo $itemRow['dt_fim_exercicio']; ?>" class="dt_fim_exercicio">
-                  </tr>
-<?php												
-                                          }
-?>
+						<td class="text-center EditarItem"
+							id="<?php echo $itemRow['id_exercicio']; ?>"><span
+							class="glyphicon glyphicon-edit" aria-hidden="true"> </span></td>
+						<td class="text-center exercdatepicker DesativarItem"
+							title="Clique para escolher a data de término"><span
+							class="glyphicon glyphicon-remove-circle" aria-hidden="true"> </span>
+						</td>
+						<input type="hidden"
+							value="<?php echo $itemRow['id_exercicio']; ?>"
+							class="id_exercicio">
+						<input type="hidden" value="<?php echo $itemRow['id_docente']; ?>"
+							class="id_docente">
+						<input type="hidden" value="<?php echo $itemRow['id_curso']; ?>"
+							class="id_curso">
+						<input type="hidden"
+							value="<?php echo $itemRow['dt_inicio_exercicio']; ?>"
+							class="dt_inicio_exercicio">
+						<input type="hidden"
+							value="<?php echo $itemRow['dt_fim_exercicio']; ?>"
+							class="dt_fim_exercicio">
+					</tr>
+<?php
+	}
+	?>
               </tbody>
-          </table>
-      </div>
-   </div>
-   <input type="hidden" value="<?php echo $Docente['id_docente']; ?>" id="Docente_Exercicio_id">
-   <div class="bottom-pad"></div>
+			</table>
+		</div>
+	</div>
+	<input type="hidden" value="<?php echo $Docente['id_docente']; ?>"
+		id="Docente_Exercicio_id">
+	<div class="bottom-pad"></div>
 </div>
 <?php
-          }
+}
 ?>
 

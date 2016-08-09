@@ -9,7 +9,7 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#loader').load('cadastro/docentes/docentes.lista.php');
+			$('#loader').load('cadastro/afastamento/afastamento.lista.php');
     	});
 		
 		$('.EditarItem').click(function(e) {
@@ -17,7 +17,7 @@
 			//loader
 			var id= $(this).attr('id');
 			//alert(id);
-			$('#docenteloader').load('cadastro/docentes/docentes.editar.php',{ id: id});
+			$('#docenteloader').load('cadastro/afastamento/afastamento.editar.php',{ id: id});
 		});
 		
 		$('.EditarExercicios').click(function(e) {
@@ -25,7 +25,7 @@
 			//loader
 			var id= $(this).attr('id');
 			//alert(id);
-			$('#docenteloader').load('cadastro/docentes/docentes.exercicios.php',{ id: id});
+			$('#docenteloader').load('cadastro/afastamento/afastamento.exercicios.php',{ id: id});
 		});
 		
 		//Table filters below
@@ -78,7 +78,7 @@
 				}
 			});
 			$('[data-toggle="tooltip"]').tooltip();
-		})			
+		})
 	});
 </script>
 
@@ -91,14 +91,14 @@ require_once "../../../engine/config.php";
 	<li><a href="#" id="bread_home">Home</a></li>
 	<li><a href="#">Gerenciar Docentes</a></li>
 	<li><a href="#">Lista de Dados</a></li>
-	<li class="active">Todos os Cursos</li>
+	<li class="active">Docentes Ativos no Periodo</li>
 </ol>
 
 <div class="container col-md-12">
-	<h1>Docentes lotados em Todos os Cursos</h1>
+	<h1>Docentes Ativos no Periodo</h1>
 <?php
 $Item = new Docente ();
-$Item = $Item->ReadAll ();
+$Item = $Item->ReadAllOnDate ( $_POST ['data'] );
 // var_dump($Item);
 if (empty ( $Item )) {
 	?>  
