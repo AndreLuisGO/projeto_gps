@@ -184,6 +184,46 @@ class Afastamento {
 	 * --------------------------------------------------
 	 *
 	 */
+	// Funcao que retorna um vetor com as instancias da classe no BD relacionados ao $id do Docente
+	public function ReadAllDocente($id) {
+		$sql = "
+		SELECT
+			t1.id_afastamento,
+			t1.dt_inicio_afastamento,
+			t1.dt_fim_afastamento,
+			t1.observ_afastamento,
+			t1.id_ocorrencia,
+			t1.id_docente,
+			t2.tipo_ocorrencia,
+			t2.codigo_ocorrencia
+		FROM
+			afastamento AS t1
+		INNER JOIN ocorrencia AS t2 ON t1.id_ocorrencia = t2.id_ocorrencia
+		WHERE
+			t1.id_docente = '$id'
+		ORDER BY
+			t1.id_afastamento DESC;
+			";
+	
+		$DB = new DB ();
+		$DB->open ();
+		$Data = $DB->fetchData ( $sql );
+		$realData;
+		if ($Data == NULL) {
+			$realData = $Data;
+		} else {
+				
+			foreach ( $Data as $itemData ) {
+				if (is_bool ( $itemData ))
+					continue;
+					else {
+						$realData [] = $itemData;
+					}
+			}
+		}
+		$DB->close ();
+		return $realData;
+	}
 	
 	/*
 	 * --------------------------------------------------

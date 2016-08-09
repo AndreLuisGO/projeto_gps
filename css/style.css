@@ -112,6 +112,12 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 	cursor: pointer;
 }
 
+.ListarAfastamentos:hover {
+	background-color: #f2e394;
+	transition: 0.5s;
+	cursor: pointer;
+}
+
 .DesativarItem:hover {
 	background-color: #FFAB49;
 	transition: 0.5s;
