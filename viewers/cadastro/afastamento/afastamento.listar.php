@@ -165,6 +165,16 @@ $Docente = $Docente->Read( $_POST ['id'] );
 </section> <!-- Primeira Linha -->
 
 <section class="row"> <!-- Segunda Linha -->
+	<section class="col-md-3"> <!-- Selecionar Datas-->
+		<div class="form-group has-feedback has-feedback-right">
+			<input type="hidden" id="dt_inicio_afastamento"> <input
+				type="hidden" id="dt_fim_afastamento"> <label class="control-label">Escolha
+				o intervalo de datas</label> <i
+				class="form-control-feedback glyphicon glyphicon-calendar"></i> <input
+				id="escolhe_data" name="escolhe_data"
+				class="input-mini form-control" type="text"></input>
+		</div>
+	</section><!-- Selecionar Datas-->
 	<section class="col-md-9">  <!-- Selecionar Ocorrência-->
 	<div class="form-group">
 		<label for="id_ocorrencia">Ocorrência:</label>
@@ -190,16 +200,6 @@ $Docente = $Docente->Read( $_POST ['id'] );
 		</select>
 	</div>
 	</section> <!-- Selecionar Ocorrência-->
-	<section class="col-md-3"> <!-- Selecionar Datas-->
-		<div class="form-group has-feedback has-feedback-right">
-			<input type="hidden" id="dt_inicio_afastamento"> <input
-				type="hidden" id="dt_fim_afastamento"> <label class="control-label">Escolha
-				o intervalo de datas</label> <i
-				class="form-control-feedback glyphicon glyphicon-calendar"></i> <input
-				id="escolhe_data" name="escolhe_data"
-				class="input-mini form-control" type="text"></input>
-		</div>
-	</section><!-- Selecionar Datas-->
 </section> <!-- Segunda Linha-->
 <section class="row"> <!-- Terceira Linha-->
 	<section class="col-md-12"> <!-- Campo de Observação -->
