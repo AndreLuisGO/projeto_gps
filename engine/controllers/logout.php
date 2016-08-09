@@ -1,9 +1,9 @@
-﻿<?php session_start();
+﻿<?php
 
-	session_destroy();
-	
-	
-	
-	echo 'kickme';
+session_start ();
+
+session_destroy ();
+
+echo 'kickme';
 	
 	

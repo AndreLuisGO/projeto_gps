@@ -82,98 +82,79 @@
 </script>
 
 <?php
-	require_once "../../../engine/config.php";
-?>	
+require_once "../../../engine/config.php";
+?>
 
 <br>
 <ol class="breadcrumb">
-  <li><a href="#" id="bread_home" >Home</a></li>
-  <li><a href="#">Gerenciar Ocorrências</a></li>
-  <li class="active"> Lista de Dados</li>
+	<li><a href="#" id="bread_home">Home</a></li>
+	<li><a href="#">Gerenciar Ocorrências</a></li>
+	<li class="active">Lista de Dados</li>
 </ol>
 
 <div class="container col-md-12">
-  <h1>Lista de Ocorrências</h1>
-<?php	
-      $Item = new Ocorrencia();
-      $Item = $Item->ReadAll();
-      //var_dump($Item);
-      if(empty($Item)){    
-?>  
-    	<br><br>
-        <h4 class="well text-center"> Nenhum dado encontrado. </h4>
+	<h1>Lista de Ocorrências</h1>
 <?php
-                      }
-      else{
-?>
+$Item = new Ocorrencia ();
+$Item = $Item->ReadAll ();
+// var_dump($Item);
+if (empty ( $Item )) {
+	?>  
+    	<br>
+	<br>
+	<h4 class="well text-center">Nenhum dado encontrado.</h4>
+<?php
+} else {
+	?>
   <div class="filterrow">
-      <div class="panel panel-primary">
-          <div class="panel-heading">
-              <h3 class="panel-title">Ocorrencias</h3>
-              <div class="pull-right">
-                  <span
-                    class="clickable filter" 
-                    id="Voltar">                
-                    <i class="glyphicon glyphicon-menu-left"></i>
-                    Voltar
-                  </span>
-                  <span
-                    class="clickable filter" 
-                    id="Cadastrar">                
-                    <i class="glyphicon glyphicon-plus"></i>
-                    Cadastrar Nova Ocorrência
-                  </span>
-                  <span 
-                    class="clickable filter" 
-                    data-toggle="tooltip" 
-                    title="Ativar Filtro" 
-                    data-container="body">
-                    <i class="glyphicon glyphicon-filter"></i>
-                    Filtrar
-                  </span>
-              </div>
-          </div>
-          <div class="panel-body">
-              <input 
-              	type="text" 
-                class="form-control" 
-                id="dev-table-filter" 
-                data-action="filter" 
-                data-filters="#dev-table" 
-                placeholder="Filtrar Docentes"/>
-          </div>
-          <table class="table table-hover" id="dev-table">
-              <thead>
-                <tr>
-                  <th class="text-left">Tipo</th>
-                  <th class="text-center">Código</th>
-                  <th class="text-center">Editar</th>
-                </tr>
-              </thead>
-              <tbody>
-<?php   
-				foreach($Item as $itemRow){
-				//var_dump($itemRow);
-                            
-?>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Ocorrencias</h3>
+				<div class="pull-right">
+					<span class="clickable filter" id="Voltar"> <i
+						class="glyphicon glyphicon-menu-left"></i> Voltar
+					</span> <span class="clickable filter" id="Cadastrar"> <i
+						class="glyphicon glyphicon-plus"></i> Cadastrar Nova Ocorrência
+					</span> <span class="clickable filter" data-toggle="tooltip"
+						title="Ativar Filtro" data-container="body"> <i
+						class="glyphicon glyphicon-filter"></i> Filtrar
+					</span>
+				</div>
+			</div>
+			<div class="panel-body">
+				<input type="text" class="form-control" id="dev-table-filter"
+					data-action="filter" data-filters="#dev-table"
+					placeholder="Filtrar Docentes" />
+			</div>
+			<table class="table table-hover" id="dev-table">
+				<thead>
+					<tr>
+						<th class="text-left">Tipo</th>
+						<th class="text-center">Código</th>
+						<th class="text-center">Editar</th>
+					</tr>
+				</thead>
+				<tbody>
+<?php
+	foreach ( $Item as $itemRow ) {
+		// var_dump($itemRow);
+		
+		?>
                   <tr class="">
-                    <td class="text-left"><?php echo $itemRow['tipo_ocorrencia']; ?></td>
-                    <td class="text-center"><?php echo $itemRow['codigo_ocorrencia']; ?></td>
-                    <td class="text-center EditarItem" id="<?php echo $itemRow['id_ocorrencia']; ?>">
-                      <span 
-                        class="glyphicon glyphicon-edit" 
-                        aria-hidden="true">
-                      </span>
-                    </td>
-                  </tr>
-<?php												
-                                          }
-?>
+						<td class="text-left"><?php echo $itemRow['tipo_ocorrencia']; ?></td>
+						<td class="text-center"><?php echo $itemRow['codigo_ocorrencia']; ?></td>
+						<td class="text-center EditarItem"
+							id="<?php echo $itemRow['id_ocorrencia']; ?>"><span
+							class="glyphicon glyphicon-edit" aria-hidden="true"> </span></td>
+					</tr>
+<?php
+	}
+	?>
               </tbody>
-          </table>
-      </div>
-   </div>
+			</table>
+		</div>
+	</div>
 </div>
 <?php
-          }
+}
 ?>

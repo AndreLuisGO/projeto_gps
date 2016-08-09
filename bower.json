@@ -1,40 +1,40 @@
 {
-  "name": "ictafast",
-  "homepage": "https://github.com/AndreLuisGO/projeto_gps",
-  "authors": [
-    "Elias Alves <unixelias@gmail.com>",
-    "Ricardo Melo <ricardomelogon@gmail.com>",
-    "André Luis Oliveira <Algo1305@gmail.com>"
-  ],
-  "description": "Sistema de Gestão de Afastamentos do ICT/UFVJM",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:AndreLuisGO/projeto_gps.git"
-  },
-  "main": "js/npm.js",
-  "keywords": [
-    "ocorrência",
-    "de",
-    "ponto",
-    "afastamento",
-    "docente",
-    "ict",
-    "ufvjm"
-  ],
-  "license": "MIT",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "jquery": "^3.1.0",
-    "jquery-1.11.2.min": "https://code.jquery.com/jquery-1.11.2.min.js",
-    "bootstrap": "^3.3.7",
-    "bootstrap-datepicker": "^1.6.4",
-    "bootstrap-daterangepicker": "^2.1.24"
-  }
+	"name": "ictafast",
+	"homepage": "https://github.com/AndreLuisGO/projeto_gps",
+	"authors": [
+		"Elias Alves <unixelias@gmail.com>",
+		"Ricardo Melo <ricardomelogon@gmail.com>",
+		"André Luis Oliveira <Algo1305@gmail.com>"
+	],
+	"description": "Sistema de Gestão de Afastamentos do ICT/UFVJM",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:AndreLuisGO/projeto_gps.git"
+	},
+	"main": "js/npm.js",
+	"keywords": [
+		"ocorrência",
+		"de",
+		"ponto",
+		"afastamento",
+		"docente",
+		"ict",
+		"ufvjm"
+	],
+	"license": "MIT",
+	"private": true,
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"dependencies": {
+		"jquery": "^3.1.0",
+		"jquery-1.11.2.min": "https://code.jquery.com/jquery-1.11.2.min.js",
+		"bootstrap": "^3.3.7",
+		"bootstrap-datepicker": "^1.6.4",
+		"bootstrap-daterangepicker": "^2.1.24"
+	}
 }

@@ -59,51 +59,47 @@
 </script>
 
 <?php
-	require_once "../../../engine/config.php";
+require_once "../../../engine/config.php";
 ?>
 
 
 <br>
 <ol class="breadcrumb">
-  <li><a href="#" id="bread_home" >Home</a></li>
-  <li><a href="#">Gerenciar Docentes</a></li>
-  <li><a href="#">Menu</a></li>
-  <li><a href="#">Lista de Cursos</a></li>
-  <li class="active">Cadastro</li>
+	<li><a href="#" id="bread_home">Home</a></li>
+	<li><a href="#">Gerenciar Docentes</a></li>
+	<li><a href="#">Menu</a></li>
+	<li><a href="#">Lista de Cursos</a></li>
+	<li class="active">Cadastro</li>
 </ol>
 
-<h1> 
-	Cadastro de Novo Curso
-</h1>
+<h1>Cadastro de Novo Curso</h1>
 
 <br>
 
-  <section class="col-md-12">
-  
-    <button type="button" 
-            class="btn btn-info" 
-            id="Voltar">
-              
-      <span class="glyphicon glyphicon-menu-left"></span>Voltar
-    </button>
-    
-    <button type="button" 
-    		class="btn btn-success" 
-            id="Salvar">
-		 <span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
-    </button>
+<section class="col-md-12">
 
-  </section>
+	<button type="button" class="btn btn-info" id="Voltar">
 
-<br><br>
+		<span class="glyphicon glyphicon-menu-left"></span>Voltar
+	</button>
+
+	<button type="button" class="btn btn-success" id="Salvar">
+		<span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
+	</button>
+
+</section>
+
+<br>
+<br>
 
 <section class="row">
 	<section class="col-md-4"></section>
 	<section class="col-md-4">
-    	<div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Nome</span>
-          <input type="text" class="form-control" id="nome_curso" placeholder="Nome do Curso" aria-describedby="basic-addon1">
-        </div>
-    </section>
-    <section class="col-md-4"></section>
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">Nome</span> <input
+				type="text" class="form-control" id="nome_curso"
+				placeholder="Nome do Curso" aria-describedby="basic-addon1">
+		</div>
+	</section>
+	<section class="col-md-4"></section>
 </section>

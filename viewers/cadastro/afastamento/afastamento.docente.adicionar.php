@@ -1,20 +1,5 @@
 <script>
 	$(document).ready(function(e) {
-
-		$("#sel_curso").change(function(){
-	        var selcurso = $(this).val();
-	        $.ajax({
-	            type: "POST",
-	            url: "cadastro/afastamento/call_docentes.php?selcurso="+selcurso,
-	            dataType: "text",
-	            success: function(res){
-	                $("#id_docente").empty();
-	                $("#id_docente").append(res);
-	            }
-	        });
-	    });
-
-
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
 			//alert("breadhome");
@@ -82,7 +67,7 @@
 <!-- Include Required Prerequisites -->
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/moment.min.js"></script>
-<script type="text/javascript" src="../js/jquery.cascade-select.js"></script>
+
 <!-- Include Date Range Picker -->
 <script type="text/javascript" src="../js/daterangepicker.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/daterangepicker.css" />
@@ -136,6 +121,21 @@
 		$('#dt_fim_afastamento').val(picker.endDate.format('YYYY-MM-DD'));
 	});
 
+	$('.docente_select').click(function(e) {
+		e.preventDefault();
+		//alert("curso_select");
+		$('#id_docente').val($(this).attr('id'));
+		$('#docente_placeholder').val($(this).text());
+		
+	});
+	
+	$('.ocorrencia_select').click(function(e) {
+		e.preventDefault();
+		$('#id_ocorrencia').val($(this).attr('id'));
+		$('#ocorrencia_placeholder').val($(this).text());
+		
+	});
+
 </script>
 
 <?php
@@ -154,78 +154,48 @@ require_once "../../../engine/config.php";
 <br />
 
 <div class="container well" style="max-width: 400 px;">
-<h1 class="text-center">Inserir Afastamento</h1>
 
-<section class="row"><!-- Primeira Linha -->
-	<section class="col-md-4">  <!-- Selecionar Curso -->
-		<div class="form-group">
-		  <label for="sel_curso">Filtrar por Curso:</label>
-		  <select class="form-control" id="sel_curso">
-		    <?php 
-		    $Curso = new Curso();
-		    $Curso = $Curso->ReadAll();
-		    if(empty($Curso)){
-		    ?>
-		    	<option>Nenhum curso encontrado</option>
-		    <?php
-          		}
-    			else{
-    			foreach($Curso as $cursoRow){
-			    ?>
-		    <option value="<?php echo $cursoRow['id_curso']?>"><?php echo $cursoRow['nome_curso']?></option>
-		    <?php
-    				}
-    			}
-			    ?>
-		  </select>
-		</div>
-	</section> <!-- Selecionar Curso -->
-	<section class="col-md-8"> <!-- Selecionar Docente-->	
-		<div class="form-group">
-		  <label for="id_docente">Selecionar Docente:</label>
-		  <select class="form-control" id="id_docente">
-		  <option class="sel_curso" value=""> -- Selecione um Curso -- </option>
-		  </select>
-		</div>
-	</section><!-- Selecionar Docente-->	
-</section> <!-- Primeira Linha -->
+	<h1 class="text-center">Inserir Afastamento</h1>
+	<p>Insira os dados do novo afastamento</p>
 
-<section class="row"> <!-- Segunda Linha -->
-	<section class="col-md-9">  <!-- Selecionar Ocorrência-->
-		
-	</section> <!-- Selecionar Ocorrência-->
+	<section class="row">
 	
-	<section class="col-md-3"> <!-- Selecionar Datas-->
-		<div class="form-group has-feedback has-feedback-right">
-			<input type="hidden" id="dt_inicio_afastamento"> <input
-				type="hidden" id="dt_fim_afastamento"> <label class="control-label">Escolha
-				o intervalo de datas</label> <i
-				class="form-control-feedback glyphicon glyphicon-calendar"></i> <input
-				id="escolhe_data" name="escolhe_data"
-				class="input-mini form-control" type="text"></input>
-		</div>
-	</section><!-- Selecionar Datas-->
-</section> <!-- Segunda Linha-->
-<br />
-<section class="row"> <!-- Terceira Linha-->
-	<section class="col-md-12"> <!-- Campo de Observação -->
-		<label for="observ_afastamento">Observação:</label>
-		<textarea class="form-control" rows="3" id="observ_afastamento"></textarea>
-	</section> <!-- Campo de Observação -->
-</section> <!-- Terceira Linha-->
-<br />
-
-<section class="row">
-	<section class="col-md-12 text-right">
-		<section class="btn-group" role="group">
-			<button type="button" class="btn btn-info" id="Voltar">
-				<span class="glyphicon glyphicon-menu-left"></span>Voltar
-			</button>
-			<button type="button" class="btn btn-success" id="Salvar">
-				<span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
-			</button>
+	</section><!-- Primeira Linha -->
+	<br />
+	<section class="row">
+		<section class="col-md-3">
+			<div class="form-group has-feedback has-feedback-left">
+				<input type="hidden" id="dt_inicio_afastamento"> <input
+					type="hidden" id="dt_fim_afastamento"> <label class="control-label">Escolha
+					o intervalo de datas</label> <i
+					class="form-control-feedback glyphicon glyphicon-calendar"></i> <input
+					id="escolhe_data" name="escolhe_data"
+					class="input-mini form-control" type="text"></input>
+			</div>
 		</section>
 	</section>
-</section>
-<!-- Menu de Salvar/Voltar -->
+	<!-- Escolhe Datas -->
+	<br />
+	<section class="row">
+		<section class="col-md-12">
+			<label for="observ_afastamento">Observação:</label>
+			<textarea class="form-control" rows="3" id="observ_afastamento"></textarea>
+		</section>
+	</section>
+	<!-- Campo de Observação -->
+	<br />
+
+	<section class="row">
+		<section class="col-md-12 text-right">
+			<section class="btn-group" role="group">
+				<button type="button" class="btn btn-info" id="Voltar">
+					<span class="glyphicon glyphicon-menu-left"></span>Voltar
+				</button>
+				<button type="button" class="btn btn-success" id="Salvar">
+					<span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
+				</button>
+			</section>
+		</section>
+	</section>
+	<!-- Menu de Salvar/Voltar -->
 </div>

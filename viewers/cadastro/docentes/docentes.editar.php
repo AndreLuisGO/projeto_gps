@@ -87,86 +87,102 @@
 </script>
 
 <?php
-	require_once "../../../engine/config.php";
+require_once "../../../engine/config.php";
 ?>
 
 
 <br>
 <ol class="breadcrumb">
-  <li><a href="#" id="bread_home" >Home</a></li>
-  <li><a href="#">Gerenciar Docentes</a></li>
-  <li><a href="#">Menu</a></li>
-  <li class="active">Editar</li>
+	<li><a href="#" id="bread_home">Home</a></li>
+	<li><a href="#">Gerenciar Docentes</a></li>
+	<li><a href="#">Menu</a></li>
+	<li class="active">Editar</li>
 </ol>
 
-<h1> 
-	Editar Docente
-</h1>
+<h1>Editar Docente</h1>
 
 <br>
 
-  <section>
-  
-    <button type="button" 
-            class="btn btn-info" 
-            id="Voltar">
-              
-      <span class="glyphicon glyphicon-menu-left"></span>Voltar
-    </button>
-    
-    <button type="button" 
-    		class="btn btn-success" 
-            id="Salvar">
-		 <span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
-    </button>
+<section>
 
-  </section>
+	<button type="button" class="btn btn-info" id="Voltar">
 
-<br><br>
+		<span class="glyphicon glyphicon-menu-left"></span>Voltar
+	</button>
+
+	<button type="button" class="btn btn-success" id="Salvar">
+		<span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
+	</button>
+
+</section>
+
+<br>
+<br>
 
 <?php
-	$Item = new Docente();
-	$Item = $Item->Read($_POST['id']);
-	//var_dump($Item);
+$Item = new Docente ();
+$Item = $Item->Read ( $_POST ['id'] );
+// var_dump($Item);
 ?>
 
 <section class="row">
 
 	<section class="col-md-3">
-    	<div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Nome</span>
-          <input type="text" class="form-control" id="nome_docente" placeholder="Nome" aria-describedby="basic-addon1" value="<?php echo $Item['nome_docente']?>">
-        </div>
-    </section>
-    
-    <section class="col-md-3">
-    	<div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Siape</span>
-          <input type="text" class="form-control" id="siape_docente" placeholder="1234567" aria-describedby="basic-addon1" value="<?php echo $Item['siape_docente']?>">
-        </div>
-    </section>
-    
-    <section class="col-md-3">
-    	<div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">E-Mail</span>
-          <input type="text" class="form-control" id="email_docente" placeholder="exemplo@email.com" aria-describedby="basic-addon1" value="<?php echo $Item['email_docente']?>">
-        </div>
-    </section>
-    
-    <section class="col-md-3">
 		<div class="input-group">
-          <div class="input-group-btn">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Efetivo  <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><a href="#" id="efetivo_sim">Sim</a></li>
-              <li><a href="#" id="efetivo_nao">Não</a></li>
-            </ul>
-          </div><!-- /btn-group -->
-          <input id="efetivo_docente" type="hidden" value="<?php echo $Item['efetivo_docente']?>">
-          <input type="text" class="form-control" id="efetivo_placeholder" disabled placeholder="Escolha uma opção" aria-describedby="basic-addon1" value="<?php if($Item['efetivo_docente'] === 1){echo "Sim";}
-		  											else{echo "Não";}?>">
-        </div><!-- /input-group -->
-    </section>
-    
-    	  <input id="id_docente" type="hidden" value="<?php echo $Item['id_docente']?>">
+			<span class="input-group-addon" id="basic-addon1">Nome</span> <input
+				type="text" class="form-control" id="nome_docente"
+				placeholder="Nome" aria-describedby="basic-addon1"
+				value="<?php echo $Item['nome_docente']?>">
+		</div>
+	</section>
+
+	<section class="col-md-3">
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">Siape</span> <input
+				type="text" class="form-control" id="siape_docente"
+				placeholder="1234567" aria-describedby="basic-addon1"
+				value="<?php echo $Item['siape_docente']?>">
+		</div>
+	</section>
+
+	<section class="col-md-3">
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">E-Mail</span> <input
+				type="text" class="form-control" id="email_docente"
+				placeholder="exemplo@email.com" aria-describedby="basic-addon1"
+				value="<?php echo $Item['email_docente']?>">
+		</div>
+	</section>
+
+	<section class="col-md-3">
+		<div class="input-group">
+			<div class="input-group-btn">
+				<button type="button" class="btn btn-default dropdown-toggle"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Efetivo <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#" id="efetivo_sim">Sim</a></li>
+					<li><a href="#" id="efetivo_nao">Não</a></li>
+				</ul>
+			</div>
+			<!-- /btn-group -->
+			<input id="efetivo_docente" type="hidden"
+				value="<?php echo $Item['efetivo_docente']?>"> <input type="text"
+				class="form-control" id="efetivo_placeholder" disabled
+				placeholder="Escolha uma opção" aria-describedby="basic-addon1"
+				value="<?php
+				
+if ($Item ['efetivo_docente'] === 1) {
+					echo "Sim";
+				} else {
+					echo "Não";
+				}
+				?>">
+		</div>
+		<!-- /input-group -->
+	</section>
+
+	<input id="id_docente" type="hidden"
+		value="<?php echo $Item['id_docente']?>">
 </section>

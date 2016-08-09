@@ -1,185 +1,176 @@
 <script>
 	$(document).ready(function(e) {
+		
+		//$('#afdatepicker').datepicker({
+		//	format: "yyyy-mm-dd",
+		//	todayBtn: "linked",
+		//	language: "pt-BR"
+		//});
+		//$('#afdatepicker').on("changeDate", function() {
+    	//	$('#datafinal').val(
+        //		$('#afdatepicker').datepicker('getFormattedDate')
+    	//	);
+		//	var data= $('#datafinal').attr('value');
+		//	$('#afastamentoloader').load('cadastro/afastamento/afastamento.lista.data.php',{ data: data});
+		//});
+		
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
 			//alert("breadhome");
 			$('#afast_sistema').click();
     	});
 		
-		$('#Voltar').click(function(e) {
+		$('.CarregaDocentesCurso').click(function(e) {
 			e.preventDefault();
-			//alert("Voltar");
-			$('#afast_sistema').click();
-    	});
-		
-		$('#Inserir').click(function(e) {
-			e.preventDefault();
-			//alert("Voltar");
-			$('#loader').load('cadastro/afastamento/afastamento.cadastrar.php');
-    	});
-		
-		$('.EditarItem').click(function(e) {
-			e.preventDefault();
-			if(confirm("Alterações em uma ocorrência modificam todo o histórico relacionado a ela.\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
-			{
 			var id= $(this).attr('id');
-			$('#loader').load('cadastro/afastamento/afastamento.editar.php',{ id: id});
-			}
+			//alert(id);
+			$('#afastamentoloader').load('cadastro/afastamento/afastamento.lista.curso.php',{ id: id});
 		});
 		
-		//Table filters below
+		$('#CarregaTodosDocentes').click(function(e) {
+			e.preventDefault();
+			$('#afastamentoloader').load('cadastro/afastamento/afastamento.lista.todos.php');
 			
-		(function(){
-			'use strict';
-			var $ = jQuery;
-			$.fn.extend({
-				filterTable: function(){
-					return this.each(function(){
-						$(this).on('keyup', function(e){
-							$('.filterTable_no_results').remove();
-							var $this = $(this), 
-								search = $this.val().toLowerCase(), 
-								target = $this.attr('data-filters'), 
-								$target = $(target), 
-								$rows = $target.find('tbody tr');
-								
-							if(search == '') {
-								$rows.show(); 
-							} else {
-								$rows.each(function(){
-									var $this = $(this);
-									$this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
-								})
-								if($target.find('tbody tr:visible').size() === 0) {
-									var col_count = $target.find('tr').first().find('td').size();
-									var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">No results found</td></tr>')
-									$target.find('tbody').append(no_results);
-								}
-							}
-						});
-					});
-				}
-			});
-			$('[data-action="filter"]').filterTable();
-		})(jQuery);
+			
+		});
 		
-		$(function(){
-			// attach table filter plugin to inputs
-			$('[data-action="filter"]').filterTable();
-			
-			$('.container').on('click', '.panel-heading span.filter', function(e){
-				var $this = $(this), 
-					$panel = $this.parents('.panel');
-				
-				$panel.find('.panel-body').slideToggle();
-				if($this.css('display') != 'none') {
-					$panel.find('.panel-body input').focus();
-				}
-			});
-			$('[data-toggle="tooltip"]').tooltip();
-		})			
+		$('#CadastrarAfastamento').click(function(e) {
+			e.preventDefault();
+			$('#afastamentoloader').load('cadastro/afastamento/afastamento.cadastrar.php');
+		});
+		
+		$('#AfGerenciarCursos').click(function(e) {
+			e.preventDefault();
+			$('#afastamentoloader').load('cadastro/afastamento/afastamento.curso.lista.php');
+		});
+		
+		//Collapse Control
+
+		  $('#Data-bar').on('show.bs.collapse', function (e) {
+			  if ($(this).is(e.target)) 
+			  {
+				$('.sidebar-content').css({'width':'66%', 'margin-left':'18vw'});
+				$('.sidebar-btn').css({'margin-left':'24vw'}); 
+			  }   
+		  });
+		  
+		  $('#Data-bar').on('hidden.bs.collapse', function (e) {
+			  if ($(this).is(e.target)) 
+			  {
+				$('.sidebar-content').css({'width':'99%', 'margin-left':'-8vw'});
+				$('.sidebar-btn').css({'margin-left':'-3vw'}); 
+			  } 
+		  });
 	});
 </script>
 
 <?php
-	require_once "../../../engine/config.php";
-?>	
+require_once "../../../engine/config.php";
+?>
 
-<br>
-<ol class="breadcrumb">
-  <li><a href="#" id="bread_home" >Home</a></li>
-  <li><a href="#">Gerenciar Afastamento</a></li>
-  <li class="active"> Lista de Afastamentos</li>
-</ol>
+<section>
+	<section class="col-md-2 sidebar-pad collapse in" id="Data-bar">
+		<section class="col-md-12">
+			<button class="btn btn-primary col-md-12" id="CarregaTodosDocentes"
+				type="button"
+				title="Exibe todos os docentes ativos e inativos já cadastrados no sistema.">
+				Todos</button>
+		</section>
 
-<div class="Afastamentos col-md-12">
-  <h1>Lista de Ocorrências</h1>
-<?php	
-      $Item = new Afastamento();
-      $Item = $Item->ReadAll();
-      //var_dump($Item);
-      if(empty($Item)){    
-?>  
-    	<br><br>
-        <h4 class="well text-center"> Nenhum dado encontrado. </h4>
-<?php
-                      }
-      else{
-?>
-  <div class="filterrow">
-      <div class="panel panel-primary">
-          <div class="panel-heading">
-              <h3 class="panel-title">Afastamentos</h3>
-              <div class="pull-right">
-                  <span
-                    class="clickable filter" 
-                    id="Voltar">                
-                    <i class="glyphicon glyphicon-menu-left"></i>
-                    Voltar
-                  </span>
-                  <span
-                    class="clickable filter" 
-                    id="Inserir">                
-                    <i class="glyphicon glyphicon-plus"></i>
-                    Inserir Novo Afastamento
-                  </span>
-                  <span 
-                    class="clickable filter" 
-                    data-toggle="tooltip" 
-                    title="Ativar Filtro" 
-                    data-container="body">
-                    <i class="glyphicon glyphicon-filter"></i>
-                    Filtrar
-                  </span>
-              </div>
-          </div>
-          <div class="panel-body">
-              <input 
-              	type="text" 
-                class="form-control" 
-                id="dev-table-filter" 
-                data-action="filter" 
-                data-filters="#dev-table" 
-                placeholder="Filtrar Docentes"/>
-          </div>
-          <table class="table table-hover" id="dev-table">
-              <thead>
-                <tr>
-                  <th class="text-left">Servidor</th>
-                  <th class="text-left">Tipo de Afastamento</th>
-                  <th class="text-center">Data de Início</th>
-                  <th class="text-center">Data Final</th>
-                  <th class="text-left">Observação</th>
-                  <th class="text-left">Editar</th>
-                </tr>
-              </thead>
-              <tbody>
-<?php   
-				foreach($Item as $itemRow){
-				//var_dump($itemRow);
-                            
-?>
-                  <tr class="">
-                    <td class="text-left"><?php echo $itemRow['id_docente']; ?></td>
-                    <td class="text-center"><?php echo $itemRow['id_ocorrencia']; ?></td>
-                    <td class="text-center"><?php echo $itemRow['dt_inicio_afastamento']; ?></td>
-                    <td class="text-center"><?php echo $itemRow['dt_fim_afastamento']; ?></td>
-                    <td class="text-center"><?php echo $itemRow['observ_afastamento']; ?></td>
-                    <td class="text-center EditarItem" id="<?php echo $itemRow['id_ocorrencia']; ?>">
-                      <span 
-                        class="glyphicon glyphicon-edit" 
-                        aria-hidden="true">
-                      </span>
-                    </td>
-                  </tr>
-<?php												
-                                          }
-?>
-              </tbody>
-          </table>
-      </div>
-   </div>
-</div>
-<?php
-          }
-?>
+		<section class="col-md-12">
+			<button class="btn btn-primary col-md-12" type="button"
+				data-toggle="collapse" data-target="#Cursos" aria-expanded="false"
+				aria-controls="Cursos" id="Cursopadding">
+
+				<span class="glyphicon glyphicon-filter"></span> Ativos por Curso
+			</button>
+			<br>
+			<section class="collapse" id="Cursos">
+            
+            <?php
+												$Item = new Curso ();
+												$Item = $Item->ReadAll ();
+												
+												if (empty ( $Item )) {
+													
+													?>
+                        <h4 class="well text-center">Nenhum dado
+					encontrado.</h4>
+            <?php
+												} else {
+													
+													foreach ( $Item as $itemRow ) {
+														// var_dump($itemRow);
+														?>
+                                    <button type="button"
+					class="btn btn-default col-md-12 CarregaDocentesCurso"
+					id=<?php echo $itemRow['id_curso']; ?>> 
+                                            <?php echo $itemRow['nome_curso']; ?>
+                                    </button>	 
+                                <?php
+													}
+												}
+												?>
+            </section>
+		</section>
+
+		<section class="col-md-12">
+			<button class="btn btn-primary col-md-12" type="button"
+				data-toggle="collapse" data-target="#Data" aria-expanded="false"
+				aria-controls="Data" id="Datapadding">
+
+				<span class="glyphicon glyphicon-filter"></span> Ativos em uma Data
+			</button>
+
+			<br>
+
+			<section class="collapse datepicker-center" id="Data">
+                  <?php
+																		
+$Data = getdate ();
+																		$Dia = $Data ['mday'];
+																		$Mes = $Data ['mon'];
+																		$Ano = $Data ['year'];
+																		$Dataform = $Ano . '-' . $Mes . '-' . $Dia;
+																		?>
+                  <div id="afdatepicker"
+					data-date=<?php echo $Dataform; ?>></div>
+				<input type="hidden" id="datafinal">
+			</section>
+
+		</section>
+
+		<section class="col-md-12">
+			<button class="btn btn-success col-md-12" id="AfGerenciarCursos"
+				type="button">Gerenciar Cursos</button>
+		</section>
+
+		<section class="col-md-12">
+			<button class="btn btn-success col-md-12" id="CadastrarAfastamento"
+				type="button">Inserir Afastamento</button>
+		</section>
+		<div id="sidebar-pad-scroll"></div>
+	</section>
+	<section class="col-md-1">
+		<button class="btn btn-default sidebar-btn" type="button"
+			data-toggle="collapse" data-target="#Data-bar" aria-expanded="false"
+			aria-controls="Data-bar" id="Sidebarpadding"
+			title="Clique para recolher ou expandir esta guia">
+			<span class="glyphicon glyphicon-menu-right"></span>
+		</button>
+	</section>
+	<!-- Paginas carregadas aqui -->
+	<section class="col-md-9 sidebar-content" id="afastamentoloader">
+		<br>
+		<ol class="breadcrumb">
+			<li><a href="#" id="bread_home">Home</a></li>
+			<li><a href="#">Gerenciar Afastamentos</a></li>
+			<li class="active">Menu</li>
+		</ol>
+		<div class="col-md-12">
+			<h1>Gerenciar Afastamentos</h1>
+		</div>
+	</section>
+	<!-- Paginas carregadas aqui -->
+</section>
+

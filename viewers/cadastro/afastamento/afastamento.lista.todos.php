@@ -1,5 +1,5 @@
 <script>
-	$(document).ready(function(e) {
+$(document).ready(function(e) {
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
 			//alert("breadhome");
@@ -9,7 +9,7 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#loader').load('cadastro/docentes/docentes.lista.php');
+			$('#loader').load('cadastro/afastamento/afastamento.lista.php');
     	});
 		
 		$('.EditarItem').click(function(e) {
@@ -17,7 +17,7 @@
 			//loader
 			var id= $(this).attr('id');
 			//alert(id);
-			$('#docenteloader').load('cadastro/docentes/docentes.editar.php',{ id: id});
+			$('#docenteloader').load('cadastro/afastamento/afastamento.docente.adicionar.php',{ id: id});
 		});
 		
 		$('.EditarExercicios').click(function(e) {
@@ -25,7 +25,7 @@
 			//loader
 			var id= $(this).attr('id');
 			//alert(id);
-			$('#docenteloader').load('cadastro/docentes/docentes.exercicios.php',{ id: id});
+			$('#docenteloader').load('cadastro/afastamento/afastamento.exercicios.php',{ id: id});
 		});
 		
 		//Table filters below
@@ -77,7 +77,7 @@
 					$panel.find('.panel-body input').focus();
 				}
 			});
-			$('[data-toggle="tooltip"]').tooltip();
+			//$('[data-toggle="tooltip"]').tooltip();
 		})			
 	});
 </script>
@@ -131,10 +131,8 @@ if (empty ( $Item )) {
 					<tr>
 						<th class="text-left">Nome</th>
 						<th class="text-center">Siape</th>
-						<th class="text-center">E-Mail</th>
-						<th class="text-center">Efetivo</th>
-						<th class="text-center">Editar Dados</th>
-						<th class="text-center">Gerenciar Exerícios</th>
+						<th class="text-center">Adicionar Afastamento</th>
+						<th class="text-center">Listar Afastamentos</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -146,16 +144,6 @@ if (empty ( $Item )) {
                   <tr class="">
 						<td class="text-left"><?php echo $itemRow['nome_docente']; ?></td>
 						<td class="text-center"><?php echo $itemRow['siape_docente']; ?></td>
-						<td class="text-center"><?php echo $itemRow['email_docente']; ?></td>
-						<td class="text-center">
-<?php
-		if ($itemRow ['efetivo_docente'] === 1) {
-			echo "Sim";
-		} else {
-			echo "Não";
-		}
-		?>
-                    </td>
 						<td class="text-center EditarItem"
 							id="<?php echo $itemRow['id_docente']; ?>"><span
 							class="glyphicon glyphicon-edit" aria-hidden="true"> </span></td>

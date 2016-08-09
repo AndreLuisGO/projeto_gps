@@ -9,25 +9,24 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#loader').load('cadastro/docentes/docentes.lista.php');
+			$('#loader').load('cadastro/afastamento/afastamento.lista.php');
+    	});
+		
+		$('#CadastrarCurso').click(function(e) {
+			e.preventDefault();
+			//alert("Voltar");
+			$('#docenteloader').load('cadastro/afastamento/afastamento.curso.cadastrar.php');
     	});
 		
 		$('.EditarItem').click(function(e) {
 			e.preventDefault();
-			//loader
+			if(confirm("Alterações em um curso modificam todo o histórico relacionado a ele.\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
+			{
 			var id= $(this).attr('id');
-			//alert(id);
-			$('#docenteloader').load('cadastro/docentes/docentes.editar.php',{ id: id});
+			$('#docenteloader').load('cadastro/afastamento/afastamento.curso.editar.php',{ id: id});
+			}
 		});
-		
-		$('.EditarExercicios').click(function(e) {
-			e.preventDefault();
-			//loader
-			var id= $(this).attr('id');
-			//alert(id);
-			$('#docenteloader').load('cadastro/docentes/docentes.exercicios.php',{ id: id});
-		});
-		
+				
 		//Table filters below
 			
 		(function(){
@@ -90,14 +89,14 @@ require_once "../../../engine/config.php";
 <ol class="breadcrumb">
 	<li><a href="#" id="bread_home">Home</a></li>
 	<li><a href="#">Gerenciar Docentes</a></li>
-	<li><a href="#">Lista de Dados</a></li>
-	<li class="active">Todos os Cursos</li>
+	<li><a href="#">Menu</a></li>
+	<li class="active">Lista Cursos</li>
 </ol>
 
 <div class="container col-md-12">
-	<h1>Docentes lotados em Todos os Cursos</h1>
+	<h1>Lista de Cursos</h1>
 <?php
-$Item = new Docente ();
+$Item = new Curso ();
 $Item = $Item->ReadAll ();
 // var_dump($Item);
 if (empty ( $Item )) {
@@ -111,10 +110,12 @@ if (empty ( $Item )) {
   <div class="filterrow">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">Docentes</h3>
+				<h3 class="panel-title">Cursos</h3>
 				<div class="pull-right">
 					<span class="clickable filter" id="Voltar"> <i
 						class="glyphicon glyphicon-menu-left"></i> Voltar
+					</span> <span class="clickable filter" id="CadastrarCurso"> <i
+						class="glyphicon glyphicon-plus"></i> Cadastrar Novo Curso
 					</span> <span class="clickable filter" data-toggle="tooltip"
 						title="Ativar Filtro" data-container="body"> <i
 						class="glyphicon glyphicon-filter"></i> Filtrar
@@ -130,11 +131,7 @@ if (empty ( $Item )) {
 				<thead>
 					<tr>
 						<th class="text-left">Nome</th>
-						<th class="text-center">Siape</th>
-						<th class="text-center">E-Mail</th>
-						<th class="text-center">Efetivo</th>
-						<th class="text-center">Editar Dados</th>
-						<th class="text-center">Gerenciar Exerícios</th>
+						<th class="text-center">Editar</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -144,25 +141,10 @@ if (empty ( $Item )) {
 		
 		?>
                   <tr class="">
-						<td class="text-left"><?php echo $itemRow['nome_docente']; ?></td>
-						<td class="text-center"><?php echo $itemRow['siape_docente']; ?></td>
-						<td class="text-center"><?php echo $itemRow['email_docente']; ?></td>
-						<td class="text-center">
-<?php
-		if ($itemRow ['efetivo_docente'] === 1) {
-			echo "Sim";
-		} else {
-			echo "Não";
-		}
-		?>
-                    </td>
+						<td class="text-left"><?php echo $itemRow['nome_curso']; ?></td>
 						<td class="text-center EditarItem"
-							id="<?php echo $itemRow['id_docente']; ?>"><span
+							id="<?php echo $itemRow['id_curso']; ?>"><span
 							class="glyphicon glyphicon-edit" aria-hidden="true"> </span></td>
-						<td class="text-center EditarExercicios"
-							id="<?php echo $itemRow['id_docente']; ?>"><span
-							class="glyphicon glyphicon-list-alt" aria-hidden="true"> </span>
-						</td>
 					</tr>
 <?php
 	}
