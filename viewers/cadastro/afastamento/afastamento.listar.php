@@ -1,28 +1,12 @@
 
 <link rel="stylesheet" type="text/css" href="../css/select2.css" />
 <link rel="stylesheet" type="text/css" href="../css/daterangepicker.css" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/moment.min.js"></script>
 <script type="text/javascript" src="../js/jquery.cascade-select.js"></script>
 <script type="text/javascript" src="../js/select2.js"></script>
 <script type="text/javascript" src="../js/daterangepicker.js"></script>
 <script>
 	$(document).ready(function(e) {
-
-		$("#sel_curso").change(function(){
-	        var selcurso = $(this).val();
-	        $.ajax({
-	            type: "POST",
-	            url: "cadastro/afastamento/call_docentes.php?selcurso="+selcurso,
-	            dataType: "text",
-	            success: function(res){
-	                $("#id_docente").empty();
-	                $("#id_docente").append(res);
-	            }
-	        });
-	    });
-
-
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
 			//alert("breadhome");
@@ -94,6 +78,18 @@
 </script>
 
 <script type="text/javascript">
+	$("#sel_curso").change(function(){
+	    var selcurso = $(this).val();
+	    $.ajax({
+	        type: "POST",
+	        url: "cadastro/afastamento/call_docentes.php?selcurso="+selcurso,
+	        dataType: "text",
+	        success: function(res){
+	            $("#id_docente").empty();
+	            $("#id_docente").append(res);
+	        }
+	    });
+	});
 	$('#escolhe_data').daterangepicker({
 	    "showDropdowns": true,
 	    "autoApply": false,
@@ -139,7 +135,7 @@ require_once "../../../engine/config.php";
 	<li class="active">Editar Afastamentos</li>
 </ol>
 
-<div class="container well" style="max-width: 400 px;">
+<div class="containter well table-overflow">
 <h2 class="text-center">Editar Afastamento</h2>
 <?php 
 $Docente = new Docente();

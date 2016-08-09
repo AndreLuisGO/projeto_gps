@@ -5,6 +5,10 @@ html, body {
 
 main {
 	min-height: 100%;
+	margin:0 auto;
+	padding-bottom: 20vh;
+	margin-top: inherit;
+	vertical-align: center;
 }
 
 #mainlogin {
@@ -32,6 +36,7 @@ main {
 .mainfooter {
 	padding: 0.5em;
 	color: #aaa;
+	clear: both;
 }
 
 .footertext {
@@ -206,3 +211,11 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 	padding-bottom: 120vh;
 }
 /* Sidebar Style End */
+
+.table-overflow {
+    max-width: 180vh;
+    max-height: 100vh;
+    overflow: scroll;
+    overflow-x: auto;
+    overflow-y: inherit;
+}

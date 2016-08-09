@@ -7,21 +7,6 @@
 <script type="text/javascript" src="../js/daterangepicker.js"></script>
 <script>
 	$(document).ready(function(e) {
-
-		$("#sel_curso").change(function(){
-	        var selcurso = $(this).val();
-	        $.ajax({
-	            type: "POST",
-	            url: "cadastro/afastamento/call_docentes.php?selcurso="+selcurso,
-	            dataType: "text",
-	            success: function(res){
-	                $("#id_docente").empty();
-	                $("#id_docente").append(res);
-	            }
-	        });
-	    });
-
-
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
 			//alert("breadhome");
@@ -31,7 +16,7 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#loader').load('cadastro/afastamento/afastamento.lista.php');
+			$('#afast_sistema').click();
     	});
 		
 		$('#Salvar').click(function(e) {
@@ -65,7 +50,7 @@
 					  console.log(data);
 					  if(data === 'true'){
 						  alert('Afastamento inserido com sucesso');
-						  $('#loader').load('cadastro/afastamento/afastamento.lista.php');
+						  $('#afast_sistema').click();
 					  }
 					  else{
 						  alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	
@@ -87,6 +72,20 @@
 </script>
 
 <script type="text/javascript">
+	
+	$("#sel_curso").change(function(){
+	    var selcurso = $(this).val();
+	    $.ajax({
+	        type: "POST",
+	        url: "cadastro/afastamento/call_docentes.php?selcurso="+selcurso,
+	        dataType: "text",
+	        success: function(res){
+	            $("#id_docente").empty();
+	            $("#id_docente").append(res);
+	        }
+	    });
+	});
+
 	$('#escolhe_data').daterangepicker({
 	    "showDropdowns": true,
 	    "autoApply": false,
@@ -133,11 +132,23 @@ require_once "../../../engine/config.php";
 </ol>
 
 <br />
-<br />
 
-<div class="container well" style="max-width: 400 px;">
+<div class="containter well table-overflow">
 <h1 class="text-center">Inserir Afastamento</h1>
 <br />
+<br />
+<section class="row"> <!-- Menu de Salvar/Voltar -->
+	<section class="col-md-12 text-left">
+		<section class="btn-group" role="group">
+			<button type="button" class="btn btn-info" id="Voltar">
+				<span class="glyphicon glyphicon-menu-left"></span>Voltar
+			</button>
+			<button type="button" class="btn btn-success" id="Salvar">
+				<span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
+			</button>
+		</section>
+	</section>
+</section> <!-- Menu de Salvar/Voltar -->
 <br />
 <section class="row"><!-- Primeira Linha -->
 	<section class="col-md-4">  <!-- Selecionar Curso -->
@@ -174,6 +185,16 @@ require_once "../../../engine/config.php";
 </section> <!-- Primeira Linha -->
 
 <section class="row"> <!-- Segunda Linha -->
+	<section class="col-md-3"> <!-- Selecionar Datas-->
+		<div class="form-group has-feedback has-feedback-right">
+			<input type="hidden" id="dt_inicio_afastamento"> <input
+				type="hidden" id="dt_fim_afastamento"> <label class="control-label">Escolha
+				o intervalo de datas</label> <i
+				class="form-control-feedback glyphicon glyphicon-calendar"></i> <input
+				id="escolhe_data" name="escolhe_data"
+				class="input-mini form-control" type="text"></input>
+		</div>
+	</section><!-- Selecionar Datas-->
 	<section class="col-md-9">  <!-- Selecionar Ocorrência-->
 	<div class="form-group">
 		<label for="id_ocorrencia">Selecionar a Ocorrência:</label>
@@ -199,16 +220,6 @@ require_once "../../../engine/config.php";
 		</select>
 	</div>
 	</section> <!-- Selecionar Ocorrência-->
-	<section class="col-md-3"> <!-- Selecionar Datas-->
-		<div class="form-group has-feedback has-feedback-right">
-			<input type="hidden" id="dt_inicio_afastamento"> <input
-				type="hidden" id="dt_fim_afastamento"> <label class="control-label">Escolha
-				o intervalo de datas</label> <i
-				class="form-control-feedback glyphicon glyphicon-calendar"></i> <input
-				id="escolhe_data" name="escolhe_data"
-				class="input-mini form-control" type="text"></input>
-		</div>
-	</section><!-- Selecionar Datas-->
 </section> <!-- Segunda Linha-->
 
 <section class="row"> <!-- Terceira Linha-->
@@ -217,18 +228,5 @@ require_once "../../../engine/config.php";
 		<textarea class="form-control" rows="3" id="observ_afastamento"></textarea>
 	</section> <!-- Campo de Observação -->
 </section> <!-- Terceira Linha-->
-
-<section class="row"> <!-- Menu de Salvar/Voltar -->
-	<section class="col-md-12 text-right">
-		<section class="btn-group" role="group">
-			<button type="button" class="btn btn-info" id="Voltar">
-				<span class="glyphicon glyphicon-menu-left"></span>Voltar
-			</button>
-			<button type="button" class="btn btn-success" id="Salvar">
-				<span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
-			</button>
-		</section>
-	</section>
-</section> <!-- Menu de Salvar/Voltar -->
 </div> <!-- Fecha Well -->
 
