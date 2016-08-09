@@ -7,7 +7,7 @@ $(document).ready(function(e) {
 	$('#gerenciar_admin').click(function(e) {
 		e.preventDefault();
 		//alert("admin");
-		$('#loader').load('../viewers/gerenciamento/administrador.lista.php');
+		$('#loader').load('../viewers/gerenciamento/administrador/administrador.lista.php');
     });	
 	
 	$('#afast_sistema').click(function(e) {
