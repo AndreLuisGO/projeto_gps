@@ -33,7 +33,7 @@
 			else
 			{
 			var id= $('#Docente_Exercicio_id').val();
-			alert(id);
+			//alert(id);
 			$('#docenteloader').load('cadastro/docentes/docentes.exercicio.cadastrar.php', { id: id});
 			}
     	});
@@ -182,7 +182,7 @@ $Exercicio = $Exercicio->ReadbyDocente ( $_POST ['id'] );
 $Curso = new Curso ();
 $Curso = $Curso->ReadAll ();
 // var_dump($Docente);
-var_dump ( $Exercicio );
+// var_dump ( $Exercicio );
 // var_dump($Curso);
 if (empty ( $Exercicio )) {
 	?>  
