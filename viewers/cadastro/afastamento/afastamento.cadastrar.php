@@ -1,3 +1,11 @@
+
+<link rel="stylesheet" type="text/css" href="../css/select2.css" />
+<link rel="stylesheet" type="text/css" href="../css/daterangepicker.css" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/moment.min.js"></script>
+<script type="text/javascript" src="../js/jquery.cascade-select.js"></script>
+<script type="text/javascript" src="../js/select2.js"></script>
+<script type="text/javascript" src="../js/daterangepicker.js"></script>
 <script>
 	$(document).ready(function(e) {
 
@@ -79,26 +87,36 @@
 	});
 </script>
 
-
-		 });
-	 $("#escolhe_data_set").click(function () {
-	     var yesterday = moment().subtract('days', 1).startOf('day').toDate();
-	     $("#escolhe_data").daterangepicker("setRange", {start: yesterday});
-	 });
-	 $("#escolhe_data_cl").click(function() { $("#escolhe_data").daterangepicker("clearRange"); });
-	 $("#escolhe_data_open").click(function () { $("#escolhe_data").daterangepicker("open"); });
-	 $("#escolhe_data_close").click(function () { $("#escolhe_data").daterangepicker("close"); });
-
-	$('.docente_select').click(function(e) {
-		e.preventDefault();
-		//alert("curso_select");
-		$('#id_docente').val($(this).attr('id'));
-		$('#docente_placeholder').val($(this).text());
-		
+<script type="text/javascript">
+	$('#escolhe_data').daterangepicker({
+	    "showDropdowns": true,
+	    "autoApply": false,
+	    "locale": {
+	        "format": "DD/MM/YYYY",
+	        "separator": " - ",
+	        "applyLabel": "Aplicar",
+	        "cancelLabel": "Cancelar",
+	        "fromLabel": "De",
+	        "toLabel": "Até",
+	        "customRangeLabel": "Outro",
+	        "weekLabel": "S",
+	        "daysOfWeek": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+	        "monthNames": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
+	        "firstDay": 1
+	    },
+	    "alwaysShowCalendars": true
+	},
+	function(start, end, label) {
+	  console.log($('#escolhe_data').data());
 	});
 	$('#escolhe_data').on('apply.daterangepicker', function(ev, picker) {
 		$('#dt_inicio_afastamento').val(picker.startDate.format('YYYY-MM-DD'));
 		$('#dt_fim_afastamento').val(picker.endDate.format('YYYY-MM-DD'));
+	});
+	$("#id_ocorrencia").select2({
+		  language: "pt-BR",
+		  placeholder: "Selecione a Ocorrência",
+		  allowClear: true
 	});
 
 </script>
@@ -119,105 +137,99 @@ require_once "../../../engine/config.php";
 <br />
 
 <div class="container well" style="max-width: 400 px;">
-
-	<h1 class="text-center"> Inserir Afastamento </h1>
-	<p> Insira os dados do novo afastamento</p>
-	
-	<section class="row">
-		<section class="col-md-8">
-			<div class="input-group">
-       			<div class="input-group-btn">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Docente <span class="caret"></span></button>
-	           		<ul class="dropdown-menu">
-			<?php
-				  $Docente = new Docente();
-				  $Docente = $Docente->ReadAll();
-				  if(empty($Docente)){   
-?>
-			  	<li><a href="#">Nenhum docente encontrado</a></li>
-<?php
-      			  }
-				  else{
-				    foreach($Docente as $docenteRow){
-				          //var_dump($DocenteRow);
-?>
-						    <li>
-                    			<a href="#" id=<?php echo $docenteRow['id_docente']; ?> class="docente_select">
-                          <?php echo $docenteRow['nome_docente']; ?></a>
-                    		</li>  
-						              
-		<?php
-                         }        
-		       }
-	?>
-    				</ul>
-    			</div><!-- /btn-group -->
-			        <input id="id_docente" type="hidden">
-			        <input type="text" class="form-control" id="docente_placeholder" disabled placeholder="Escolha um docente" aria-describedby="basic-addon1">
-        		</div><!-- /input-group -->
-
-		</section> <!-- Selecionar Docente -->
-    	<section class="col-md-4">
-			<div class="input-group">
-				<div class="input-group-btn">
-		            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ocorrência  <span class="caret"></span></button>
-		            <ul class="dropdown-menu"> 
-		<?php
-				  $Ocorrencia = new Ocorrencia();
-				  $Ocorrencia = $Ocorrencia->ReadAll();
-				  if(empty($Ocorrencia)){   
-?>
-				  	<li><a href="#">Nenhuma ocorrência encontrada</a></li>
-<?php
-      			  }
-				  else{
-				      foreach($Ocorrencia as $ocorrenciaRow){
-				          //var_dump($itemRow);
-?>
-				    <li>
-				   		<a href="#" id=<?php echo $ocorrenciaRow['id_ocorrencia']; ?> class="ocorrencia_select">
-                          <?php echo $ocorrenciaRow['codigo_ocorrencia']."-".$ocorrenciaRow['tipo_ocorrencia'] ; ?></a>     
-				    </li>          
-<?php
-				                                 }        
-				       }
-?>
-	    			</ul>
-				</div><!-- /btn-group -->
-			    <input id="id_ocorrencia" type="hidden">
-				<input type="text" class="form-control" id="ocorrencia_placeholder" disabled placeholder="Ocorrência" aria-describedby="basic-addon1">
-			</div><!-- /input-group -->
-		</section><!-- Selecionar Ocorrencia-->
-	</section><!-- Primeira Linha -->
-	<br />
-	<section class="row">
-		<section class="col-md-12">
-			<input id="escolhe_data" name="escolhe_data">
-			<input type="button" class="btn btn-info" id="escolhe_data_set" value="Selecionar ontem">
-			<input type="button" class="btn btn-info" id="escolhe_data_cl" value="Limpar">
-			<input type="button" class="btn btn-warning" id="escolhe_data_open" value="Abrir">
-			<input type="button" class="btn btn-warning" id="escolhe_data_close" value="Fechar">
-		</section>
-	</section> <!-- Escolhe Datas -->
-		<br />
-	<section class="row">
-		<section class="col-md-12">
-	    		<label for="observ_afastamento">Observação:</label>
-	    		<textarea class="form-control" rows="3" id="observ_afastamento"></textarea>
-		</section>
-	</section> <!-- Campo de Observação -->
+<h1 class="text-center">Inserir Afastamento</h1>
 <br />
+<br />
+<section class="row"><!-- Primeira Linha -->
+	<section class="col-md-4">  <!-- Selecionar Curso -->
+		<div class="form-group">
+		  <label for="sel_curso">Filtrar por Curso:</label>
+		  <select class="form-control" id="sel_curso">
+		    <?php 
+		    $Curso = new Curso();
+		    $Curso = $Curso->ReadAll();
+		    if(empty($Curso)){
+		    ?>
+		    	<option>Nenhum curso encontrado</option>
+		    <?php
+          		}
+    			else{
+    			foreach($Curso as $cursoRow){
+			    ?>
+		    <option value="<?php echo $cursoRow['id_curso']?>"><?php echo $cursoRow['nome_curso']?></option>
+		    <?php
+    				}
+    			}
+			    ?>
+		  </select>
+		</div>
+	</section> <!-- Selecionar Curso -->
+	<section class="col-md-8"> <!-- Selecionar Docente-->	
+		<div class="form-group">
+		  <label for="id_docente">Selecionar Docente:</label>
+		  <select class="form-control" id="id_docente">
+		  <option class="sel_curso" value=""> -- Selecione um Curso -- </option>
+		  </select>
+		</div>
+	</section><!-- Selecionar Docente-->	
+</section> <!-- Primeira Linha -->
 
-	<section class="row">
-		<section class="col-md-12 text-right">
-		  	<section class="btn-group" role="group">
-		    <button type="button" class="btn btn-info" id="Voltar">
-		    	<span class="glyphicon glyphicon-menu-left"></span>Voltar
-		    </button>
-		    <button type="button" class="btn btn-success" id="Salvar">
-				 <span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
-		    </button>
-		 	</section>
-	 	</section>
-	</section> <!-- Menu de Salvar/Voltar -->
-</div>
+<section class="row"> <!-- Segunda Linha -->
+	<section class="col-md-9">  <!-- Selecionar Ocorrência-->
+	<div class="form-group">
+		<label for="id_ocorrencia">Selecionar a Ocorrência:</label>
+		<select class="form-control" id="id_ocorrencia" style="width: 100%">
+		<?php 
+		    $Ocorrencia = new Ocorrencia();
+		    $Ocorrencia = $Ocorrencia->ReadAll();
+		    if(empty($Ocorrencia)){
+		    ?>
+		    	<option>Nenhum curso encontrado</option>
+		    <?php
+          		}
+    			else{
+    			foreach($Ocorrencia as $ocorrenciaRow){
+			    ?>
+		    <option value="<?php echo $ocorrenciaRow['id_ocorrencia']?>"><?php
+		    echo $ocorrenciaRow['codigo_ocorrencia']." - ".$ocorrenciaRow['tipo_ocorrencia']
+		    ?></option>
+		    <?php
+    				}
+    			}
+			    ?>
+		</select>
+	</div>
+	</section> <!-- Selecionar Ocorrência-->
+	<section class="col-md-3"> <!-- Selecionar Datas-->
+		<div class="form-group has-feedback has-feedback-right">
+			<input type="hidden" id="dt_inicio_afastamento"> <input
+				type="hidden" id="dt_fim_afastamento"> <label class="control-label">Escolha
+				o intervalo de datas</label> <i
+				class="form-control-feedback glyphicon glyphicon-calendar"></i> <input
+				id="escolhe_data" name="escolhe_data"
+				class="input-mini form-control" type="text"></input>
+		</div>
+	</section><!-- Selecionar Datas-->
+</section> <!-- Segunda Linha-->
+
+<section class="row"> <!-- Terceira Linha-->
+	<section class="col-md-12"> <!-- Campo de Observação -->
+		<label for="observ_afastamento">Observação:</label>
+		<textarea class="form-control" rows="3" id="observ_afastamento"></textarea>
+	</section> <!-- Campo de Observação -->
+</section> <!-- Terceira Linha-->
+
+<section class="row"> <!-- Menu de Salvar/Voltar -->
+	<section class="col-md-12 text-right">
+		<section class="btn-group" role="group">
+			<button type="button" class="btn btn-info" id="Voltar">
+				<span class="glyphicon glyphicon-menu-left"></span>Voltar
+			</button>
+			<button type="button" class="btn btn-success" id="Salvar">
+				<span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
+			</button>
+		</section>
+	</section>
+</section> <!-- Menu de Salvar/Voltar -->
+</div> <!-- Fecha Well -->
+
