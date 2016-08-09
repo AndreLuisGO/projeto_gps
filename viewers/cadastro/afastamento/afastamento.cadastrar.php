@@ -79,14 +79,6 @@
 	});
 </script>
 
-<!-- Include Required Prerequisites -->
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/moment.min.js"></script>
-<script type="text/javascript" src="../js/jquery.cascade-select.js"></script>
-<!-- Include Date Range Picker -->
-<script type="text/javascript" src="../js/daterangepicker.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/daterangepicker.css" />
-
 
 <script type="text/javascript">
 	$('#escolhe_data').daterangepicker({
@@ -101,29 +93,8 @@
 	        "toLabel": "Até",
 	        "customRangeLabel": "Outro",
 	        "weekLabel": "S",
-	        "daysOfWeek": [
-	            "Dom",
-	            "Seg",
-	            "Ter",
-	            "Qua",
-	            "Qui",
-	            "Sex",
-	            "Sab"
-	        ],
-	        "monthNames": [
-	            "Janeiro",
-	            "Fevereiro",
-	            "Março",
-	            "Abril",
-	            "Maio",
-	            "Junho",
-	            "Julho",
-	            "Agosto",
-	            "Setembro",
-	            "Outubro",
-	            "Novembro",
-	            "Dezembro"
-	        ],
+	        "daysOfWeek": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+	        "monthNames": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
 	        "firstDay": 1
 	    },
 	    "alwaysShowCalendars": true
@@ -134,6 +105,11 @@
 	$('#escolhe_data').on('apply.daterangepicker', function(ev, picker) {
 		$('#dt_inicio_afastamento').val(picker.startDate.format('YYYY-MM-DD'));
 		$('#dt_fim_afastamento').val(picker.endDate.format('YYYY-MM-DD'));
+	});
+	$("#id_ocorrencia").select2({
+		  language: "pt-BR",
+		  placeholder: "Selecione a Ocorrência",
+		  allowClear: true
 	});
 
 </script>
@@ -155,7 +131,8 @@ require_once "../../../engine/config.php";
 
 <div class="container well" style="max-width: 400 px;">
 <h1 class="text-center">Inserir Afastamento</h1>
-
+<br />
+<br />
 <section class="row"><!-- Primeira Linha -->
 	<section class="col-md-4">  <!-- Selecionar Curso -->
 		<div class="form-group">
@@ -192,9 +169,30 @@ require_once "../../../engine/config.php";
 
 <section class="row"> <!-- Segunda Linha -->
 	<section class="col-md-9">  <!-- Selecionar Ocorrência-->
-		
+	<div class="form-group">
+		<label for="id_ocorrencia">Selecionar a Ocorrência:</label>
+		<select class="form-control" id="id_ocorrencia" style="width: 100%">
+		<?php 
+		    $Ocorrencia = new Ocorrencia();
+		    $Ocorrencia = $Ocorrencia->ReadAll();
+		    if(empty($Ocorrencia)){
+		    ?>
+		    	<option>Nenhum curso encontrado</option>
+		    <?php
+          		}
+    			else{
+    			foreach($Ocorrencia as $ocorrenciaRow){
+			    ?>
+		    <option value="<?php echo $ocorrenciaRow['id_ocorrencia']?>"><?php
+		    echo $ocorrenciaRow['codigo_ocorrencia']." - ".$ocorrenciaRow['tipo_ocorrencia']
+		    ?></option>
+		    <?php
+    				}
+    			}
+			    ?>
+		</select>
+	</div>
 	</section> <!-- Selecionar Ocorrência-->
-	
 	<section class="col-md-3"> <!-- Selecionar Datas-->
 		<div class="form-group has-feedback has-feedback-right">
 			<input type="hidden" id="dt_inicio_afastamento"> <input
@@ -206,16 +204,15 @@ require_once "../../../engine/config.php";
 		</div>
 	</section><!-- Selecionar Datas-->
 </section> <!-- Segunda Linha-->
-<br />
+
 <section class="row"> <!-- Terceira Linha-->
 	<section class="col-md-12"> <!-- Campo de Observação -->
 		<label for="observ_afastamento">Observação:</label>
 		<textarea class="form-control" rows="3" id="observ_afastamento"></textarea>
 	</section> <!-- Campo de Observação -->
 </section> <!-- Terceira Linha-->
-<br />
 
-<section class="row">
+<section class="row"> <!-- Menu de Salvar/Voltar -->
 	<section class="col-md-12 text-right">
 		<section class="btn-group" role="group">
 			<button type="button" class="btn btn-info" id="Voltar">
@@ -226,6 +223,5 @@ require_once "../../../engine/config.php";
 			</button>
 		</section>
 	</section>
-</section>
-<!-- Menu de Salvar/Voltar -->
-</div>
+</section> <!-- Menu de Salvar/Voltar -->
+</div> <!-- Fecha Well -->

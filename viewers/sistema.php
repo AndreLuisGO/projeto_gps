@@ -19,6 +19,8 @@ if (empty ( $_SESSION )) {
 <link rel="stylesheet" href="../css/bootstrap.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/bootstrap-datepicker3.css">
+<link rel="stylesheet" type="text/css" href="../css/select2.css" />
+<link rel="stylesheet" type="text/css" href="../css/daterangepicker.css" />
 </head>
 
 <body>
@@ -61,5 +63,12 @@ if (empty ( $_SESSION )) {
 		src="../locales/bootstrap-datepicker.pt-BR.min.js"></script>
 	<script type="text/javascript" src="../js/menu.js"></script>
 	<script type="text/javascript" src="../js/login.js"></script>
+	
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/moment.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.cascade-select.js"></script>
+	<script type="text/javascript" src="../js/select2.js"></script>
+	<script type="text/javascript" src="../js/daterangepicker.js"></script>
+
 </body>
 </html>
