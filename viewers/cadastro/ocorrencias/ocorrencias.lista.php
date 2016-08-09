@@ -111,7 +111,7 @@ if (empty ( $Item )) {
 			<div class="panel-heading">
 				<h3 class="panel-title">Ocorrencias</h3>
 				<div class="pull-right">
-					<span class="clickable filter" id="Voltar"> <i
+					<span class="clickable" id="Voltar"> <i
 						class="glyphicon glyphicon-menu-left"></i> Voltar
 					</span> <span class="clickable filter" id="Cadastrar"> <i
 						class="glyphicon glyphicon-plus"></i> Cadastrar Nova Ocorrência
