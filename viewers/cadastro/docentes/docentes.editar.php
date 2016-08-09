@@ -122,12 +122,11 @@ require_once "../../../engine/config.php";
 <?php
 $Item = new Docente ();
 $Item = $Item->Read ( $_POST ['id'] );
-// var_dump($Item);
 ?>
 
 <section class="row">
 
-	<section class="col-md-3">
+	<section class="col-md-9">
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">Nome</span> <input
 				type="text" class="form-control" id="nome_docente"
@@ -144,8 +143,12 @@ $Item = $Item->Read ( $_POST ['id'] );
 				value="<?php echo $Item['siape_docente']?>">
 		</div>
 	</section>
+  
+</section>
 
-	<section class="col-md-3">
+<section class="row">
+
+	<section class="col-md-9">
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">E-Mail</span> <input
 				type="text" class="form-control" id="email_docente"

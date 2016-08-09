@@ -4,8 +4,8 @@
 		$('#datepicker').datepicker({
 			format: "yyyy-mm-dd",
 			todayBtn: "linked",
-			language: "pt-BR"
-		});
+			language: "pt-BR"			
+		});	
 		$('#datepicker').on("changeDate", function() {
     		$('#datafinal').val(
         		$('#datepicker').datepicker('getFormattedDate')

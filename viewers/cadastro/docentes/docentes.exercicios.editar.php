@@ -8,8 +8,8 @@
 		
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
-			//alert("Voltar");
-			$('#loader').load('cadastro/docentes/docentes.lista.php');
+			var id = $("#id_docente").val();
+			$('#docenteloader').load('cadastro/docentes/docentes.exercicios.php',{ id: id});
     	});
 		
 		$('#Salvar').click(function(e) {
@@ -45,8 +45,9 @@
 				   success: function(data) {
 						console.log(data);
 						if(data === 'true'){
+							var id = $("#id_docente").val();
 							alert('Exercício do docente atualizado com sucesso.');
-							$('#loader').load('cadastro/docentes/docentes.lista.php');
+							$('#docenteloader').load('cadastro/docentes/docentes.exercicios.php',{ id: id});
 						}
 						else{
 							alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	
@@ -150,10 +151,8 @@ $Item = new Exercicio ();
 $Item = $Item->Read ( $_POST ['id'] );
 // var_dump($Item);
 ?>
-
-<section class="row bottom-pad">
-
-	<section class="col-md-4">
+<section class="row">
+	<section class="col-md-12">
 		<div class="input-group">
 			<div class="input-group-btn dropup">
 				<button type="button" class="btn btn-default dropdown-toggle"
@@ -191,8 +190,9 @@ if (empty ( $Curso )) {
 		</div>
 		<!-- /input-group -->
 	</section>
-
-	<section class="col-md-4">
+</section>
+<section class="row">
+	<section class="col-md-12">
 		<div class="input-group">
 			<div class="input-group-btn">
 				<input type="hidden" id="dt_inicio_exercicio"
@@ -208,8 +208,9 @@ if (empty ( $Curso )) {
 				aria-describedby="basic-addon1">
 		</div>
 	</section>
-
-	<section class="col-md-4">
+</section>
+<section class="row bottom-pad">
+	<section class="col-md-12">
 		<div class="input-group">
 			<div class="input-group-btn">
 				<input type="hidden" id="dt_fim_exercicio"
@@ -229,7 +230,14 @@ if (empty ( $Curso )) {
 			</div>
 		</div>
 	</section>
-	<input type="hidden" id="id_docente"
-		value=<?php echo $Item['id_docente'];?>> <input type="hidden"
-		id="id_exercicio" value=<?php echo $Item['id_exercicio'];?>>
 </section>
+<input 
+	type="hidden" 
+    id="id_docente"
+	value=<?php echo $Item['id_docente'];?>
+> 
+<input 
+	type="hidden"
+	id="id_exercicio" 
+    value=<?php echo $Item['id_exercicio'];?>
+>

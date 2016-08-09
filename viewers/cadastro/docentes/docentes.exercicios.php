@@ -82,8 +82,9 @@
 				   success: function(data) {
 						console.log(data);
 						if(data === 'true'){
+							var id = $("#Docente_Exercicio_id").val();
 							alert('Exercício do docente terminado.');
-							$('#loader').load('cadastro/docentes/docentes.lista.php');
+							$('#docenteloader').load('cadastro/docentes/docentes.exercicios.php',{ id: id});
 						}
 						else{
 							alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	
@@ -174,6 +175,7 @@ require_once "../../../engine/config.php";
 
 <div class="container col-md-12">
 	<h1>Terminar ou Ativar Exercícios</h1>
+    
 <?php
 $Docente = new Docente ();
 $Docente = $Docente->Read ( $_POST ['id'] );
@@ -184,6 +186,9 @@ $Curso = $Curso->ReadAll ();
 // var_dump($Docente);
 // var_dump ( $Exercicio );
 // var_dump($Curso);
+?>
+	<h3><?php echo $Docente['nome_docente']?></h3>
+<?php
 if (empty ( $Exercicio )) {
 	?>  
     	<br>
@@ -195,7 +200,7 @@ if (empty ( $Exercicio )) {
   <div class="filterrow">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">Exercicios do(a) docente <?php echo $Docente['nome_docente']?></h3>
+				<h3 class="panel-title">Exercicios do(a) docente</h3>
 				<div class="pull-right">
 					<span class="clickable filter" id="Voltar"> <i
 						class="glyphicon glyphicon-menu-left"></i> Voltar
