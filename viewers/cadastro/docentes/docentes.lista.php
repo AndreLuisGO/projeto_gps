@@ -49,7 +49,7 @@
 		  $('#Data-bar').on('show.bs.collapse', function (e) {
 			  if ($(this).is(e.target)) 
 			  {
-				$('.sidebar-content').css({'width':'66%', 'margin-left':'18vw'});
+				$('.sidebar-content').css({'width':'72%', 'margin-left':'18vw'});
 				$('.sidebar-btn').css({'margin-left':'24vw'}); 
 			  }   
 		  });
@@ -169,6 +169,8 @@ $Data = getdate ();
 		</ol>
 		<div class="col-md-12">
 			<h1>Gerenciar Docentes Cadastrados</h1>
+            
+            <section class="well"><h3>Selecione uma opção ao lado</h3></section>
 		</div>
 	</section>
 	<!-- Paginas carregadas aqui -->
