@@ -203,7 +203,7 @@ require_once "../../../engine/config.php";
 	<section class="col-md-9">  <!-- Selecionar Ocorrência-->
 	<div class="form-group">
 		<label for="id_ocorrencia">Selecionar a Ocorrência:</label>
-		<select class="form-control" id="id_ocorrencia">
+		<select class="form-control" id="id_ocorrencia" style="width: 100%">
 		<option value=""> -- Selecione -- </option>
 		<?php 
 		    $Ocorrencia = new Ocorrencia();
@@ -231,7 +231,7 @@ require_once "../../../engine/config.php";
 <section class="row"> <!-- Terceira Linha-->
 	<section class="col-md-12"> <!-- Campo de Observação -->
 		<label for="observ_afastamento">Observação:</label>
-		<textarea class="form-control" rows="3" id="observ_afastamento"></textarea>
+		<textarea class="form-control" rows="2" id="observ_afastamento"></textarea>
 	</section> <!-- Campo de Observação -->
 </section> <!-- Terceira Linha-->
 </div> <!-- Fecha Well -->

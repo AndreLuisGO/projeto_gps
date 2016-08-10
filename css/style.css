@@ -218,6 +218,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     overflow: scroll;
     overflow-x: auto;
     overflow-y: inherit;
+    padding-bottom: 7vh;
 }
 
 div.table-overflow {
