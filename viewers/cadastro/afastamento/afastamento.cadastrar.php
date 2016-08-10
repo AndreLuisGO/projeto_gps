@@ -7,6 +7,9 @@
 <script type="text/javascript" src="../js/daterangepicker.js"></script>
 <script>
 	$(document).ready(function(e) {
+		$('#dt_inicio_afastamento').val(moment().format('L'));
+		$('#dt_fim_afastamento').val(moment().format('L'));
+
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
 			//alert("breadhome");
@@ -72,7 +75,7 @@
 </script>
 
 <script type="text/javascript">
-	
+	 	
 	$("#sel_curso").change(function(){
 	    var selcurso = $(this).val();
 	    $.ajax({
@@ -86,10 +89,11 @@
 	    });
 	});
 
-	$('#escolhe_data').daterangepicker({
-	    "showDropdowns": true,
-	    "autoApply": false,
-	    "locale": {
+	$('input[name="escolhe_data"]').daterangepicker({
+	    showDropdowns: true,
+	    autoApply: true,
+	    autoUpdateInput: true,
+	    locale: {
 	        "format": "DD/MM/YYYY",
 	        "separator": " - ",
 	        "applyLabel": "Aplicar",
@@ -102,19 +106,20 @@
 	        "monthNames": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
 	        "firstDay": 1
 	    },
-	    "alwaysShowCalendars": true
+	    alwaysShowCalendars: true
 	},
 	function(start, end, label) {
-	  console.log($('#escolhe_data').data());
+	  //console.log($('#escolhe_data').data());
+
 	});
+
 	$('#escolhe_data').on('apply.daterangepicker', function(ev, picker) {
 		$('#dt_inicio_afastamento').val(picker.startDate.format('YYYY-MM-DD'));
 		$('#dt_fim_afastamento').val(picker.endDate.format('YYYY-MM-DD'));
 	});
 	$("#id_ocorrencia").select2({
 		  language: "pt-BR",
-		  placeholder: "Selecione a Ocorrência",
-		  allowClear: true
+		  placeholder: "Digite para buscar a ocorrência"
 	});
 
 </script>
@@ -155,6 +160,7 @@ require_once "../../../engine/config.php";
 		<div class="form-group">
 		  <label for="sel_curso">Filtrar por Curso:</label>
 		  <select class="form-control" id="sel_curso">
+		  <option value=""> -- Selecione -- </option>
 		    <?php 
 		    $Curso = new Curso();
 		    $Curso = $Curso->ReadAll();
@@ -187,18 +193,18 @@ require_once "../../../engine/config.php";
 <section class="row"> <!-- Segunda Linha -->
 	<section class="col-md-3"> <!-- Selecionar Datas-->
 		<div class="form-group has-feedback has-feedback-right">
-			<input type="hidden" id="dt_inicio_afastamento"> <input
-				type="hidden" id="dt_fim_afastamento"> <label class="control-label">Escolha
-				o intervalo de datas</label> <i
-				class="form-control-feedback glyphicon glyphicon-calendar"></i> <input
-				id="escolhe_data" name="escolhe_data"
-				class="input-mini form-control" type="text"></input>
+			<input type="hidden" id="dt_inicio_afastamento">
+			<input type="hidden" id="dt_fim_afastamento">
+			<label class="control-label">Escolha o intervalo de datas</label>
+			<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
+			<input id="escolhe_data" name="escolhe_data" class="input-mini form-control" type="text"></input>
 		</div>
 	</section><!-- Selecionar Datas-->
 	<section class="col-md-9">  <!-- Selecionar Ocorrência-->
 	<div class="form-group">
 		<label for="id_ocorrencia">Selecionar a Ocorrência:</label>
-		<select class="form-control" id="id_ocorrencia" style="width: 100%">
+		<select class="form-control" id="id_ocorrencia">
+		<option value=""> -- Selecione -- </option>
 		<?php 
 		    $Ocorrencia = new Ocorrencia();
 		    $Ocorrencia = $Ocorrencia->ReadAll();

@@ -56,6 +56,7 @@ if (empty ( $_SESSION )) {
     <script type="text/javascript" src="../js/jquerymask.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
 	<script type="text/javascript" src="../locales/bootstrap-datepicker.pt-BR.min.js"></script>
+	<script type="text/javascript" src="../locales/pt-br.js"></script>
     <script type="text/javascript" src="../js/menu.js"></script>
     <script type="text/javascript" src="../js/login.js"></script>
 </body>
