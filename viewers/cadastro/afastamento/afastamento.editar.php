@@ -7,6 +7,8 @@
 <script type="text/javascript" src="../js/daterangepicker.js"></script>
 <script>
 	$(document).ready(function(e) {
+		$('#Excluir').hide();
+
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
 			//alert("breadhome");
@@ -77,12 +79,92 @@
 				 type: 'POST'
 			  		});	
 				}
-			
-			
-			//3 transferir os dados dos inputs para o arquivo q ira tratar
-			
-			//4 observar a resposta, e falar pra usuario o que aconteceu
 		});
+
+		$('#Excluir').click(function(e) {
+			e.preventDefault();
+			if(confirm("Alterações em um curso modificam todo o histórico relacionado a ele.\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
+			{
+				var	id_afastamento = $('#id_afastamento').val();
+				$.ajax({
+					url: '../engine/controllers/afastamento.php',
+					data: {
+					id_afastamento  : id_afastamento,
+					dt_inicio_afastamento : null,
+					dt_fim_afastamento : null,
+					observ_afastamento : null,
+					id_ocorrencia : null,
+					id_docente : null,
+					action: 'delete'
+				},
+				error: function() {
+					alert('Erro na conexão com o servidor. Tente novamente em alguns segundos.');
+				},
+				success: function(data) {
+					console.log(data);
+					if(data === 'true'){
+						alert('Afastamento excluído com sucesso');
+						$('#docenteloader').load('../viewers/cadastro/docentes/docentes.lista.todos.php');
+					}
+					else{
+						alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	
+					}
+					},
+					type: 'POST'
+				});
+			}	
+
+		});
+
+		(function(){
+			'use strict';
+			var $ = jQuery;
+			$.fn.extend({
+				filterTable: function(){
+					return this.each(function(){
+						$(this).on('keyup', function(e){
+							$('.filterTable_no_results').remove();
+							var $this = $(this), 
+								search = $this.val().toLowerCase(), 
+								target = $this.attr('data-filters'), 
+								$target = $(target), 
+								$rows = $target.find('tbody tr');
+								
+							if(search == '') {
+								$rows.show(); 
+							} else {
+								$rows.each(function(){
+									var $this = $(this);
+									$this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+								})
+								if($target.find('tbody tr:visible').size() === 0) {
+									var col_count = $target.find('tr').first().find('td').size();
+									var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">Nenhum afastamento encontrado</td></tr>')
+									$target.find('tbody').append(no_results);
+								}
+							}
+						});
+					});
+				}
+			});
+			$('[data-action="filter"]').filterTable();
+		})(jQuery);
+		
+		$(function(){
+			// attach table filter plugin to inputs
+			$('[data-action="filter"]').filterTable();
+			
+			$('.container').on('click', '.panel-heading span.filter', function(e){
+				var $this = $(this), 
+					$panel = $this.parents('.panel');
+				
+				$panel.find('.panel-body').slideToggle();
+				if($this.css('display') != 'none') {
+					$panel.find('.panel-body input').focus();
+				}
+			});
+			$('[data-toggle="tooltip"]').tooltip();
+		})
 	});
 </script>
 
@@ -130,6 +212,7 @@
 		$("#id_ocorrencia").prop('disabled', false);
 		$('#observ_afastamento').val($('#observ_af_'+id).attr('value'));
 		$('#id_afastamento').val($(this).attr('id'));
+		$('#Excluir').show();
 	});
 	
 
@@ -147,24 +230,28 @@ require_once "../../../engine/config.php";
 	<li class="active">Editar Afastamentos</li>
 </ol>
 
-<div class="containter well table-overflow">
+<div class="container col-md-12">
 <h2 class="text-center">Editar Afastamento</h2>
 <?php 
 $Docente = new Docente();
 $Docente = $Docente->Read( $_POST ['id'] );
 ?>
-<section class="row"> <!-- Menu de Salvar/Voltar -->
-	<section class="col-md-12 text-left">
-		<section class="btn-group" role="group">
+<section class="row"> <!-- Menu de Salvar/Excluir/Voltar -->
+	<section class="col-md-12 text-left" aria-label="...">
+		<div class="btn-group" role="group">
 			<button type="button" class="btn btn-info" id="Voltar">
 				<span class="glyphicon glyphicon-menu-left"></span>Voltar
 			</button>
-			<button type="button" class="btn btn-success" id="Salvar">
-				<span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
+			<button type="button" class="btn btn btn-danger" id="Excluir">
+				<span class="glyphicon glyphicon-remove"></span>Excluir
 			</button>
-		</section>
+			<button type="button" class="btn btn-success" id="Salvar">
+				<span class="glyphicon glyphicon-save"></span>Salvar
+			</button>
+		</div>
 	</section>
-</section> <!-- Menu de Salvar/Voltar -->
+</section> <!-- Menu de Salvar/Excluir/Voltar -->
+<br />
 <section class="row"><!-- Primeira Linha -->
 	<section class="col-md-12"> <!-- Selecionar Docente-->	
 		<div class="form-group">
@@ -222,7 +309,7 @@ $Docente = $Docente->Read( $_POST ['id'] );
 
 <section class="row">
 	<section class="col-md-12">
-		<div id="id_afastamento" hidden></div>
+		<div id="id_afastamento" hidden="true"></div>
 		<?php
 		$Afastamento = new Afastamento();
 		$Afastamento = $Afastamento->ReadAllDocente($Docente['id_docente']);
@@ -243,24 +330,28 @@ $Docente = $Docente->Read( $_POST ['id'] );
 							<span class="clickable filter Voltar" id="VoltarTabela"> <i
 								class="glyphicon glyphicon-menu-left"></i> Voltar
 							</span> <span class="clickable filter" id="Inserir"> <i
-								class="glyphicon glyphicon-plus"></i> Inserir Novo Afastamento
+								class="glyphicon glyphicon-plus"></i> Inserir Novo Afastamento </span>
+							<span class="clickable filter" data-toggle="tooltip"
+								title="Ativar Filtro" data-container="body"> <i
+								class="glyphicon glyphicon-filter"></i> Filtrar
+							</span>
 						</div>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body"> <!-- Corpo Tabela -->
 						<input type="text" class="form-control" id="dev-table-filter"
 							data-action="filter" data-filters="#dev-table"
-							placeholder="Filtrar Docentes" />
+							placeholder="Filtrar Ocorrências" />
 					</div>
 					<table class="table table-hover" id="dev-table">
-						<thead>
+						<thead><!-- Cabeçalho Tabela -->
 							<tr>
 								<th class="text-center">Código</th>
 								<th class="text-left">Tipo de Afastamento</th>
-								<th class="text-center">Data de Início</th>
+								<th class="text-center">Data Inicial</th>
 								<th class="text-center">Data Final</th>
 								<th class="text-center">Editar</th>
 							</tr>
-						</thead>
+						</thead><!-- Cabeçalho Tabela -->
 						<tbody>
 		<?php
 			foreach ( $Afastamento as $afastamentoRow ) {
@@ -288,7 +379,7 @@ $Docente = $Docente->Read( $_POST ['id'] );
 			}
 			?>
 		              </tbody>
-					</table>
+					</table> <!-- Tabela -->
 				</div>
 			</div>
 		</div>
@@ -296,7 +387,7 @@ $Docente = $Docente->Read( $_POST ['id'] );
 	}
 	?>
 	</section>
-</section>
+</section> <!-- Fecha Container -->
 
-</div> <!-- Fecha Well -->
+</div> <!-- Fecha Container -->
 

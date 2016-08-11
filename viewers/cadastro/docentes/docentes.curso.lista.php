@@ -20,7 +20,7 @@
 		
 		$('.EditarItem').click(function(e) {
 			e.preventDefault();
-			if(confirm("Alterações em um curso modificam todo o histórico relacionado a ele.\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
+			if(confirm("Tem certeza que deseja excluir esse afastamento?\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
 			{
 			var id= $(this).attr('id');
 			$('#docenteloader').load('cadastro/docentes/docentes.curso.editar.php',{ id: id});

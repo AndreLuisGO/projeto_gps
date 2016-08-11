@@ -17,7 +17,7 @@
 			//loader
 			var id= $(this).attr('id');
 			//alert(id);
-			$('#docenteloader').load('cadastro/afastamento/afastamento.listar.php',{ id: id});
+			$('#docenteloader').load('cadastro/afastamento/afastamento.editar.php',{ id: id});
 		});
 
 		$('.EditarItem').click(function(e) {
