@@ -227,7 +227,7 @@ class Afastamento {
 	
 	
 	
-		public function ReadAllReport($mes,$ano,$curso) {
+		public function ReadAllReport($mes,$ano,$id_docente) {
 		$sql = "
 		SELECT
 			t1.nome_docente AS nome_docente,
@@ -258,7 +258,7 @@ class Afastamento {
 					year(`t2`.`dt_fim_afastamento`) = $ano)
 				)
 			) AND
-			t1.id_docente = 	
+			t1.id_docente =$id_docente
 			
 			";
 	
@@ -279,7 +279,9 @@ class Afastamento {
 			}
 		}
 		$DB->close ();
+		var_dump($realData);
 		return $realData;
+		
 	}
 	
 	

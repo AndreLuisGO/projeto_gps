@@ -1,10 +1,11 @@
 
 <link rel="stylesheet" type="text/css" href="../css/select2.css" />
-<link rel="stylesheet" type="text/css" href="../css/daterangepicker.css" />
+<link rel="stylesheet" type="text/css" href="../css/boostrap-datepicker3.css" />
 <script type="text/javascript" src="../js/moment.min.js"></script>
 <script type="text/javascript" src="../js/jquery.cascade-select.js"></script>
 <script type="text/javascript" src="../js/select2.js"></script>
-<script type="text/javascript" src="../js/daterangepicker.js"></script>
+<script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="../js/bootstrap-datepicker.min.js"></script>
 <script>
 	$(document).ready(function(e) {
 		$('#bread_home').click(function(e) {
@@ -23,7 +24,7 @@
 		$('#Gerar').click(function(e) {
 			e.preventDefault();
 			var curso = $('#curso').val();
-			var mes = $('#mes').val();
+			var mes = $('#datepicker').val();
 			$('body').load('gerenciamento/relatorio/relatorio.php',{ mes: mes, curso: curso});			
 		});
 
@@ -46,46 +47,11 @@
 	    });
 	});
 
-/*	$('input[name="escolhe_data"]').daterangepicker({
-	    showDropdowns: true,
-	    autoApply: true,
-	    autoUpdateInput: true,
-	    locale: {
-	        "format": "MM/YYYY",
-	        "separator": " - ",
-	        "applyLabel": "Aplicar",
-	        "cancelLabel": "Cancelar",
-	        "fromLabel": "De",
-	        "toLabel": "Até",
-	        "customRangeLabel": "Outro",
-	        "weekLabel": "S",
-	        "monthNames": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
-	        "firstDay": 1
-	    },
-	    alwaysShowCalendars: true
-	},
-	function(start, end, label) {
-	  //console.log($('#escolhe_data').data());
-
-	});
-
-	$('#escolhe_data').on('apply.daterangepicker', function(ev, picker) {
-		$('#mes').val(picker.startDate.format('YYYY-MM'));
-	}); */
-	
-	$(function() {
-		$('.date-picker').datepicker( {
-			changeMonth: true,
-			changeYear: true,
-			showButtonPanel: true,
-			dateFormat: 'MM yy',
-			onClose: function(dateText, inst) { 
-				var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-				var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-				$(this).datepicker('setDate', new Date(year, month, 1));
-			}
-		});
-	});
+	$('#datepicker').datepicker({
+		format: "mm/yyyy",
+		startView: "year", 
+		minViewMode: "months"
+	})
 
 </script>
 
@@ -120,7 +86,7 @@ require_once "../../../engine/config.php";
 		<div class="form-group has-feedback has-feedback-right">
 			<label for="startdate" class="control-label">Escolha o mês:</label>
             <i class="form-control-feedback glyphicon glyphicon-calendar"></i>
-			<input id="mes" name="mes" class="date-picker input-mini form-control" ></input> 
+			<input id="datepicker" name="mes" class="date-picker input-mini form-control" ></input> 
 		</div>
 	</section><!-- Selecionar Datas-->
 	<section class="col-md-9">  <!-- Selecionar Curso-->

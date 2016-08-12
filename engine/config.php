@@ -9,6 +9,8 @@ require_once "classes/afastamento.php";
 require_once "classes/curso.php";
 require_once "classes/docente.php";
 require_once "classes/docente_exercicio.php";
+require_once "classes/classerelatorio.php";
+
 function ExibeData($data) {
 	$dataCerta = explode ( '-', $data );
 	$dataCerta = $dataCerta [2] . '/' . $dataCerta [1] . '/' . $dataCerta [0];
