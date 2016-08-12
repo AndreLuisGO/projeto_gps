@@ -9,12 +9,14 @@
 	$(document).ready(function(e) {
 		$('#Excluir').hide();
 		$('#DetalhesAfastamento').hide();
+		$('#AjudaEditarAfastamento').hide();
 
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
 			//alert("breadhome");
 			$('#afast_sistema').click();
     	});
+		bootbox.alert('<br /><div class="alert alert-danger"><strong>Atenção!</strong><p>Este sistema ainda não controla múltiplos afastamentos em uma mesma data.</p></div>');
 		
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
@@ -79,7 +81,7 @@
 
 		$('#Excluir').click(function(e) {
 			e.preventDefault();
-			if(confirm("Alterações em um curso modificam todo o histórico relacionado a ele.\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
+			if(confirm("Alterações em um Afastamento modificam todo o histórico relacionado a ele.\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
 			{
 				var	id_afastamento = $('#id_afastamento').val();
 				$.ajax({
@@ -168,6 +170,7 @@
 	        dataType: "text",
 	        success: function(res1){
 	            $("#LoaderAfastamento").empty();
+	            $("#AjudaEditarAfastamento").show();
 	            $("#LoaderAfastamento").append(res1);
 	        }
 	    });
@@ -285,8 +288,13 @@ require_once "../../../engine/config.php";
 	</section> <!-- Campo de Observação -->
 </section> <!-- Terceira Linha-->
 </div>
+	<div class="col-md-12" id="AjudaEditarAfastamento">
+		<div class="alert alert-info">Clique em <strong>Editar</strong> para selecionar um <strong>Afastamento</strong></div>
+	</div>
 <section class="row" id="LoaderAfastamento">
-
+	<div class="col-md-12">
+	<div class="alert alert-info">Selecione <strong>Curso</strong> e <strong>Docente</strong> para listar os Afastamentos</div>
+	</div>
 </section> <!-- Fecha Container -->
 
 </div> <!-- Fecha Container -->

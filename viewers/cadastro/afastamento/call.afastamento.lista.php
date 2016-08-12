@@ -19,6 +19,7 @@ $(".EditarItem").click(function (e){
 	$('#id_afastamento').val($(this).attr('id'));
 	$('#Excluir').show();
 	$("#DetalhesAfastamento").show();
+	$("#AjudaEditarAfastamento").hide();
 });
 
 (function(){
@@ -94,7 +95,7 @@ if (empty ( $Afastamento )) {
 	?>
 		    	<br>
 			<br>
-			<h4 class="well text-center">Nenhum dado encontrado.</h4>
+			<h4 class="well text-center" id="NenhumDado">Nenhum dado encontrado.</h4>
 		<?php
 		} else {
 			?>

@@ -9,6 +9,7 @@
 	$(document).ready(function(e) {
 		$('#dt_inicio_afastamento').val(moment().format('L'));
 		$('#dt_fim_afastamento').val(moment().format('L'));
+		bootbox.alert('<br /><div class="alert alert-danger"><strong>Atenção!</strong><p>Este sistema ainda não controla múltiplos afastamentos em uma mesma data.</p></div>');
 
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
@@ -159,7 +160,7 @@ require_once "../../../engine/config.php";
 <section class="row"><!-- Primeira Linha -->
 	<section class="col-md-4">  <!-- Selecionar Curso -->
 		<div class="form-group">
-		  <label for="sel_curso">Filtrar por Curso:</label>
+		  <label for="sel_curso">Selecionar Curso:</label>
 		  <select class="form-control" id="sel_curso">
 		  <option value=""> -- Selecione -- </option>
 		    <?php 
