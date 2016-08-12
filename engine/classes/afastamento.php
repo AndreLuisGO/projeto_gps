@@ -230,27 +230,36 @@ class Afastamento {
 		public function ReadAllReport($mes,$ano,$curso) {
 		$sql = "
 		SELECT
-			docente.nome_docente,
-			docente.siape_docente,
-			afastamento.dt_inicio_afastamento,
-			afastamento.dt_fim_afastamento,
-			afastamento.observ_afastamento,
-			ocorrencia.tipo_ocorrencia,
-			ocorrencia.codigo_ocorrencia
-		FROM
-			docente ,
-			afastamento ,
-			curso ,
-			ocorrencia ,
-			exercicio
-		WHERE
-			docente.id_docente = exercicio.id_docente AND
-			exercicio.id_curso = curso.id_curso AND
-			ocorrencia.id_ocorrencia = afastamento.id_ocorrencia AND
-			docente.id_docente = afastamento.id_docente AND
-			exercicio.id_curso = '$curso' AND
-			(MONTH(afastamento.dt_inicio_afastamento) = '$mes' OR MONTH(afastamento.dt_fim_afastamento) = '$mes') AND
-			(YEAR(afastamento.dt_inicio_afastamento) = '$ano' OR YEAR(afastamento.dt_fim_afastamento) = '$ano')
+			t1.nome_docente AS nome_docente,
+			t1.siape_docente AS siape_docente,
+			t2.dt_inicio_afastamento AS dt_inicio_afastamento,
+			t2.dt_fim_afastamento AS dt_fim_afastamento,
+			t2.observ_afastamento AS observ_afastamento,
+			t3.tipo_ocorrencia AS tipo_ocorrencia,
+			t3.codigo_ocorrencia AS codigo_ocorrencia
+		FROM 
+			((`docente` `t1` 
+		LEFT JOIN
+			`afastamento` `t2` on((`t1`.`id_docente` = `t2`.`id_docente`))) 
+		LEFT JOIN 
+			`ocorrencia` `t3` on((`t2`.`id_ocorrencia` = `t3`.`id_ocorrencia`)))
+		WHERE 
+			(
+				(
+					(month(`t2`.`dt_inicio_afastamento`) = $mes
+				) OR
+				(
+				month(`t2`.`dt_fim_afastamento`) = $mes)
+				) AND
+				(
+					(year(`t2`.`dt_inicio_afastamento`) = $ano
+				) OR
+				(
+					year(`t2`.`dt_fim_afastamento`) = $ano)
+				)
+			) AND
+			t1.id_docente = 	
+			
 			";
 	
 		$DB = new DB ();

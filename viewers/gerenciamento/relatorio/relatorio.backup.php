@@ -91,9 +91,9 @@ function em($word) {
 
 
 
-if(!empty($_POST['mes'])){            //a condição deve ser !empty
-	$f_mes=$_POST['mes'];
-	$f_curso=$_POST['curso'];
+if(empty($_POST['mes'])){            //a condição deve ser !empty
+	//$f_mes=$_POST['mes'];
+	//$f_curso=$_POST['curso'];
 	
 
 $pdf = new FPDF();
@@ -160,7 +160,7 @@ $pdf->Cell(60,8,$str_obs, 1,0,'C');
 
 
 
-$pdf->Cell(190,10,$f_mes, 0,0,'C');
+//$pdf->Cell(190,10,$f_mes, 0,0,'C');
 
 
 

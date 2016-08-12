@@ -151,21 +151,6 @@ require_once "../../../engine/config.php";
 			<label for="startdate" class="control-label">Escolha o mês:</label>
             <i class="form-control-feedback glyphicon glyphicon-calendar"></i>
 			<input id="startDate" name="startDate" class="date-picker input-mini form-control" ></input> 
-<!--            <select class="form-control" id="sel_data">
-            <option value""> -- Selecione -- </option>
-            <option value="1">Janeiro</option>
-            <option value="2">Fevereiro</option>
-            <option value="3">Março</option>
-            <option value="4">Abril</option>
-            <option value="5">Maio</option>
-            <option value="6">Junho</option>
-            <option value="7">Julho</option>
-            <option value="8">Agosto</option>
-            <option value="9">Setembro</option>
-            <option value="10">Outubro</option>
-            <option value="11">Novembro</option>
-            <option value="12">Dezembro</option>
-            </select>-->
 		</div>
 	</section><!-- Selecionar Datas-->
 	<section class="col-md-9">  <!-- Selecionar Curso-->
