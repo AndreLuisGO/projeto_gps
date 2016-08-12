@@ -43,6 +43,17 @@
 			e.preventDefault();
 			$('#docenteloader').load('cadastro/docentes/docentes.curso.lista.php');
 		});
+
+		$('#GerenciarAfastamentos').click(function(e) {
+			e.preventDefault();
+			$('#docenteloader').load('cadastro/afastamento/afastamento.listar.php');
+		});
+
+		$('#InserirAfastamento').click(function(e) {
+			e.preventDefault();
+			$('#docenteloader').load('cadastro/afastamento/afastamento.cadastrar.embutido.php');
+		});
+		
 		
 		//Collapse Control
 
@@ -149,6 +160,17 @@ $Data = getdate ();
 			<button class="btn btn-success col-md-12" id="CadastrarDocente"
 				type="button">Cadastrar Novo Docente</button>
 		</section>
+		
+		<section class="col-md-12">
+			<button class="btn btn-warning col-md-12" id="GerenciarAfastamentos"
+				type="button">Gerenciar Afastamentos</button>
+		</section>
+		
+		<section class="col-md-12">
+			<button class="btn btn-warning col-md-12" id="InserirAfastamento"
+				type="button">Inserir Afastamentos</button>
+		</section>
+		
 		<div id="sidebar-pad-scroll"></div>
 	</section>
 	<section class="col-md-1">

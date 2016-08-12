@@ -1,3 +1,4 @@
+<option> Selecione um Docente...</option>
 <?php
 require_once('../../../engine/config.php');
 $SelCurso = $_REQUEST ['selcurso'];

@@ -211,3 +211,15 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 	padding-bottom: 120vh;
 }
 /* Sidebar Style End */
+.table-overflow {
+    max-width: 180vh;
+    max-height: 100vh;
+    overflow: scroll;
+    overflow-x: auto;
+    overflow-y: inherit;
+    padding-bottom: 7vh;
+}
+
+div.table-overflow {
+	margin: 0 auto;
+}

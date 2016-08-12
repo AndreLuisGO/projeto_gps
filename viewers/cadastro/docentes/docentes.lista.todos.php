@@ -12,13 +12,6 @@
 			$('#loader').load('cadastro/docentes/docentes.lista.php');
     	});
 
-		$('.ListarAfastamentos').click(function(e) {
-			e.preventDefault();
-			//loader
-			var id= $(this).attr('id');
-			//alert(id);
-			$('#docenteloader').load('cadastro/afastamento/afastamento.editar.php',{ id: id});
-		});
 
 		$('.EditarItem').click(function(e) {
 			e.preventDefault();
@@ -141,7 +134,6 @@ if (empty ( $Item )) {
 						<th class="text-center">Siape</th>
 						<th class="text-center">E-Mail</th>
 						<th class="text-center">Efetivo</th>
-						<th class="text-center">Afastamentos</th>
 						<th class="text-center">Editar Dados</th>
 						<th class="text-center">Gerenciar Exerícios</th>
 					</tr>
@@ -165,9 +157,6 @@ if (empty ( $Item )) {
 		}
 		?>
                     </td>
-                    <td class="text-center ListarAfastamentos"
-						id="<?php echo $itemRow['id_docente']; ?>"><span
-						class="glyphicon glyphicon-calendar" aria-hidden="true"> </span></td>
 					<td class="text-center EditarItem"
 						id="<?php echo $itemRow['id_docente']; ?>"><span
 						class="glyphicon glyphicon-edit" aria-hidden="true"> </span></td>

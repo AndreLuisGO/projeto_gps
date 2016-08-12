@@ -19,7 +19,7 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#afast_sistema').click();
+			 $('#loader').load('cadastro/docentes/docentes.lista.php');
     	});
 		
 		$('#Salvar').click(function(e) {
@@ -53,7 +53,7 @@
 					  console.log(data);
 					  if(data === 'true'){
 						  alert('Afastamento inserido com sucesso');
-						  $('#afast_sistema').click();
+						  $('#loader').load('cadastro/docentes/docentes.lista.php');
 					  }
 					  else{
 						  alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	
@@ -139,7 +139,7 @@ require_once "../../../engine/config.php";
 
 <br />
 
-<div class="containter well table-overflow">
+<div class="containter col-md-12">
 <h1 class="text-center">Inserir Afastamento</h1>
 <br />
 <br />

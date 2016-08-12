@@ -7,8 +7,8 @@
 <script type="text/javascript" src="../js/daterangepicker.js"></script>
 <script>
 	$(document).ready(function(e) {
-		$('#dt_inicio_afastamento').val(moment().format('L'));
-		$('#dt_fim_afastamento').val(moment().format('L'));
+		$('#Excluir').hide();
+		$('#DetalhesAfastamento').hide();
 
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
@@ -19,16 +19,28 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#afast_sistema').click();
+			$('#loader').load('../viewers/cadastro/docentes/docentes.lista.php');
+    	});
+    	
+		$('.Voltar').click(function(e) {
+			e.preventDefault();
+			//alert("Voltar");
+			$('#loader').load('../viewers/cadastro/ocorrencias/ocorrencias.lista.php');
     	});
 		
 		$('#Salvar').click(function(e) {
 			e.preventDefault();
+			var	id_afastamento = $('#id_afastamento').val();
 			var	dt_inicio_afastamento = $('#dt_inicio_afastamento').val();
 			var	dt_fim_afastamento = $('#dt_fim_afastamento').val();
 			var	observ_afastamento = $('#observ_afastamento').val();
 			var id_ocorrencia = $('#id_ocorrencia').val();
 			var	id_docente = $('#id_docente').val();
+			//console.log($('#dt_inicio_afastamento').val());
+			//console.log($('#dt_fim_afastamento').val());
+			//console.log($('#observ_afastamento').val());
+			//console.log($('#id_ocorrencia').val());
+			//console.log($('#id_docente').val());
 
 			//2 validar os inputs
 			if ( dt_inicio_afastamento === "" || dt_fim_afastamento === "" || id_ocorrencia === ""  || id_docente === ""){
@@ -38,13 +50,13 @@
 			  $.ajax({
 				 url: '../engine/controllers/afastamento.php',
 				 data: {
-					id_afastamento  : null,
+					id_afastamento  : id_afastamento,
 					dt_inicio_afastamento : dt_inicio_afastamento,
 					dt_fim_afastamento : dt_fim_afastamento,
 					observ_afastamento : observ_afastamento,
 					id_ocorrencia : id_ocorrencia,
 					id_docente : id_docente,
-					action: 'create'
+					action: 'update'
 				 },
 				 error: function() {
 					  alert('Erro na conexão com o servidor. Tente novamente em alguns segundos.');
@@ -52,8 +64,8 @@
 				 success: function(data) {
 					  console.log(data);
 					  if(data === 'true'){
-						  alert('Afastamento inserido com sucesso');
-						  $('#afast_sistema').click();
+						  alert('Afastamento alterado com sucesso');
+						  $('#docenteloader').load('../viewers/cadastro/afastamento/afastamento.listar.php');
 					  }
 					  else{
 						  alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	
@@ -63,19 +75,78 @@
 				 type: 'POST'
 			  		});	
 				}
-			
-			
-			//3 transferir os dados dos inputs para o arquivo q ira tratar
-			
-			//4 observar a resposta, e falar pra usuario o que aconteceu
 		});
 
-		
+		$('#Excluir').click(function(e) {
+			e.preventDefault();
+			if(confirm("Alterações em um curso modificam todo o histórico relacionado a ele.\nNão é recomendado alterações a não ser que você tenha certeza de que são necessárias.\nDeseja continuar?"))
+			{
+				var	id_afastamento = $('#id_afastamento').val();
+				$.ajax({
+					url: '../engine/controllers/afastamento.php',
+					data: {
+					id_afastamento  : id_afastamento,
+					dt_inicio_afastamento : null,
+					dt_fim_afastamento : null,
+					observ_afastamento : null,
+					id_ocorrencia : null,
+					id_docente : null,
+					action: 'delete'
+				},
+				error: function() {
+					alert('Erro na conexão com o servidor. Tente novamente em alguns segundos.');
+				},
+				success: function(data) {
+					console.log(data);
+					if(data === 'true'){
+						alert('Afastamento excluído com sucesso');
+						$('#docenteloader').load('../viewers/cadastro/afastamento/afastamento.listar.php');
+					}
+					else{
+						alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	
+					}
+					},
+					type: 'POST'
+				});
+			}	
+
+		});
+
 	});
 </script>
 
 <script type="text/javascript">
-	 	
+	$('#escolhe_data').daterangepicker({
+	    "showDropdowns": false,
+	    "autoApply": true,
+	    "locale": {
+	        "format": "DD/MM/YYYY",
+	        "separator": " - ",
+	        "applyLabel": "Aplicar",
+	        "cancelLabel": "Cancelar",
+	        "fromLabel": "De",
+	        "toLabel": "Até",
+	        "customRangeLabel": true,
+	        "weekLabel": "S",
+	        "daysOfWeek": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+	        "monthNames": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
+	        "firstDay": 1
+	    },
+	    "alwaysShowCalendars": true
+	},
+	function(start, end, label) {
+	  //console.log($('#escolhe_data').data());
+	});
+	$('#escolhe_data').on('apply.daterangepicker', function(ev, picker) {
+		$('#dt_inicio_afastamento').val(picker.startDate.format('YYYY-MM-DD'));
+		$('#dt_fim_afastamento').val(picker.endDate.format('YYYY-MM-DD'));
+	});
+	$("#id_ocorrencia").select2({
+		language: "pt-BR",
+		placeholder: "Selecione a ocorrência para editar"
+	});
+
+	
 	$("#sel_curso").change(function(){
 	    var selcurso = $(this).val();
 	    $.ajax({
@@ -89,40 +160,19 @@
 	    });
 	});
 
-
-	$('input[name="escolhe_data"]').daterangepicker({
-	    showDropdowns: true,
-	    autoApply: true,
-	    autoUpdateInput: true,
-	    locale: {
-	        "format": "DD/MM/YYYY",
-	        "separator": " - ",
-	        "applyLabel": "Aplicar",
-	        "cancelLabel": "Cancelar",
-	        "fromLabel": "De",
-	        "toLabel": "Até",
-	        "customRangeLabel": "Outro",
-	        "weekLabel": "S",
-	        "daysOfWeek": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
-	        "monthNames": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
-	        "firstDay": 1
-	    },
-	    alwaysShowCalendars: true
-	},
-	function(start, end, label) {
-	  //console.log($('#escolhe_data').data());
-
+	$("#id_docente").change(function(){
+	    var iddocente = $(this).val();
+	    $.ajax({
+	        type: "POST",
+	        url: "cadastro/afastamento/call.afastamento.lista.php?iddocente="+iddocente,
+	        dataType: "text",
+	        success: function(res1){
+	            $("#LoaderAfastamento").empty();
+	            $("#LoaderAfastamento").append(res1);
+	        }
+	    });
 	});
-
-	$('#escolhe_data').on('apply.daterangepicker', function(ev, picker) {
-		$('#dt_inicio_afastamento').val(picker.startDate.format('YYYY-MM-DD'));
-		$('#dt_fim_afastamento').val(picker.endDate.format('YYYY-MM-DD'));
-	});
-	$("#id_ocorrencia").select2({
-		  language: "pt-BR",
-		  placeholder: "Digite para buscar a ocorrência"
-	});
-
+	
 </script>
 
 <?php
@@ -134,28 +184,28 @@ require_once "../../../engine/config.php";
 	<li><a href="#" id="bread_home">Home</a></li>
 	<li><a href="#">Gerenciar Afastamentos</a></li>
 	<li><a href="#">Lista de Dados</a></li>
-	<li class="active">Inserir Afastamentos</li>
+	<li class="active">Editar Afastamentos</li>
 </ol>
 
-<br />
-
-<div class="containter well table-overflow">
-<h1 class="text-center">Inserir Afastamento</h1>
-<br />
-<br />
-<section class="row"> <!-- Menu de Salvar/Voltar -->
-	<section class="col-md-12 text-left">
-		<section class="btn-group" role="group">
+<div class="container col-md-12">
+<h2 class="text-center">Editar Afastamento</h2>
+<section class="row"> <!-- Menu de Salvar/Excluir/Voltar -->
+	<section class="col-md-12 text-left" aria-label="...">
+		<div class="btn-group" role="group">
 			<button type="button" class="btn btn-info" id="Voltar">
 				<span class="glyphicon glyphicon-menu-left"></span>Voltar
 			</button>
-			<button type="button" class="btn btn-success" id="Salvar">
-				<span class="glyphicon glyphicon-save" aria-hidden="true"></span>Salvar
+			<button type="button" class="btn btn btn-danger" id="Excluir">
+				<span class="glyphicon glyphicon-remove"></span>Excluir
 			</button>
-		</section>
+			<button type="button" class="btn btn-success" id="Salvar">
+				<span class="glyphicon glyphicon-save"></span>Salvar
+			</button>
+		</div>
 	</section>
-</section> <!-- Menu de Salvar/Voltar -->
+</section> <!-- Menu de Salvar/Excluir/Voltar -->
 <br />
+
 <section class="row"><!-- Primeira Linha -->
 	<section class="col-md-4">  <!-- Selecionar Curso -->
 		<div class="form-group">
@@ -189,8 +239,8 @@ require_once "../../../engine/config.php";
 		  </select>
 		</div>
 	</section><!-- Selecionar Docente-->	
-</section> <!-- Primeira Linha -->
-
+</section> <!-- Primeira Linha -->	
+<div class="container col-md-12" id="DetalhesAfastamento">
 <section class="row"> <!-- Segunda Linha -->
 	<section class="col-md-3"> <!-- Selecionar Datas-->
 		<div class="form-group has-feedback has-feedback-right">
@@ -198,14 +248,14 @@ require_once "../../../engine/config.php";
 			<input type="hidden" id="dt_fim_afastamento">
 			<label class="control-label">Escolha o intervalo de datas</label>
 			<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
-			<input id="escolhe_data" name="escolhe_data" class="input-mini form-control" type="text"></input>
+			<input id="escolhe_data" name="escolhe_data" class="input-mini form-control" type="text" disabled="disabled"></input>
 		</div>
 	</section><!-- Selecionar Datas-->
 	<section class="col-md-9">  <!-- Selecionar Ocorrência-->
-	<div class="form-group">
-		<label for="id_ocorrencia">Selecionar a Ocorrência:</label>
-		<select class="form-control" id="id_ocorrencia" style="width: 100%">
-		<option value=""> -- Selecione -- </option>
+	<div class="form-group idocorr">
+		<label for="id_ocorrencia">Ocorrência:</label>
+		<select class="form-control" id="id_ocorrencia" style="width: 100%" disabled="disabled">
+		<option></option>
 		<?php 
 		    $Ocorrencia = new Ocorrencia();
 		    $Ocorrencia = $Ocorrencia->ReadAll();
@@ -228,12 +278,16 @@ require_once "../../../engine/config.php";
 	</div>
 	</section> <!-- Selecionar Ocorrência-->
 </section> <!-- Segunda Linha-->
-
 <section class="row"> <!-- Terceira Linha-->
 	<section class="col-md-12"> <!-- Campo de Observação -->
 		<label for="observ_afastamento">Observação:</label>
 		<textarea class="form-control" rows="2" id="observ_afastamento"></textarea>
 	</section> <!-- Campo de Observação -->
 </section> <!-- Terceira Linha-->
-</div> <!-- Fecha Well -->
+</div>
+<section class="row" id="LoaderAfastamento">
+
+</section> <!-- Fecha Container -->
+
+</div> <!-- Fecha Container -->
 
