@@ -18,5 +18,10 @@ $(document).ready(function(e) {
 		//alert("sistema.js/ocorrencias");
     });
 	
+	$('#gerar_relatorios').click(function(e) {
+		e.preventDefault();
+		$('#loader').load('../viewers/gerenciamento/relatorio/relatorio.lista.php');
+		//alert("sistema.js/ocorrencias");
+    });
 	
 });

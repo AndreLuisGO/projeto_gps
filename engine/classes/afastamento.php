@@ -225,6 +225,55 @@ class Afastamento {
 		return $realData;
 	}
 	
+	
+	
+		public function ReadAllReport($mes,$ano,$curso) {
+		$sql = "
+		SELECT
+			docente.nome_docente,
+			docente.siape_docente,
+			afastamento.dt_inicio_afastamento,
+			afastamento.dt_fim_afastamento,
+			afastamento.observ_afastamento,
+			ocorrencia.tipo_ocorrencia,
+			ocorrencia.codigo_ocorrencia
+		FROM
+			docente ,
+			afastamento ,
+			curso ,
+			ocorrencia ,
+			exercicio
+		WHERE
+			docente.id_docente = exercicio.id_docente AND
+			exercicio.id_curso = curso.id_curso AND
+			ocorrencia.id_ocorrencia = afastamento.id_ocorrencia AND
+			docente.id_docente = afastamento.id_docente AND
+			exercicio.id_curso = '$curso' AND
+			(MONTH(afastamento.dt_inicio_afastamento) = '$mes' OR MONTH(afastamento.dt_fim_afastamento) = '$mes') AND
+			(YEAR(afastamento.dt_inicio_afastamento) = '$ano' OR YEAR(afastamento.dt_fim_afastamento) = '$ano')
+			";
+	
+		$DB = new DB ();
+		$DB->open ();
+		$Data = $DB->fetchData ( $sql );
+		$realData;
+		if ($Data == NULL) {
+			$realData = $Data;
+		} else {
+				
+			foreach ( $Data as $itemData ) {
+				if (is_bool ( $itemData ))
+					continue;
+					else {
+						$realData [] = $itemData;
+					}
+			}
+		}
+		$DB->close ();
+		return $realData;
+	}
+	
+	
 	/*
 	 * --------------------------------------------------
 	 * Viewer SPecific methods -- end
