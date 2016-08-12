@@ -18,13 +18,13 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#docenteloader').load('../viewers/cadastro/docentes/docentes.lista.todos.php');
+			$('#docenteloader').load('../viewers/cadastro/afastamento/afastamento.listar.php');
     	});
     	
 		$('.Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#docenteloader').load('../viewers/cadastro/docentes/docentes.lista.todos.php');
+			$('#docenteloader').load('../viewers/cadastro/afastamento/afastamento.listar.php');
     	});
 		$('#Inserir').click(function(e) {
 			e.preventDefault();
@@ -60,7 +60,7 @@
 					observ_afastamento : observ_afastamento,
 					id_ocorrencia : id_ocorrencia,
 					id_docente : id_docente,
-					action: 'update'
+					action: 'create'
 				 },
 				 error: function() {
 					  alert('Erro na conexão com o servidor. Tente novamente em alguns segundos.');
@@ -69,7 +69,7 @@
 					  console.log(data);
 					  if(data === 'true'){
 						  alert('Afastamento alterado com sucesso');
-						  $('#docenteloader').load('../viewers/cadastro/docentes/docentes.lista.todos.php');
+						  $('#docenteloader').load('../viewers/cadastro/afastamento/afastamento.listar.php');
 					  }
 					  else{
 						  alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	
@@ -104,7 +104,7 @@
 					console.log(data);
 					if(data === 'true'){
 						alert('Afastamento excluído com sucesso');
-						$('#docenteloader').load('../viewers/cadastro/docentes/docentes.lista.todos.php');
+						$('#docenteloader').load('../viewers/cadastro/afastamento/afastamento.listar.php');
 					}
 					else{
 						alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	
@@ -115,7 +115,6 @@
 			}	
 
 		});
-
 		(function(){
 			'use strict';
 			var $ = jQuery;
@@ -149,7 +148,7 @@
 			});
 			$('[data-action="filter"]').filterTable();
 		})(jQuery);
-		
+
 		$(function(){
 			// attach table filter plugin to inputs
 			$('[data-action="filter"]').filterTable();
@@ -164,7 +163,7 @@
 				}
 			});
 			$('[data-toggle="tooltip"]').tooltip();
-		})
+		});
 	});
 </script>
 
@@ -199,21 +198,7 @@
 		placeholder: "Selecione a ocorrência para editar"
 	});
 
-	$(".EditarItem").click(function (e){
-		e.preventDefault();
-		var id = $(this).attr('id');
-		$('#escolhe_data').data('daterangepicker').setStartDate($('#dt_ini_'+id).attr('value'));
-		$('#escolhe_data').data('daterangepicker').setEndDate($('#dt_fim_'+id).attr('value'));
-		$('#dt_inicio_afastamento').val($('#escolhe_data').data('daterangepicker').startDate.format('YYYY-MM-DD'));
-		$('#dt_fim_afastamento').val($('#escolhe_data').data('daterangepicker').endDate.format('YYYY-MM-DD'));
-		$("#escolhe_data").prop('disabled', false);
-		$('#id_ocorrencia').val($('#id_ocorr_'+id).attr('value'));
-		$('#id_ocorrencia').trigger('change.select2');
-		$("#id_ocorrencia").prop('disabled', false);
-		$('#observ_afastamento').val($('#observ_af_'+id).attr('value'));
-		$('#id_afastamento').val($(this).attr('id'));
-		$('#Excluir').show();
-	});
+
 	
 
 </script>
@@ -231,7 +216,8 @@ require_once "../../../engine/config.php";
 </ol>
 
 <div class="container col-md-12">
-<h2 class="text-center">Editar Afastamento</h2>
+<h2 class="text-center">Novo Afastamento para Docente</h2>
+
 <?php 
 $Docente = new Docente();
 $Docente = $Docente->Read( $_POST ['id'] );
@@ -270,13 +256,13 @@ $Docente = $Docente->Read( $_POST ['id'] );
 			<input type="hidden" id="dt_fim_afastamento">
 			<label class="control-label">Escolha o intervalo de datas</label>
 			<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
-			<input id="escolhe_data" name="escolhe_data" class="input-mini form-control" type="text" disabled="disabled"></input>
+			<input id="escolhe_data" name="escolhe_data" class="input-mini form-control" type="text"></input>
 		</div>
 	</section><!-- Selecionar Datas-->
 	<section class="col-md-9">  <!-- Selecionar Ocorrência-->
 	<div class="form-group idocorr">
 		<label for="id_ocorrencia">Ocorrência:</label>
-		<select class="form-control" id="id_ocorrencia" style="width: 100%" disabled="disabled">
+		<select class="form-control" id="id_ocorrencia" style="width: 100%">
 		<option></option>
 		<?php 
 		    $Ocorrencia = new Ocorrencia();
@@ -325,12 +311,11 @@ $Docente = $Docente->Read( $_POST ['id'] );
 		  <div class="filterrow">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title">Afastamentos</h3>
+						<h3 class="panel-title">Últimos Afastamentos Registrados</h3>
 						<div class="pull-right">
 							<span class="clickable filter Voltar" id="VoltarTabela"> <i
 								class="glyphicon glyphicon-menu-left"></i> Voltar
-							</span> <span class="clickable filter" id="Inserir"> <i
-								class="glyphicon glyphicon-plus"></i> Inserir Novo Afastamento </span>
+							</span>
 							<span class="clickable filter" data-toggle="tooltip"
 								title="Ativar Filtro" data-container="body"> <i
 								class="glyphicon glyphicon-filter"></i> Filtrar
@@ -349,7 +334,7 @@ $Docente = $Docente->Read( $_POST ['id'] );
 								<th class="text-left">Tipo de Afastamento</th>
 								<th class="text-center">Data Inicial</th>
 								<th class="text-center">Data Final</th>
-								<th class="text-center">Editar</th>
+								<th class="text-center">Observação</th>
 							</tr>
 						</thead><!-- Cabeçalho Tabela -->
 						<tbody>
@@ -371,8 +356,8 @@ $Docente = $Docente->Read( $_POST ['id'] );
 								<td class="text-center" id="<?php echo "dt_fim_" . $afastamentoRow['id_afastamento']; ?>"
 									value="<?php echo ExibeData($afastamentoRow['dt_fim_afastamento']); ?>">
 									<?php echo ExibeData($afastamentoRow['dt_fim_afastamento']); ?></td>
-								<td class="text-center EditarItem" id="<?php echo $afastamentoRow['id_afastamento']; ?>">
-									<span class="glyphicon glyphicon-edit" aria-hidden="true"> </span>
+								<td class="text-left EditarItem" id="<?php echo $afastamentoRow['id_afastamento']; ?>">
+									<?php echo $afastamentoRow['observ_afastamento']; ?>
 								</td>
 							</tr>
 		<?php

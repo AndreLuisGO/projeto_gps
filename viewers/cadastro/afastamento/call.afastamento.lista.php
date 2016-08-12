@@ -79,8 +79,9 @@ $(function(){
 
 	$('#Inserir').click(function(e) {
 		e.preventDefault();
-		//alert("Voltar");
-		$('#docenteloader').load('../viewers/cadastro/afastamento/afastamento.cadastrar.embutido.php');
+			var id= $('#id_docente').val();
+			//alert(id);
+			$('#docenteloader').load('cadastro/afastamento/afastamento.editar.php',{ id: id});
 	});
 })
 </script>
@@ -107,7 +108,7 @@ if (empty ( $Afastamento )) {
 							<span class="clickable filter Voltar" id="VoltarTabela"> <i
 								class="glyphicon glyphicon-menu-left"></i> Voltar
 							</span> <span class="clickable filter" id="Inserir"> <i
-								class="glyphicon glyphicon-plus"></i> Inserir Novo Afastamento </span>
+								class="glyphicon glyphicon-plus"></i> Inserir Afastamento para o Docente</span>
 							<span class="clickable filter" data-toggle="tooltip"
 								title="Ativar Filtro" data-container="body"> <i
 								class="glyphicon glyphicon-filter"></i> Filtrar
