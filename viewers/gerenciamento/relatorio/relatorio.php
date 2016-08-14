@@ -49,7 +49,6 @@ function getlistday($inicio, $fim)
 		$result .= $i."-";
 	}
 	$offset = strlen($result)-1;
-	echo $result = substr($result,0,$offset);
 	return($result);
 }
 
