@@ -7,12 +7,14 @@ $(document).ready(function(e) {
 	$('#gerenciar_admin').click(function(e) {
 		e.preventDefault();
 		//alert("admin");
+		$('#printloader').empty();
 		$('#loader').load('../viewers/gerenciamento/administrador/administrador.lista.php');
     });	
 	
 	$('#afast_sistema').click(function(e) {
 		e.preventDefault();
     	//alert("home");
+		$('#printloader').empty();
 		$('#loader').load('../viewers/gerenciamento/sistema.buttons.php');
     });
 	
