@@ -5,11 +5,14 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//loader
-			$('#loader').load('viewers/cadastro/administrador.lista.php');
+			$('#loader').load('viewers/gerenciamento/administrador/administrador.lista.php');
 		});
 		
 		$('#Salvar').click(function(e) {
 			e.preventDefault();
+
+		
+			
 			
 			//1 instansciar e recuperar valores dos inputs
 			var login_administrador = $('#login_administrador').val();
@@ -35,12 +38,9 @@
 					$.ajax({
 					   url: 'engine/controllers/treinador.php',
 					   data: {
-							nome_treinador : nome_treinador,
-							email_treinador : email_treinador,
-							senha_treinador : senha_treinador,
-							dtcadastro_treinador : dtcadastro_treinador,
-							telefonefixo_treinador : telefonefixo_treinador,
-							celular_treinador : celular_treinador,
+							login_administrador : login_administrador,
+							nome_administrador : nome_administrador,
+							senha_administrador : senha_administrador,
  							action: 'create'
 					   },
 					   error: function() {
@@ -77,7 +77,7 @@
 </script>
 
 <?php
-require_once "../../engine/config.php";
+require_once "../../../engine/config.php";
 ?>
 
 

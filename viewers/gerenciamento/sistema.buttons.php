@@ -27,4 +27,4 @@ require_once "../../engine/config.php";
 	</div>
 </div>
 
-<script src="../../js/gerenciamento/sistema.js"></script>
+<script src="../js/gerenciamento/sistema.js"></script>
