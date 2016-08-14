@@ -290,7 +290,6 @@ class Afastamento {
 			}
 		}
 		$DB->close ();
-		var_dump($realData);
 		return $realData;
 		
 	}

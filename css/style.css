@@ -239,3 +239,62 @@ div.table-overflow {
 .lessmargintop {
 	margin-top: 0;
 	}
+	
+.tabspaceleft {
+	margin-left:2vw;
+	}
+
+.tabspaceright {
+	float:left;
+	width:40vw;
+	}
+
+.tabspacerightbottom {
+	float:left;
+	width:25vw;
+	}
+
+.simpleborder {
+	border: 1px solid black;
+    border-collapse: collapse;
+	}
+.docenteheader {
+	margin-bottom:-3vh;
+	}
+	
+.rel_ocorrencia {
+		width:8vw;
+	}
+
+.rel_descricao {
+		width:24vw;
+	}
+	
+.rel_quantidade {
+		width:8vw;
+	}
+	
+.rel_diasdomes {
+		width:25vw;
+	}
+
+.rel_endline {
+	border: 2px solid black;
+    border-collapse: collapse;
+	width:65vw;
+	margin-top: 8vh;
+	margin-bottom: 2vh;	
+	}
+
+.printdate {
+	float:left;
+	}
+.signatureline {
+	border-top:1px solid black;
+    border-collapse: collapse;
+	}
+.signaturemargin{
+	padding-top:7vh;
+	border: 1px solid black;
+    border-collapse: collapse;
+	}
