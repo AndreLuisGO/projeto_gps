@@ -9,7 +9,7 @@
 	$(document).ready(function(e) {
 		$('#dt_inicio_afastamento').val(moment().format('L'));
 		$('#dt_fim_afastamento').val(moment().format('L'));
-		bootbox.alert('<br /><div class="alert alert-danger"><strong>Atenção!</strong><p>Este sistema ainda não controla múltiplos afastamentos em uma mesma data.</p></div>');
+		/*bootbox.alert('<br /><div class="alert alert-danger"><strong>Atenção!</strong><p>Este sistema ainda não controla múltiplos afastamentos em uma mesma data.</p></div>');*/
 
 		$('#bread_home').click(function(e) {
 			e.preventDefault();

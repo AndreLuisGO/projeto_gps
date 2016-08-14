@@ -25,7 +25,7 @@
 			e.preventDefault();
 			var curso = $('#curso').val();
 			var mes = $('#datepicker').val();
-			$('body').load('gerenciamento/relatorio/relatorio.php',{ mes: mes, curso: curso});			
+			$('body').load('gerenciamento/relatorio/relatorio.php',{mes: mes, curso: curso});			
 		});
 
 		

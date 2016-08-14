@@ -227,3 +227,15 @@ div.table-overflow {
 .ui-datepicker-calendar {
         display: none;
         }
+		
+/* Print Page Styles */
+
+.ufvjmlogo {
+	padding-left:8vw;
+	}
+.lessmarginbot {
+	margin-bottom: 0;
+	}
+.lessmargintop {
+	margin-top: 0;
+	}

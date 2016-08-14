@@ -14,9 +14,9 @@ if (empty ( $_SESSION )) {
 <head>
     <meta charset="utf-8">
     <title>AFAST ICT</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
-	<link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/bootstrap-datepicker3.css">
+    <link rel="stylesheet" media="all" href="../css/bootstrap.css">
+	<link rel="stylesheet" media="all" href="../css/style.css">
+    <link rel="stylesheet" media="all" href="../css/bootstrap-datepicker3.css">
 </head>
 
 <body>

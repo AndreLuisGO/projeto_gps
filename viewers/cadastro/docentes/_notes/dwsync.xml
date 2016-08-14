@@ -8,5 +8,7 @@
 <file name="docentes.exercicio.cadastrar.php" server="C:/xampp/htdocs" local="131152333123439481" remote="131152333120000000" Dst="1" />
 <file name="docentes.exercicios.php" server="C:/xampp/htdocs" local="131152359105176518" remote="131152359100000000" Dst="1" />
 <file name="docentes.lista.php" server="C:/xampp/htdocs" local="131153268645165939" remote="131153268640000000" Dst="1" />
-<file name="docentes.lista.todos.php" server="C:/xampp/htdocs" local="131152366588118425" remote="131152366580000000" Dst="1" />
+<file name="docentes.lista.todos.php" server="C:/xampp/htdocs" local="131154945458740620" remote="131154945450000000" Dst="1" />
+<file name="docentes.lista.php" server="C:/xampp/htdocs/" local="131154945458500222" remote="131154945450000000" Dst="1" />
+<file name="docentes.cadastrar.php" server="C:/xampp/htdocs/" local="131152332833490372" remote="131152332830000000" Dst="1" />
 </dwsync>

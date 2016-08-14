@@ -16,7 +16,7 @@
 			//alert("breadhome");
 			$('#afast_sistema').click();
     	});
-		bootbox.alert('<br /><div class="alert alert-danger"><strong>Atenção!</strong><p>Este sistema ainda não controla múltiplos afastamentos em uma mesma data.</p></div>');
+		/*bootbox.alert('<br /><div class="alert alert-danger"><strong>Atenção!</strong><p>Este sistema ainda não controla múltiplos afastamentos em uma mesma data.</p></div>');*/
 		
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
