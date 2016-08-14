@@ -64,11 +64,11 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 <head>
     <meta charset="utf-8">
     <title>ICT AFAST - Relatório Mensal</title>
-    
+    <link rel="stylesheet" media="print" href="../../../css/print.css">
 </head>
 
 <body>
-
+<section class="navprintmargin2"></section>
 <section class="row">
   <section class="col-md-2"></section>
   <section class="col-md-1">
@@ -139,14 +139,14 @@ date_default_timezone_set( 'America/Sao_Paulo' );
         <section class="row">
         <section>
         	<section class="col-md-2"></section>
-        	<section class="col-md-8">
+        	<section class="col-md-8 printcenter">
         		<p class="docenteheader" >
                 	<span class="tabspaceright">Servidor(a): 
                     	<strong><?php echo $DocenteRow['nome_docente'];?></strong></span>
                     <span class="tabspaceleft">SIAPE: 
                     	<strong><?php echo $DocenteRow['siape_docente']?></strong></span>
                 </p>
-                <table>
+                <table class="tablesize">
                   <tr class="simpleborder">
                     <th class="simpleborder rel_ocorrencia"><strong>Ocorrência:</strong></th>
                     <th class="simpleborder rel_descricao"><strong>Descrição:</strong></th>
@@ -204,10 +204,10 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 	}
 ?>
 <section class="col-md-2"></section>
-<section class="col-md-8 signaturemargin">
-	<span class="printdate col-md-3"><h4><strong>Em <?php echo date('d-m-Y');?></strong></h4></span>
-    <span class="signatureline col-md-5"><h4><strong>ENCARREGADO DA FREQUÊNCIA</strong></h4></span>
-    <span class="signatureline col-md-4"><h4><strong>CHEFE DA SEÇÃO</strong></h4></span>
+<section class="col-md-8 signaturemargin tablesize printcenter">
+	<span class="printdate signaturetop col-md-3"><h4><strong>Em <?php echo date('d-m-Y');?></strong></h4></span>
+    <span class="signatureline signaturetop col-md-5"><h4><strong>ENCARREGADO DA FREQUÊNCIA</strong></h4></span>
+    <span class="signatureline signaturetop col-md-4"><h4><strong>CHEFE DA SEÇÃO</strong></h4></span>
 </section>
 <section class="col-md-2"></section>
 

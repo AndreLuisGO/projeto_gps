@@ -14,9 +14,9 @@ if (empty ( $_SESSION )) {
 <head>
     <meta charset="utf-8">
     <title>AFAST ICT</title>
-    <link rel="stylesheet" media="all" href="../css/bootstrap.css">
-	<link rel="stylesheet" media="all" href="../css/style.css">
-    <link rel="stylesheet" media="all" href="../css/bootstrap-datepicker3.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap-datepicker3.css">
 </head>
 
 <body>
@@ -36,10 +36,14 @@ if (empty ( $_SESSION )) {
 		</div>
 	</nav>
 
+	<!-- Paginas carregadas em modo de impressão aqui -->
+	<section id="printloader"></section>
+	<!-- Paginas carregadas em modo de impressão aqui -->
+    
 	<!-- Paginas carregadas aqui -->
 	<main class="container-fluid" id="loader"></main>
 	<!-- Paginas carregadas aqui -->
-
+	
 
 	<footer class="mainfooter navbar-default navbar-fixed-bottom">
 		<section>
