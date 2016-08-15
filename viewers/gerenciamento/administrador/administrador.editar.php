@@ -4,7 +4,7 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//loader
-			$('#loader').load('viewers/cadastro/treinador.lista.php');
+			$('#loader').load('gerenciamento/administrador/administrador.lista.php');
 		});
 		
 		$('#Salvar').click(function(e) {
@@ -28,16 +28,17 @@
 				logintester = re.test(login_administrador);
 				if(!logintester){
 					
-					return alert("Formato de login incorreto. Use apenas letras e numero");
+					return alert("Formato de login incorreto. Use apenas letras e números");
 				}
 				else{
 					$.ajax({
-					   url: 'engine/controllers/treinador.php',
+					   url: '../engine/controllers/administrador.php',
 					   data: {
 							login_administrador : login_administrador,
 							nome_administrador : nome_administrador,
 							senha_administrador : senha_administrador,
- 							action: 'create'
+							id_administrador : null,
+ 							action: 'update'
 					   },
 					   error: function() {
 							alert('Erro na conexão com o servidor. Tente novamente em alguns segundos.');
@@ -45,8 +46,8 @@
 					   success: function(data) {
 							//console.log(data);
 							if(data === 'true'){
-								alert('Item adicionado com sucesso!');
-								$('#loader').load('viewers/cadastro/treinador.lista.php');
+								alert('Item atualizado com sucesso!');
+								$('#loader').load('gerenciamento/administrador/administrador.lista.php');
 							}
 							else{
 								alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	
@@ -72,7 +73,7 @@
 		  //alert(id);
 		  if(confirm("Tem certeza que deseja excluir este dado?")){
 			  $.ajax({
-				 url: 'engine/controllers/administrador.php',
+				 url: '../engine/controllers/administrador.php',
 				 data: {
 					  login_administrador : null,
 					  nome_administrador : null,
@@ -87,7 +88,7 @@
 					  console.log(data);
 					  if(data === 'true'){
 						  alert('Item deletado com sucesso!');
-						  $('#loader').load('viewers/gerenciamento/administrador/administrador.lista.php');
+						  $('#loader').load('gerenciamento/administrador/administrador.lista.php');
 					  }
 					  
 					  else{
@@ -105,7 +106,7 @@
 </script>
 
 <?php
-	require_once "../engine/config.php";
+require_once "../../../engine/config.php";
 ?>
 
 
@@ -113,12 +114,12 @@
 <ol class="breadcrumb">
   <li><a href="#">Home</a></li>
   <li><a href="#">Cadastro</a></li>
-  <li><a href="#">Treinador</a></li>
+  <li><a href="#">Administrador</a></li>
   <li class="active">Editar Dados</li>
 </ol>
 
 <h1> 
-	Editar Treinador
+	Editar Administrador
 </h1>
 
 <br>
@@ -133,7 +134,7 @@
 
 <br><br>
 <?php
-	$Item = new Treinador();
+	$Item = new Administrador();
 	$Item = $Item->Read($_POST['id']);
 	//var_dump($Item);
 ?>
@@ -141,64 +142,32 @@
 	<section class="col-md-4">
     	<div class="input-group">
           <span class="input-group-addon" id="basic-addon1">Nome *</span>
-          <input type="text" class="form-control" id="nome_treinador" placeholder="Nome" aria-describedby="basic-addon1" value="<?php echo $Item['nome_treinador']; ?>">
+          <input type="text" class="form-control" id="nome_administrador" placeholder="Nome" aria-describedby="basic-addon1" value="<?php echo $Item['nome_administrador']; ?>">
         </div>
     </section>
     <section class="col-md-4">
     	<div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Email *</span>
-          <input type="text" class="form-control" id="email_treinador" placeholder="Email" aria-describedby="basic-addon1" value="<?php echo $Item['email_treinador']; ?>">
+          <span class="input-group-addon" id="basic-addon1">Login *</span>
+          <input type="text" class="form-control" id="login_administrador" placeholder="Email" aria-describedby="basic-addon1" value="<?php echo $Item['login_administrador']; ?>">
         </div>
     </section>
     <section class="col-md-4">
     	<div class="input-group">
           <span class="input-group-addon" id="basic-addon1">Senha *</span>
-          <input type="password" class="form-control" id="senha_treinador" placeholder="Senha" aria-describedby="basic-addon1" value="<?php echo $Item['senha_treinador']; ?>">
+          <input type="password" class="form-control" id="senha_administrador" placeholder="Senha" aria-describedby="basic-addon1" value="<?php echo $Item['senha_administrador']; ?>">
         </div>
     </section>
 </section>
 
 <br>
-<section class="row formAdicionarDados">
-	<section class="col-md-4">
-    	<div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Data de Cadastro *</span>
-          <input type="text" class="form-control" id="dtcadastro_treinador" disabled placeholder="Data de Cadastro" aria-describedby="basic-addon1" value="<?php echo ExibeData($Item['dtcadastro_treinador']); ?>">
-        </div>
     </section>
-    <section class="col-md-4">
-    	<div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Telefone Fixo *</span>
-          <input type="text" class="form-control" id="telefonefixo_treinador" placeholder="Telefone Fixo" aria-describedby="basic-addon1" value="<?php echo $Item['telefonefixo_treinador']; ?>">
-        </div>
-    </section>
-    <section class="col-md-4">
-    	<div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Celular *</span>
-          <input type="text" class="form-control" id="celular_treinador" placeholder="Celular" aria-describedby="basic-addon1" value="<?php echo $Item['celular_treinador']; ?>">
-        </div>
-    </section>
-    <!--<section class="col-md-4">
-    	<div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Treinador *</span>
-          <select class="form-control" id="id_treinador">
-          		<option value=""> Escolha uma opção </option>
-                <?php
-					$Treinadores = new Treinador();
-					$Treinadores = $Treinadores->ReadAll();
-					foreach($Treinadores as $treinador){
-						
-						?>
-                        	<option <?php if($treinador['id_treinador'] === $Item['id_treinador']){ echo 'selected'; } ?> value="<?php echo $treinador['id_treinador']; ?>"><?php echo $treinador['nome_treinador']; ?></option>
-                        <?php
-					}
-				?>	
+
           </select>
           
         </div>
-    </section>-->
+    </section>
     
 </section>
 
 
-<input type="hidden" id="id_treinador" value="<?php echo $Item['id_treinador']; ?>">
+<input type="hidden" id="id_administrador" value="<?php echo $Item['id_administrador']; ?>">

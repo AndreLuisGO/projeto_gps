@@ -5,7 +5,7 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//loader
-			$('#loader').load('viewers/gerenciamento/administrador/administrador.lista.php');
+			$('#loader').load('gerenciamento/administrador/administrador.lista.php');
 		});
 		
 		$('#Salvar').click(function(e) {
@@ -36,11 +36,12 @@
 				}
 				else{
 					$.ajax({
-					   url: 'engine/controllers/treinador.php',
+					   url: '../engine/controllers/administrador.php',
 					   data: {
 							login_administrador : login_administrador,
 							nome_administrador : nome_administrador,
 							senha_administrador : senha_administrador,
+							id_administrador : null,
  							action: 'create'
 					   },
 					   error: function() {
@@ -50,7 +51,7 @@
 							//console.log(data);
 							if(data === 'true'){
 								alert('Item adicionado com sucesso!');
-								$('#loader').load('viewers/cadastro/treinador.lista.php');
+								$('#loader').load('gerenciamento/administrador/administrador.lista.php');
 							}
 							else{
 								alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	
@@ -68,11 +69,7 @@
 		});
 		
 		
-		
-		
-		//mascaras abaixo
-		$('#telefonefixo_treinador').mask('(99) 9999-9999');
-		$('#celular_treinador').mask('(99) 9-9999-9999');
+
 	});
 </script>
 
@@ -85,7 +82,7 @@ require_once "../../../engine/config.php";
 <ol class="breadcrumb">
 	<li><a href="#">Home</a></li>
 	<li><a href="#">Cadastro</a></li>
-	<li><a href="#">Treinador</a></li>
+	<li><a href="#">Administrador</a></li>
 	<li class="active">Adicionar de Dados</li>
 </ol>
 
@@ -113,48 +110,24 @@ require_once "../../../engine/config.php";
 	<section class="col-md-4">
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">Nome *</span> <input
-				type="text" class="form-control" id="nome_treinador"
+				type="text" class="form-control" id="nome_administrador"
 				placeholder="Nome" aria-describedby="basic-addon1">
 		</div>
 	</section>
 	<section class="col-md-4">
 		<div class="input-group">
-			<span class="input-group-addon" id="basic-addon1">Email *</span> <input
-				type="text" class="form-control" id="email_treinador"
+			<span class="input-group-addon" id="basic-addon1">Login *</span> <input
+				type="text" class="form-control" id="login_administrador"
 				placeholder="Email" aria-describedby="basic-addon1">
 		</div>
 	</section>
 	<section class="col-md-4">
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">Senha *</span> <input
-				type="password" class="form-control" id="senha_treinador"
+				type="password" class="form-control" id="senha_administrador"
 				placeholder="Senha" aria-describedby="basic-addon1">
 		</div>
 	</section>
 </section>
 
 <br>
-<section class="row formAdicionarDados">
-	<section class="col-md-4">
-		<div class="input-group">
-			<span class="input-group-addon" id="basic-addon1">Data de Cadastro *</span>
-			<input type="text" class="form-control" id="dtcadastro_treinador"
-				disabled placeholder="Data de Cadastro"
-				aria-describedby="basic-addon1" value="<?php echo date('d/m/Y'); ?>">
-		</div>
-	</section>
-	<section class="col-md-4">
-		<div class="input-group">
-			<span class="input-group-addon" id="basic-addon1">Telefone Fixo *</span>
-			<input type="text" class="form-control" id="telefonefixo_treinador"
-				placeholder="Telefone Fixo" aria-describedby="basic-addon1">
-		</div>
-	</section>
-	<section class="col-md-4">
-		<div class="input-group">
-			<span class="input-group-addon" id="basic-addon1">Celular *</span> <input
-				type="text" class="form-control" id="celular_treinador"
-				placeholder="Celular" aria-describedby="basic-addon1">
-		</div>
-	</section>
-</section>

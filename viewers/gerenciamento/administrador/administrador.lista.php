@@ -7,13 +7,13 @@
 	$('#Atualizar').click(function(e) {
 		e.preventDefault();
 		//loader
-		$('#loader').load('viewers/gerenciamento/administrador/administrador.lista.php');
+		$('#loader').load('gerenciamento/administrador/administrador.lista.php');
 		});
 		
 	$('#Adicionar').click(function(e) {
 		e.preventDefault();
 		//loader
-		$('#loader').load('viewers/gerenciamento/administrador/administrador.adicionar.php');
+		$('#loader').load('gerenciamento/administrador/administrador.adicionar.php');
 	});	
 
 	$('.EditarItem').click(function(e) {
@@ -22,7 +22,7 @@
 		
 		var id = $(this).attr('id');
 		//alert(id);
-		$('#loader').load('viewers/gerenciamento/administrador/administrador.editar.php', { id: id});
+		$('#loader').load('gerenciamento/administrador/administrador.editar.php', { id: id});
 	});
 		
 	$('.ExcluirItem').click(function(e) {
@@ -33,7 +33,7 @@
 		//alert(id);
 		if(confirm("Tem certeza que deseja excluir este dado?")){
 			$.ajax({
-			   url: 'engine/controllers/administrador.php',
+			   url: '../engine/controllers/administrador.php',
 			   data: {
 					login_administrador : null,
 					nome_administrador : null,
@@ -48,9 +48,8 @@
 					console.log(data);
 					if(data === 'true'){
 						alert('Item deletado com sucesso!');
-						$('#loader').load('viewers/gerenciamento/administrador/administrador.lista.php');
+						$('#loader').load('gerenciamento/administrador/administrador.lista.php');
 					}
-					
 					else{
 						alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	
 					}
