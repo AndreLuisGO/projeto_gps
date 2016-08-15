@@ -8,6 +8,10 @@
 	display:table !important;
 	float:left !important;
 	}
+.nopadding {	
+    padding-right: 0px;
+    padding-left: 0px;
+	}
 
 .printcenter {
 	margin-left:1cm;

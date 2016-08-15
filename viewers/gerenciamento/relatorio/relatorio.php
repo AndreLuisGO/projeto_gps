@@ -68,6 +68,7 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 </head>
 
 <body>
+
 <section class="navprintmargin2"></section>
 <section class="row">
   <section class="col-md-2"></section>
@@ -81,7 +82,7 @@ date_default_timezone_set( 'America/Sao_Paulo' );
           >
   </section>
 
-  <section class="col-md-6">
+  <section class="col-md-6 nopadding">
   	<section class="text-center">
     	<h3> MINISTÉRIO DA EDUCAÇÃO </h3>
         <h4><strong> UNIVERSIDADE FEDERAL DOS VALES DO JEQUITINHONHA E MUCURI </strong></h4>
@@ -99,10 +100,14 @@ date_default_timezone_set( 'America/Sao_Paulo' );
   </section>
   <section class="col-md-2"></section>
 </section>
+<?php
+	$Cursonome = new Curso();
+	$Cursonome = $Cursonome->Read($curso);
+?>
 <section class="row">
 	<section class="text-center">
     	<h3 class="lessmarginbot"> INSTITUTO DE CIÊNCIA DE TECNOLOGIA </h3>
-        <h3 class="lessmarginbot lessmargintop"> BOLETIM DE FREQUÊNCIA </h3>
+        <h4 class="lessmarginbot lessmargintop"> BOLETIM DE FREQUÊNCIA - <?php echo $Cursonome['nome_curso']; ?> </h4>
         <h3 class="lessmarginbot lessmargintop"> <?php echo (strtoupper( strftime( "%B" , mktime(0, 0, 0, $mes+1, 0, 0) ) ) ); echo "/"; echo $ano;?> </h3>
     </section>
 </section>
@@ -116,10 +121,9 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 	if(empty($Afastamento)) {}
 	else
 	{
-	  if (count ( $Afastamento ) == count ( $Afastamento, COUNT_RECURSIVE )) {
-		  $Afastamento = array (
-				  $Afastamento 
-		  );
+	  if (count ( $Afastamento ) == count ( $Afastamento, COUNT_RECURSIVE )) 
+	  {
+		  $Afastamento = array ($Afastamento);
 	  }
 	  foreach($Afastamento as &$AfastamentoRow)
 	  {
@@ -135,6 +139,8 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 	{
 		$Quantidade = 0;
 		$DiasEfetivos = date('t',mktime(0, 0, 0, $mes, 1, $ano));
+		$Obervs = array();
+		$Obsindex = 0;
 		?>
         <section class="row">
         <section>
@@ -167,6 +173,13 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 					echo  $quantdays = 
 			getquantdays($AfastamentoRow['dt_inicio_afastamento'],$AfastamentoRow['dt_fim_afastamento']);
 					$Quantidade = $Quantidade + $quantdays;
+					if(empty($AfastamentoRow['observ_afastamento'])){}
+					else 
+					{
+		$Obervs[$Obsindex] = 
+		array($AfastamentoRow['codigo_ocorrencia'], $AfastamentoRow['observ_afastamento']);
+		$Obsindex++; 
+					}
 					unset($Afastamento[$indice]);
 				?>
                     </td>
@@ -184,6 +197,26 @@ date_default_timezone_set( 'America/Sao_Paulo' );
                 </table>
                 <?php
 					$DiasEfetivos = $DiasEfetivos - $Quantidade;
+					if(!empty($Obervs))
+					{
+					  if (count ( $Obervs ) == count ( $Obervs, COUNT_RECURSIVE )) 
+					  {
+						  $Obervs = array ($Obervs);
+					  }
+				?>
+                <p class="paragmargin">
+                	<strong>Observações:</strong>
+                    <br>
+					<?php
+					foreach($Obervs as $ObservRow)
+                    {
+                        echo $ObservRow['0']."\t".$ObservRow['1'];	
+                    }
+                    ?>
+                	<br>
+                </p>
+              	<?php 
+					}
 				?>
                 <p>
                 	<span class="tabspacerightbottom">
