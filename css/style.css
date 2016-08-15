@@ -117,6 +117,12 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 	cursor: pointer;
 }
 
+.ExcluirItem:hover {
+	background-color: #C63333;
+	transition: 0.5s;
+	cursor: pointer;
+}
+
 .ListarAfastamentos:hover {
 	background-color: #f2e394;
 	transition: 0.5s;

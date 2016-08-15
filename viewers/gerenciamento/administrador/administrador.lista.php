@@ -107,8 +107,8 @@ if (empty ( $Item )) {
 		<tr>
 			<th>Login</th>
 			<th>Nome Completo</th>
-			<th>Editar</th>
-			<th>Excluir</th>
+			<th class="text-center">Editar</th>
+			<th class="text-center">Excluir</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -119,10 +119,10 @@ if (empty ( $Item )) {
       	<tr>
 			<td><?php echo $itemRow['login_administrador']; ?></td>
 			<td><?php echo $itemRow ['nome_administrador'];	?></td>
-			<td class="align-center EditarItem"
+			<td class="text-center EditarItem"
 				id="<?php echo $itemRow['id_administrador']; ?>"><span
 				class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
-			<td class="align-center ExcluirItem"
+			<td class="text-center ExcluirItem"
 				id="<?php echo $itemRow['id_administrador']; ?>"><span
 				class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
 		</tr>
