@@ -16,7 +16,7 @@ class Administrador {
 	public function SetValues($id_administrador, $login_administrador, $senha_administrador, $nome_administrador) {
 		$this->id_administrador = $id_administrador;
 		$this->login_administrador = $login_administrador;
-		$this->senha_administrador = $senha_administrador;
+		$this->senha_administrador = sha1($senha_administrador);
 		$this->nome_administrador = $nome_administrador;
 	}
 	

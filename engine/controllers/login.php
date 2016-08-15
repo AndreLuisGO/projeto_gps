@@ -6,7 +6,7 @@ require_once "../config.php";
 
 // 1. Receber os dados do form
 $email = $_POST ['email'];
-$senha = $_POST ['senha']; // sha1($_POST['senha']);
+$senha = sha1($_POST['senha']);
 
 $res;
 
