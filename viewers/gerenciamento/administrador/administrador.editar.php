@@ -15,7 +15,7 @@
 			var login_administrador = $('#login_administrador').val();
 			var nome_administrador = $('#nome_administrador').val();
 			var senha_administrador = $('#senha_administrador').val();
-			
+			var id_administrador = $('#id_administrador').val();
 			
 			//2 validar os inputs
 			if(login_administrador === "" || nome_administrador === "" || senha_administrador === ""){
@@ -37,7 +37,7 @@
 							login_administrador : login_administrador,
 							nome_administrador : nome_administrador,
 							senha_administrador : senha_administrador,
-							id_administrador : null,
+							id_administrador : id_administrador,
  							action: 'update'
 					   },
 					   error: function() {
