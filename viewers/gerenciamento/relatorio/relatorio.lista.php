@@ -5,7 +5,7 @@
 <script type="text/javascript" src="../js/jquery.cascade-select.js"></script>
 <script type="text/javascript" src="../js/select2.js"></script>
 <script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="../js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap-datepicker.pt-BR.js"></script>
 <script>
 	$(document).ready(function(e) {
 		$('#bread_home').click(function(e) {
@@ -51,7 +51,8 @@
 	$('#datepicker').datepicker({
 		format: "mm/yyyy",
 		startView: "year", 
-		minViewMode: "months"
+		minViewMode: "months",
+		language: 'pt-BR',
 	})
 
 </script>
