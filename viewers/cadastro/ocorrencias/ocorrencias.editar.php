@@ -27,7 +27,7 @@
 			}
 			else{
 					$.ajax({
-					   url: '../engine/controllers/docente.php',
+					   url: '../engine/controllers/ocorrencia.php',
 					   data: {
 							id_ocorrencia : id_ocorrencia,
 							tipo_ocorrencia : tipo_ocorrencia,
@@ -41,7 +41,7 @@
 							console.log(data);
 							if(data === 'true'){
 								alert('Ocorrência modificada com sucesso!');
-								$('#loader').load('cadastro/docentes/docentes.lista.php');
+								$('#loader').load('cadastro/ocorrencias/ocorrencias.lista.php');
 							}
 							else{
 								alert('Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.');	

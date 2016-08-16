@@ -9,7 +9,7 @@
 		$('#Voltar').click(function(e) {
 			e.preventDefault();
 			//alert("Voltar");
-			$('#loader').load('cadastro/docentes/docentes.lista.php');
+			$('#loader').load('cadastro/ocorrencias/ocorrencias.lista.php');
     	});
 		
 		$('#Salvar').click(function(e) {
