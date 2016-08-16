@@ -170,8 +170,8 @@ date_default_timezone_set( 'America/Sao_Paulo' );
                     <td class="simpleborder"> <?php echo $AfastamentoRow['tipo_ocorrencia']?></td>
                     <td class="simpleborder"> 
 				<?php 
-					echo  $quantdays = 
-			getquantdays($AfastamentoRow['dt_inicio_afastamento'],$AfastamentoRow['dt_fim_afastamento']);
+		echo $quantdays = 
+		getquantdays($AfastamentoRow['dt_inicio_afastamento'],$AfastamentoRow['dt_fim_afastamento']);
 					$Quantidade = $Quantidade + $quantdays;
 					if(empty($AfastamentoRow['observ_afastamento'])){}
 					else 
@@ -185,8 +185,7 @@ date_default_timezone_set( 'America/Sao_Paulo' );
                     </td>
                     <td class="simpleborder">
 				 <?php
-				 	echo 
-			getlistday($AfastamentoRow['dt_inicio_afastamento'],$AfastamentoRow['dt_fim_afastamento']);
+		echo getlistday($AfastamentoRow['dt_inicio_afastamento'],$AfastamentoRow['dt_fim_afastamento']);
                  ?>
                     </td>
                   </tr>
@@ -210,7 +209,10 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 					<?php
 					foreach($Obervs as $ObservRow)
                     {
-                        echo $ObservRow['0']."\t".$ObservRow['1'];	
+                        echo $ObservRow['0']."\t".$ObservRow['1'];
+					?>
+                    <br>
+                    <?php	
                     }
                     ?>
                 	<br>
