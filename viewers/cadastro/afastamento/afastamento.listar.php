@@ -11,6 +11,12 @@
 		$('#DetalhesAfastamento').hide();
 		$('#AjudaEditarAfastamento').hide();
 
+		var DataAtual = new Date();
+		console.log(DataAtual.getMonth()+1);
+		var MesAno = (DataAtual.getMonth()+1)+'/'+DataAtual.getFullYear();
+		$('#filtra_mes').val(MesAno);
+		
+
 		$('#bread_home').click(function(e) {
 			e.preventDefault();
 			//alert("breadhome");
@@ -151,31 +157,58 @@
 	
 	$("#sel_curso").change(function(){
 	    var selcurso = $(this).val();
-	    $.ajax({
-	        type: "POST",
-	        url: "cadastro/afastamento/call_docentes.php?selcurso="+selcurso,
-	        dataType: "text",
-	        success: function(res){
+		    $.ajax({
+				url: 'cadastro/afastamento/call_docentes.php',
+				data: {selcurso : selcurso},
+			success: function(data) {
 	            $("#id_docente").empty();
-	            $("#id_docente").append(res);
-	        }
-	    });
+	            $("#id_docente").append(data);
+				},
+				type: 'POST'
+			});
 	});
 
 	$("#id_docente").change(function(){
 	    var iddocente = $(this).val();
+	    var filtra_mes = $('#filtra_mes').val();
 	    $.ajax({
-	        type: "POST",
-	        url: "cadastro/afastamento/call.afastamento.lista.php?iddocente="+iddocente,
-	        dataType: "text",
-	        success: function(res1){
+	        url: 'cadastro/afastamento/call.afastamento.lista.php',
+	        data: {iddocente : iddocente, filtra_mes : filtra_mes},
+	        success: function(data){
 	            $("#LoaderAfastamento").empty();
 	            $("#AjudaEditarAfastamento").show();
-	            $("#LoaderAfastamento").append(res1);
-	        }
+	            $("#LoaderAfastamento").append(data);
+	        },
+	    	type: 'POST'
 	    });
+		$('#Excluir').hide();
+		$('#DetalhesAfastamento').hide();
+		$('#AjudaEditarAfastamento').hide();
 	});
-	
+
+	$('#filtra_mes').datepicker({
+		format: "mm/yyyy",
+		startView: "year", 
+		minViewMode: "months",
+		language: 'pt-BR',
+	})
+	$("#filtra_mes").change(function(){
+	    var iddocente = $("#id_docente").val();
+	    var filtra_mes = $(this).val();
+	    $.ajax({
+	        url: 'cadastro/afastamento/call.afastamento.lista.php',
+	        data: {iddocente : iddocente, filtra_mes : filtra_mes},
+	        success: function(data){
+	            $("#LoaderAfastamento").empty();
+	            $("#AjudaEditarAfastamento").show();
+	            $("#LoaderAfastamento").append(data);
+	        },
+	    	type: 'POST'
+	    });
+		$('#Excluir').hide();
+		$('#DetalhesAfastamento').hide();
+		$('#AjudaEditarAfastamento').hide();
+	});
 </script>
 
 <?php
@@ -210,7 +243,7 @@ require_once "../../../engine/config.php";
 <br />
 
 <section class="row"><!-- Primeira Linha -->
-	<section class="col-md-4">  <!-- Selecionar Curso -->
+	<section class="col-md-3">  <!-- Selecionar Curso -->
 		<div class="form-group">
 		  <label for="sel_curso">Filtrar por Curso:</label>
 		  <select class="form-control" id="sel_curso">
@@ -234,14 +267,21 @@ require_once "../../../engine/config.php";
 		  </select>
 		</div>
 	</section> <!-- Selecionar Curso -->
-	<section class="col-md-8"> <!-- Selecionar Docente-->	
+	<section class="col-md-7"> <!-- Selecionar Docente-->	
 		<div class="form-group">
 		  <label for="id_docente">Selecionar Docente:</label>
 		  <select class="form-control" id="id_docente">
 		  <option class="sel_curso" value=""> -- Selecione um Curso -- </option>
 		  </select>
 		</div>
-	</section><!-- Selecionar Docente-->	
+	</section><!-- Selecionar Docente-->
+	<section class="col-md-2"> <!-- Selecionar Mês-->
+		<div class="form-group has-feedback has-feedback-right">
+			<label for="startdate" class="control-label">Escolha o mês:</label>
+            <i class="form-control-feedback glyphicon glyphicon-calendar"></i>
+			<input id="filtra_mes" name="filtra_mes" class="date-picker input-mini form-control filtra_mes" ></input> 
+		</div>
+	</section><!-- Selecionar Mês-->	
 </section> <!-- Primeira Linha -->	
 <div class="container col-md-12" id="DetalhesAfastamento">
 <section class="row"> <!-- Segunda Linha -->

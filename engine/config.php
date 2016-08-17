@@ -17,4 +17,9 @@ function ExibeData($data) {
 	return $dataCerta;
 }
 
+function PrimeiroDia($data) {
+	$dataBD = explode ( '/', $data );
+	$dataBD = $dataBD [1] . '-' . $dataBD [0] . '-01';
+	return $dataBD;
+}
 ?>

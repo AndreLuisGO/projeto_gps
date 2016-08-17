@@ -1,5 +1,10 @@
 <?php
 require_once('../../../engine/config.php');
+$IdDocente = $_POST['iddocente'];
+$MesAfastamento = $_POST['filtra_mes'];
+//var_dump($MesAfastamento);
+$MesAfastamento = PrimeiroDia($MesAfastamento);
+
 ?>
 <script type="text/javascript">
 
@@ -88,9 +93,8 @@ $(function(){
 <section class="col-md-12">
 <div id="id_afastamento" hidden="true"></div>
 <?php
-$IdDocente = $_REQUEST ['iddocente'];
 $Afastamento = new Afastamento();
-$Afastamento = $Afastamento->ReadAllDocente($IdDocente);
+$Afastamento = $Afastamento->ReadAllDocenteMes($IdDocente, $MesAfastamento);
 // var_dump($Item);
 if (empty ( $Afastamento )) {
 	?>

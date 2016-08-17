@@ -1,7 +1,7 @@
 <option> Selecione um Docente...</option>
 <?php
 require_once('../../../engine/config.php');
-$SelCurso = $_REQUEST ['selcurso'];
+$SelCurso = $_POST ['selcurso'];
 //var_dump($SelCurso);
 $Docente = new Docente();
 $Docente = $Docente->ReadAllCurso($SelCurso);
