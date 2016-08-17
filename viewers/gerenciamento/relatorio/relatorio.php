@@ -8,6 +8,8 @@ $curso = $_POST['curso'];
 
 list($mes, $ano)=explode("/", $MesForm);
 
+
+
 function fixfirstdate($string, $newmes, $newano)
 {
 	list($ano, $mes, $dia)=explode("-", $string);
@@ -116,6 +118,7 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 <?php
 	$Docente = new Docente();
 	$Docente = $Docente->ReadAllCurso($curso);
+	//var_dump($Docente);
 	$Afastamento = new Afastamento();
 	$Afastamento = $Afastamento->ReadAllReport($mes, $ano, $curso);
 	if(empty($Afastamento)) {}
@@ -125,13 +128,13 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 	  {
 		  $Afastamento = array ($Afastamento);
 	  }
-	  foreach($Afastamento as &$AfastamentoRow)
+	  foreach($Afastamento as &$FixAfastamentoRow)
 	  {
-		  $AfastamentoRow['dt_inicio_afastamento'] = 
-			  fixfirstdate($AfastamentoRow['dt_inicio_afastamento'],$mes,$ano);
+		  $FixAfastamentoRow['dt_inicio_afastamento'] = 
+			  fixfirstdate($FixAfastamentoRow['dt_inicio_afastamento'],$mes,$ano);
 		  
-		  $AfastamentoRow['dt_fim_afastamento'] = 
-			  fixlastdate($AfastamentoRow['dt_fim_afastamento'],$mes,$ano);
+		  $FixAfastamentoRow['dt_fim_afastamento'] = 
+			  fixlastdate($FixAfastamentoRow['dt_fim_afastamento'],$mes,$ano);
 	  }
 	  //var_dump($Afastamento);
 	}
@@ -160,8 +163,10 @@ date_default_timezone_set( 'America/Sao_Paulo' );
                     <th class="simpleborder rel_diasdomes"><strong>Dias do Mês:</strong></th>
                   </tr>
                 <?php
+					//var_dump($Afastamento);
 					foreach($Afastamento as $indice => $AfastamentoRow)
 					{
+						//var_dump($AfastamentoRow);
 						if($AfastamentoRow['siape_docente'] == $DocenteRow['siape_docente'])
 						{
 				?>
