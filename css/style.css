@@ -239,6 +239,11 @@ div.table-overflow {
 .ufvjmlogo {
 	padding-left:8vw;
 	}
+	
+.tablesize  {
+	min-width:30vw;
+	}
+	
 .lessmarginbot {
 	margin-bottom: 0;
 	}
