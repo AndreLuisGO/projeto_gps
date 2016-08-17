@@ -70,7 +70,7 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 <body>
 
 <section class="navprintmargin2"></section>
-<section class="row headmarginleft">
+<section class="row headmargin">
   <section class="col-md-2"></section>
   <section class="col-md-1">
           <img 
