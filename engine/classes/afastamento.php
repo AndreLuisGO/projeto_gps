@@ -322,7 +322,7 @@ class Afastamento {
 			  
 			  t4.id_curso = '$id_curso'
 			  
-			  ORDER BY t1.dt_inicio_afastamento
+			  ORDER BY t1.nome_docente
 			";
 	
 		$DB = new DB ();
