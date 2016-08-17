@@ -64,7 +64,7 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 <head>
     <meta charset="utf-8">
     <title>ICT AFAST - Relatório Mensal</title>
-    <link rel="stylesheet" media="print" href="../../../css/print.css">
+    <link rel="stylesheet" media="print" href="../css/print.css">
 </head>
 
 <body>
