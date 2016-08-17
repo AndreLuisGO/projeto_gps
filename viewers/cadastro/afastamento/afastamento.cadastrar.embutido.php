@@ -80,7 +80,8 @@
 	    var selcurso = $(this).val();
 	    $.ajax({
 	        type: "POST",
-	        url: "cadastro/afastamento/call_docentes.php?selcurso="+selcurso,
+	        url: "cadastro/afastamento/call_docentes.php",
+			data: {selcurso: selcurso},
 	        dataType: "text",
 	        success: function(res){
 	            $("#id_docente").empty();

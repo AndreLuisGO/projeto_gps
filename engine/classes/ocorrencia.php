@@ -74,6 +74,8 @@ class Ocorrencia {
 					 t1.codigo_ocorrencia
 				FROM
 					ocorrencia AS t1
+					
+				ORDER BY t1.tipo_ocorrencia
 				
 
 			";

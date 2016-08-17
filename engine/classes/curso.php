@@ -69,7 +69,7 @@ class Curso {
 					 t1.nome_curso
 				FROM
 					curso AS t1
-				ORDER BY t1.id_curso;		
+				ORDER BY t1.nome_curso		
 
 			";
 		

@@ -87,6 +87,7 @@ class Docente {
 					 t1.efetivo_docente
 				FROM
 					docente AS t1
+				ORDER BY t1.nome_docente	
 				
 
 			";
@@ -197,6 +198,7 @@ class Docente {
 						t2.id_curso = '$id'
 					AND
 						t1.id_docente = t2.id_docente
+					ORDER BY t1.nome_docente
 				
 
 			";
@@ -242,6 +244,7 @@ class Docente {
 						(t2.dt_fim_exercicio >= '$data' OR t2.dt_fim_exercicio IS NULL)
 					AND
 						t1.id_docente = t2.id_docente
+					ORDER BY t1.nome_docente
 				
 
 			";

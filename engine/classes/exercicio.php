@@ -87,6 +87,7 @@ class Exercicio {
 					 t1.dt_fim_exercicio
 				FROM
 					exercicio AS t1
+				ORDER BY t1.dt_inicio_exercicio
 				
 
 			";
@@ -188,6 +189,7 @@ class Exercicio {
 					exercicio AS t1
 				WHERE
 					t1.id_docente  = '$id'
+				ORDER BY t1.dt_inicio_exercicio
 
 			";
 		
@@ -225,6 +227,7 @@ class Exercicio {
 		t1.dt_fim_exercicio IS NULL
 		OR
 		t1.dt_fim_exercicio <= NOW();
+		ORDER BY t1.dt_inicio_exercicio
 	
 		";
 	

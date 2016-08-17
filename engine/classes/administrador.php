@@ -81,6 +81,7 @@ class Administrador {
 					 t1.nome_administrador
 				FROM
 					administrador AS t1
+				ORDER BY t1.nome_administrador
 				
 
 			";

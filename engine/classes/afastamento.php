@@ -93,6 +93,7 @@ class Afastamento {
 					 t1.id_docente
 				FROM
 					afastamento AS t1
+				ORDER BY t1.dt_inicio_afastamento
 				
 
 			";
@@ -201,8 +202,7 @@ class Afastamento {
 		INNER JOIN ocorrencia AS t2 ON t1.id_ocorrencia = t2.id_ocorrencia
 		WHERE
 			t1.id_docente = '$id'
-		ORDER BY
-			t1.id_afastamento DESC;
+		ORDER BY t1.dt_inicio_afastamento
 			";
 	
 		$DB = new DB ();
@@ -252,8 +252,7 @@ class Afastamento {
 				YEAR(t1.dt_inicio_afastamento) 
 				AND 
 				YEAR(t1.dt_fim_afastamento)
-		ORDER BY
-		t1.id_afastamento DESC;
+		ORDER BY t1.dt_inicio_afastamento
 		";
 	
 		$DB = new DB ();
@@ -322,6 +321,8 @@ class Afastamento {
 			  AND
 			  
 			  t4.id_curso = '$id_curso'
+			  
+			  ORDER BY t1.dt_inicio_afastamento
 			";
 	
 		$DB = new DB ();
