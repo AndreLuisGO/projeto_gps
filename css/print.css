@@ -8,6 +8,11 @@
 	display:table !important;
 	float:left !important;
 	}
+	
+.headmarginleft {
+	margin-left:2.5cm;
+	}
+	
 .nopadding {	
     padding-right: 0px;
     padding-left: 0px;

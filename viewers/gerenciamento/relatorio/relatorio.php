@@ -70,7 +70,7 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 <body>
 
 <section class="navprintmargin2"></section>
-<section class="row">
+<section class="row headmarginleft">
   <section class="col-md-2"></section>
   <section class="col-md-1">
           <img 
@@ -85,7 +85,7 @@ date_default_timezone_set( 'America/Sao_Paulo' );
   <section class="col-md-6 nopadding">
   	<section class="text-center">
     	<h3> MINISTÉRIO DA EDUCAÇÃO </h3>
-        <h4><strong> UNIVERSIDADE FEDERAL DOS VALES DO JEQUITINHONHA E MUCURI </strong></h4>
+        <h5><strong> UNIVERSIDADE FEDERAL DOS VALES DO JEQUITINHONHA E MUCURI </strong></h5>
     </section>
   </section>
   
@@ -94,7 +94,7 @@ date_default_timezone_set( 'America/Sao_Paulo' );
               class="img-responsive"
               height="100px"
               width="100px"
-              src="../img/logo_ufvjm.gif"
+              src="../img/logo_ufvjm.png"
               alt="Logo UFVJM"
            >
   </section>
