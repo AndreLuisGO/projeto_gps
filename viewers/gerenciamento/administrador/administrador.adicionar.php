@@ -118,7 +118,7 @@ require_once "../../../engine/config.php";
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">Login *</span> <input
 				type="text" class="form-control" id="login_administrador"
-				placeholder="Email" aria-describedby="basic-addon1">
+				placeholder="Login" aria-describedby="basic-addon1">
 		</div>
 	</section>
 	<section class="col-md-4">
