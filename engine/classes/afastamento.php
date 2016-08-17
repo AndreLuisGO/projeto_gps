@@ -225,7 +225,7 @@ class Afastamento {
 		return $realData;
 	}
 	
-	public function ReadAllDocenteMes($id, $mes) {
+	public function ReadAllDocenteMes($id, $mes, $ano) {
 		$sql = "
 		SELECT
 		t1.id_afastamento,
@@ -241,8 +241,17 @@ class Afastamento {
 		INNER JOIN ocorrencia AS t2 ON t1.id_ocorrencia = t2.id_ocorrencia
 		WHERE
 		t1.id_docente = '$id'
-		AND (t1.dt_inicio_afastamento >= '$mes')
-		AND (t1.dt_fim_afastamento <= last_day('$mes'))
+		AND 
+		'$mes'	
+			BETWEEN 
+				MONTH(t1.dt_inicio_afastamento) 
+				AND 
+				MONTH(t1.dt_fim_afastamento) 
+		AND '$ano' 
+			BETWEEN 
+				YEAR(t1.dt_inicio_afastamento) 
+				AND 
+				YEAR(t1.dt_fim_afastamento)
 		ORDER BY
 		t1.id_afastamento DESC;
 		";

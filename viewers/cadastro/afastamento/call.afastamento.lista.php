@@ -1,9 +1,11 @@
 <?php
 require_once('../../../engine/config.php');
 $IdDocente = $_POST['iddocente'];
-$MesAfastamento = $_POST['filtra_mes'];
+$MesAnoAfastamento = $_POST['filtra_mes'];
 //var_dump($MesAfastamento);
-$MesAfastamento = PrimeiroDia($MesAfastamento);
+$MesAnoAfastamento = explode ( '/', $MesAnoAfastamento);
+$MesAfastamento = $MesAnoAfastamento[0];
+$AnoAfastamento = $MesAnoAfastamento[1];
 
 ?>
 <script type="text/javascript">
@@ -94,7 +96,7 @@ $(function(){
 <div id="id_afastamento" hidden="true"></div>
 <?php
 $Afastamento = new Afastamento();
-$Afastamento = $Afastamento->ReadAllDocenteMes($IdDocente, $MesAfastamento);
+$Afastamento = $Afastamento->ReadAllDocenteMes($IdDocente, $MesAfastamento, $AnoAfastamento);
 // var_dump($Item);
 if (empty ( $Afastamento )) {
 	?>
