@@ -269,6 +269,59 @@ class Docente {
 		return $realData;
 	}
 	
+	public function ReadAllReport($mes,$ano,$id_curso) {
+		$sql = "
+					SELECT
+						t1.id_docente,
+						t1.nome_docente,
+						t1.siape_docente,
+						t1.email_docente,
+						t1.efetivo_docente,
+						t2.dt_inicio_exercicio,
+						t2.dt_fim_exercicio,
+						t2.id_exercicio
+					FROM
+						docente AS t1,
+						exercicio AS t2
+					WHERE
+						MONTH(t2.dt_inicio_exercicio) <= '$mes'
+					AND
+						(MONTH(t2.dt_fim_exercicio) >= '$mes' OR t2.dt_fim_exercicio IS NULL)
+					
+					AND
+						YEAR(t2.dt_inicio_exercicio) <= '$ano'
+					AND
+						(YEAR(t2.dt_fim_exercicio) >= '$ano' OR t2.dt_fim_exercicio IS NULL)	
+						
+						
+					AND
+						t1.id_docente = t2.id_docente
+					AND
+						t2.id_curso = '$id_curso'
+					ORDER BY t1.nome_docente
+				
+
+			";
+		
+		$DB = new DB ();
+		$DB->open ();
+		$Data = $DB->fetchData ( $sql );
+		$realData;
+		if ($Data == NULL) {
+			$realData = $Data;
+		} else {
+			
+			foreach ( $Data as $itemData ) {
+				if (is_bool ( $itemData ))
+					continue;
+				else {
+					$realData [] = $itemData;
+				}
+			}
+		}
+		$DB->close ();
+		return $realData;
+	}
 	/*
 	 * --------------------------------------------------
 	 * Viewer SPecific methods -- end

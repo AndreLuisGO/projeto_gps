@@ -33,6 +33,67 @@ function fixlastdate($string, $newmes, $newano)
 	return($result);
 }
 
+function diasefetivos($start,$end,$mes,$ano)
+{
+	$daysmonth = date('t',mktime(0, 0, 0, $mes, 1, $ano));
+	
+	$thismonthstart = mktime(0, 0, 0, $mes, 1, $ano);
+	$thismonthend = mktime(0, 0, 0, $mes, $daysmonth, $ano);
+	
+	list($anoinit, $mesinit, $diainit)=explode("-", $start);
+	$startdate = mktime(0, 0, 0, $mesinit, $diainit, $anoinit);
+	
+	if(!($end == NULL))
+	{
+		list($anofim, $mesfim, $diafim)=explode("-", $end);
+		$enddate = mktime(0, 0, 0, $mesfim, $diafim, $anofim);
+	}
+	else 
+	{
+		$enddate = mktime(0, 0, 0, $mes, $daysmonth, $ano);
+	}
+	
+	if($startdate > $thismonthstart) {$thismonthstart = $startdate;}
+	if($enddate < $thismonthend) {$thismonthend = $enddate;}
+	
+	$result = date('d',$thismonthend) - date('d',$thismonthstart);
+	return($result) +1;
+	
+}
+
+function fixbystart($afastdate, $startdate)
+{
+	list($anoafast, $mesafast, $diaafast)=explode("-", $afastdate);
+	list($anostart, $messtart, $diastart)=explode("-", $startdate);
+	$newstartdate = mktime(0, 0, 0, $messtart, $diastart, $anostart);
+	$newafastdate = mktime(0, 0, 0, $mesafast, $diaafast, $anoafast);
+	if ($newafastdate < $newstartdate)
+	{
+		$newafastdate = $newstartdate;
+	}
+	return date('Y-m-d',$newafastdate); 
+}
+function fixbyend($afastdate, $enddate)
+{
+	if(!($enddate == NULL))
+	{
+	  list($anoafast, $mesafast, $diaafast)=explode("-", $afastdate);
+	  list($anoend, $mesend, $diaend)=explode("-", $enddate);
+	  $newenddate = mktime(0, 0, 0, $mesend, $diaend, $anoend);
+	  $newafastdate = mktime(0, 0, 0, $mesafast, $diaafast, $anoafast);
+	  if ($newafastdate > $newenddate)
+	  {
+		  $newafastdate = $newenddate;
+	  }
+	  return date('Y-m-d',$newafastdate);
+	}
+	else
+	{
+		return $afastdate;
+	}   
+
+}
+
 function getquantdays($inicio, $fim)
 {
 	list($anoinicio, $mesinicio, $diainicio)=explode("-", $inicio);
@@ -117,10 +178,11 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 
 <?php
 	$Docente = new Docente();
-	$Docente = $Docente->ReadAllCurso($curso);
+	$Docente = $Docente->ReadAllReport($mes, $ano, $curso);
 	//var_dump($Docente);
 	$Afastamento = new Afastamento();
 	$Afastamento = $Afastamento->ReadAllReport($mes, $ano, $curso);
+	//var_dump($Afastamento);
 	if(empty($Afastamento)) {}
 	else
 	{
@@ -141,7 +203,8 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 	foreach ($Docente as $DocenteRow)
 	{
 		$Quantidade = 0;
-		$DiasEfetivos = date('t',mktime(0, 0, 0, $mes, 1, $ano));
+		$DiasEfetivos = 
+		diasefetivos($DocenteRow['dt_inicio_exercicio'],$DocenteRow['dt_fim_exercicio'],$mes,$ano);
 		$Obervs = array();
 		$Obsindex = 0;
 		?>
@@ -163,12 +226,16 @@ date_default_timezone_set( 'America/Sao_Paulo' );
                     <th class="simpleborder rel_diasdomes"><strong>Dias do Mês:</strong></th>
                   </tr>
                 <?php
-					//var_dump($Afastamento);
-					foreach($Afastamento as $indice => $AfastamentoRow)
-					{
-						//var_dump($AfastamentoRow);
+					//var_dump($DocenteRow);
+					foreach($Afastamento as $indice => &$AfastamentoRow)
+					{	
 						if($AfastamentoRow['siape_docente'] == $DocenteRow['siape_docente'])
 						{
+							//var_dump($AfastamentoRow);
+		$AfastamentoRow['dt_inicio_afastamento'] =
+		fixbystart($AfastamentoRow['dt_inicio_afastamento'],$DocenteRow['dt_inicio_exercicio']);
+		$AfastamentoRow['dt_fim_afastamento'] =
+		fixbyend($AfastamentoRow['dt_fim_afastamento'],$DocenteRow['dt_fim_exercicio']);
 				?>
                   <tr class="simpleborder">
                   	<td class="simpleborder"> <?php echo $AfastamentoRow['codigo_ocorrencia'] ?> </td>
