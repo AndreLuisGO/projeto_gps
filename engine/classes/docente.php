@@ -269,7 +269,7 @@ class Docente {
 		return $realData;
 	}
 	
-	public function ReadAllReport($mes,$ano,$id_curso) {
+	public function ReadAllReport($mes,$ano,$id_curso,$efetivo) {
 		$sql = "
 					SELECT
 						t1.id_docente,
@@ -298,6 +298,8 @@ class Docente {
 						t1.id_docente = t2.id_docente
 					AND
 						t2.id_curso = '$id_curso'
+					AND
+						t1.efetivo_docente = '$efetivo'
 					ORDER BY t1.nome_docente
 				
 

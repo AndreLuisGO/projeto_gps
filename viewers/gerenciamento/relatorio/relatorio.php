@@ -5,7 +5,7 @@ require_once('../../../engine/config.php');
 	
 $MesForm = $_POST['mes'];
 $curso = $_POST['curso'];
-
+$efetivo = $_POST['efetivo'];
 list($mes, $ano)=explode("/", $MesForm);
 
 
@@ -178,7 +178,7 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 
 <?php
 	$Docente = new Docente();
-	$Docente = $Docente->ReadAllReport($mes, $ano, $curso);
+	$Docente = $Docente->ReadAllReport($mes, $ano, $curso, $efetivo);
 	//var_dump($Docente);
 	$Afastamento = new Afastamento();
 	$Afastamento = $Afastamento->ReadAllReport($mes, $ano, $curso);

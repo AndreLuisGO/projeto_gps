@@ -25,8 +25,9 @@
 			e.preventDefault();
 			var curso = $('#curso').val();
 			var mes = $('#datepicker').val();
+			var efetivo = $('#efetivo').val();
 			$('#loader').empty();
-			$('#printloader').load('gerenciamento/relatorio/relatorio.php',{mes: mes, curso: curso});			
+			$('#printloader').load('gerenciamento/relatorio/relatorio.php',{mes: mes, curso: curso, efetivo:efetivo});			
 		});
 
 		
@@ -84,14 +85,27 @@ require_once "../../../engine/config.php";
 </section> <!-- Menu de Voltar -->
 <br />
 <section class="row"><!-- Primeira Linha -->
-	<section class="col-md-3"> <!-- Selecionar Datas-->
+	<section class="col-md-2"> <!-- Selecionar Datas-->
 		<div class="form-group has-feedback has-feedback-right">
 			<label for="startdate" class="control-label">Escolha o mês:</label>
             <i class="form-control-feedback glyphicon glyphicon-calendar"></i>
 			<input id="datepicker" name="mes" class="date-picker input-mini form-control" ></input> 
 		</div>
 	</section><!-- Selecionar Datas-->
-	<section class="col-md-9">  <!-- Selecionar Curso-->
+    <section class="col-md-2">  <!-- Selecionar Efetivo-->
+	<div class="form-group">
+		<div class="form-group">
+		  <label for="efetivo">Efetivo:</label>
+		  <select class="form-control" id="efetivo">
+		  <option value=""> -- Selecione -- </option>
+		    <option value="1">Sim</option>
+            <option value="0">Não</option>
+		  </select>
+		</div>
+	</div>
+	</section> <!-- Selecionar Efetivo -->
+    <input type="hidden" id="efetivoinput"> 
+	<section class="col-md-8">  <!-- Selecionar Curso-->
 	<div class="form-group">
 		<div class="form-group">
 		  <label for="curso">Selecionar Curso:</label>
